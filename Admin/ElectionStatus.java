@@ -6,18 +6,16 @@ package Admin;
 
 import General.*;
 import Voters.*;
-import java.awt.Color;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.util.Vector;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -32,8 +30,7 @@ public class ElectionStatus extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    int q, i, id, deleteItem;
-    
+
     public ElectionStatus() {
         initComponents();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
@@ -128,42 +125,42 @@ public class ElectionStatus extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnRoot = new javax.swing.JPanel();
-        pnSide = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        JPanel pnRoot = new JPanel();
+        JPanel pnSide = new JPanel();
+        JPanel jPanel1 = new JPanel();
+        JButton jButton6 = new JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        JPanel jPanel5 = new JPanel();
+        JPanel jPanel6 = new JPanel();
         jButton13 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        pnCenter = new javax.swing.JPanel();
-        pnCBottom = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        pniCTop = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jButton10 = new javax.swing.JButton();
-        pniCCenter = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        jButton17 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        JLabel jLabel5 = new JLabel();
+        JLabel jLabel6 = new JLabel();
+        JLabel jLabel7 = new JLabel();
+        JPanel pnCenter = new JPanel();
+        JPanel pnCBottom = new JPanel();
+        JLabel jLabel1 = new JLabel();
+        JLabel jLabel3 = new JLabel();
+        JLabel jLabel4 = new JLabel();
+        JPanel pniCTop = new JPanel();
+        JLabel jLabel2 = new JLabel();
+        JPanel jPanel2 = new JPanel();
+        JPanel jPanel3 = new JPanel();
+        JPanel jPanel4 = new JPanel();
+        JButton jButton10 = new JButton();
+        JPanel pniCCenter = new JPanel();
+        JButton jButton8 = new JButton();
+        JLabel jLabel8 = new JLabel();
+        JButton jButton17 = new JButton();
+        JLabel jLabel9 = new JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        JLabel jLabel11 = new JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        JLabel jLabel13 = new JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -193,55 +190,35 @@ public class ElectionStatus extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(this::jButton1ActionPerformed);
         pnSide.add(jButton1);
 
         jButton2.setForeground(new java.awt.Color(0, 255, 204));
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new java.awt.Color(0, 255, 204));
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new java.awt.Color(0, 255, 204));
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new java.awt.Color(0, 255, 204));
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        jButton5.addActionListener(this::jButton5ActionPerformed);
         pnSide.add(jButton5);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -262,11 +239,7 @@ public class ElectionStatus extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
         jButton13.setText("VOTING PERCENTAGE");
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
+        jButton13.addActionListener(this::jButton13ActionPerformed);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("CLICK HERE TO");
@@ -356,7 +329,7 @@ public class ElectionStatus extends javax.swing.JFrame {
         pniCTop.setBackground(new java.awt.Color(34, 40, 44));
         pniCTop.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", 1, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Election Status");
 
@@ -401,11 +374,7 @@ public class ElectionStatus extends javax.swing.JFrame {
 
         jButton10.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
         jButton10.setText("Back");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
+        jButton10.addActionListener(this::jButton10ActionPerformed);
 
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
         pniCTop.setLayout(pniCTopLayout);
@@ -448,42 +417,34 @@ public class ElectionStatus extends javax.swing.JFrame {
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\politics-election-voting-cartoon_1284-23116.jpg")); // NOI18N
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
+        jButton8.addActionListener(this::jButton8ActionPerformed);
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Admins");
 
         jButton17.setBackground(new java.awt.Color(255, 102, 102));
-        jButton17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
+        jButton17.addActionListener(this::jButton17ActionPerformed);
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Tahoma", Font.BOLD, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("No of People Contributed Upto ");
 
         jLabel10.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 255, 204));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Tahoma", Font.BOLD, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("No of Canditates Partcipating");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 36)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(51, 255, 0));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Tahoma", Font.BOLD, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("this time");
 
@@ -595,10 +556,10 @@ public class ElectionStatus extends javax.swing.JFrame {
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
-private JFrame frame;
+
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
-        frame = new JFrame("Exit");
+        JFrame frame = new JFrame("Exit");
         if(JOptionPane.showConfirmDialog(frame, "Confirm if you want to exit", "Admin Panel",
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             AdminLogin c = new AdminLogin();
@@ -643,7 +604,7 @@ private JFrame frame;
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -656,61 +617,25 @@ private JFrame frame;
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ElectionStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ElectionStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ElectionStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ElectionStatus.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ElectionStatus().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new ElectionStatus().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel pnCBottom;
-    private javax.swing.JPanel pnCenter;
-    private javax.swing.JPanel pnRoot;
-    private javax.swing.JPanel pnSide;
-    private javax.swing.JPanel pniCCenter;
-    private javax.swing.JPanel pniCTop;
     // End of variables declaration//GEN-END:variables
 }

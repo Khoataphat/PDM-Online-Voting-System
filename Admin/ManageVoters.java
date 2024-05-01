@@ -6,7 +6,8 @@ package Admin;
 
 import General.*;
 import Voters.*;
-import java.awt.Color;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.*;
@@ -89,7 +90,7 @@ public class ManageVoters extends javax.swing.JFrame {
     
     public void upDateDB(){
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
             pst = con.prepareStatement("select * from voterslist");
 
@@ -130,60 +131,60 @@ public class ManageVoters extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnRoot = new javax.swing.JPanel();
-        pnSide = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
+        JPanel pnRoot = new JPanel();
+        JPanel pnSide = new JPanel();
+        JPanel jPanel1 = new JPanel();
+        JButton jButton6 = new JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        JPanel jPanel5 = new JPanel();
+        JPanel jPanel6 = new JPanel();
         jButton13 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        pnCenter = new javax.swing.JPanel();
-        pnCBottom = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        pniCTop = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jButton8 = new javax.swing.JButton();
-        pniCCenter = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        JLabel jLabel5 = new JLabel();
+        JLabel jLabel6 = new JLabel();
+        JLabel jLabel7 = new JLabel();
+        JLabel jLabel16 = new JLabel();
+        JLabel jLabel19 = new JLabel();
+        JPanel pnCenter = new JPanel();
+        JPanel pnCBottom = new JPanel();
+        JLabel jLabel1 = new JLabel();
+        JLabel jLabel3 = new JLabel();
+        JLabel jLabel4 = new JLabel();
+        JPanel pniCTop = new JPanel();
+        JLabel jLabel2 = new JLabel();
+        JPanel jPanel2 = new JPanel();
+        JPanel jPanel3 = new JPanel();
+        JPanel jPanel4 = new JPanel();
+        JButton jButton8 = new JButton();
+        JPanel pniCCenter = new JPanel();
+        JLabel jLabel8 = new JLabel();
         jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        JButton jButton17 = new JButton();
         jButton18 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        JLabel jLabel9 = new JLabel();
+        JLabel jLabel10 = new JLabel();
+        JLabel jLabel11 = new JLabel();
+        JLabel jLabel12 = new JLabel();
+        JLabel jLabel13 = new JLabel();
+        JLabel jLabel14 = new JLabel();
+        JLabel jLabel15 = new JLabel();
+        JLabel jLabel17 = new JLabel();
+        JLabel jLabel18 = new JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        JScrollPane jScrollPane2 = new JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        JScrollPane jScrollPane3 = new JScrollPane();
         jTable2 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton19 = new javax.swing.JButton();
@@ -216,55 +217,35 @@ public class ManageVoters extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(this::jButton1ActionPerformed);
         pnSide.add(jButton1);
 
         jButton2.setForeground(new java.awt.Color(0, 255, 204));
         jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new java.awt.Color(0, 255, 204));
         jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new java.awt.Color(0, 255, 204));
         jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new java.awt.Color(0, 255, 204));
         jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
+        jButton5.addActionListener(this::jButton5ActionPerformed);
         pnSide.add(jButton5);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -285,11 +266,7 @@ public class ManageVoters extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
         jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
+        jButton13.addActionListener(this::jButton13ActionPerformed);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("FIRST TIME VOTERS ");
@@ -387,7 +364,7 @@ public class ManageVoters extends javax.swing.JFrame {
         pniCTop.setBackground(new java.awt.Color(34, 40, 44));
         pniCTop.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", 1, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Manage Voters");
 
@@ -432,11 +409,7 @@ public class ManageVoters extends javax.swing.JFrame {
 
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
         jButton8.setText("Back");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
-            }
-        });
+        jButton8.addActionListener(this::jButton8ActionPerformed);
 
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
         pniCTop.setLayout(pniCTopLayout);
@@ -477,49 +450,33 @@ public class ManageVoters extends javax.swing.JFrame {
 
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Admins");
 
-        jButton15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton15.setForeground(new java.awt.Color(0, 255, 204));
         jButton15.setText("Approve Voters");
         jButton15.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton15ActionPerformed(evt);
-            }
-        });
+        jButton15.addActionListener(this::jButton15ActionPerformed);
 
-        jButton16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton16.setForeground(new java.awt.Color(0, 255, 204));
         jButton16.setText("Reset");
         jButton16.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton16.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton16ActionPerformed(evt);
-            }
-        });
+        jButton16.addActionListener(this::jButton16ActionPerformed);
 
         jButton17.setBackground(new java.awt.Color(255, 102, 102));
-        jButton17.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton17.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton17ActionPerformed(evt);
-            }
-        });
+        jButton17.addActionListener(this::jButton17ActionPerformed);
 
-        jButton18.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton18.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton18.setForeground(new java.awt.Color(0, 255, 204));
         jButton18.setText("Delete Voters");
         jButton18.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton18.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton18ActionPerformed(evt);
-            }
-        });
+        jButton18.addActionListener(this::jButton18ActionPerformed);
 
         jLabel9.setForeground(new java.awt.Color(0, 255, 204));
         jLabel9.setText("voterid");
@@ -548,27 +505,15 @@ public class ManageVoters extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(0, 255, 204));
         jLabel18.setText("Address");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
+        jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane2.setViewportView(jTextArea1);
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
+        jTextField6.addActionListener(this::jTextField6ActionPerformed);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -589,21 +534,13 @@ public class ManageVoters extends javax.swing.JFrame {
         jScrollPane3.setViewportView(jTable2);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
+        jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
-        jButton19.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton19.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton19.setForeground(new java.awt.Color(0, 255, 204));
         jButton19.setText("Update Voters");
         jButton19.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton19.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton19ActionPerformed(evt);
-            }
-        });
+        jButton19.addActionListener(this::jButton19ActionPerformed);
 
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
@@ -783,7 +720,7 @@ public class ManageVoters extends javax.swing.JFrame {
             // PreparedStatement
             pst = con.prepareStatement("insert into voterslist values(?,?,?,?,?,?,?,?,?)");
 
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
             //pst = sqlConn.prepareStatement("insert into 'voterlist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
 
@@ -926,7 +863,7 @@ private JFrame frame;
             // PreparedStatement
             pst = con.prepareStatement("update voterslist set voterID = ?, Name = ?, Username = ?, Password = ?, Email = ?, Phone_no = ?, Gender = ?, Address = ?, Aadhaar_No = ? where voterID = ?");
 
-            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
             //pst = sqlConn.prepareStatement("insert into 'voterslist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
 
@@ -990,7 +927,7 @@ private JFrame frame;
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -1003,23 +940,14 @@ private JFrame frame;
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ManageVoters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ManageVoters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ManageVoters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ManageVoters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ManageVoters().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new ManageVoters().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1027,44 +955,14 @@ private JFrame frame;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
@@ -1074,11 +972,5 @@ private JFrame frame;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JPanel pnCBottom;
-    private javax.swing.JPanel pnCenter;
-    private javax.swing.JPanel pnRoot;
-    private javax.swing.JPanel pnSide;
-    private javax.swing.JPanel pniCCenter;
-    private javax.swing.JPanel pniCTop;
     // End of variables declaration//GEN-END:variables
 }
