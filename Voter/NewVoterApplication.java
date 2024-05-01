@@ -175,7 +175,6 @@ public class NewVoterApplication extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-menu-40.png")); // NOI18N
         jButton6.setText("VOTE IS OUR RIGHT");
         jButton6.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -482,9 +481,6 @@ public class NewVoterApplication extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewVoterApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
