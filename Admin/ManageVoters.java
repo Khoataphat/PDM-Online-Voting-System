@@ -85,10 +85,11 @@ public class ManageVoters extends javax.swing.JFrame {
     
     
     public void upDateDB(){
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
 
 
@@ -777,10 +778,11 @@ public class ManageVoters extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
        // TODO add your handling code here:
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
 
             // Connection con;
@@ -856,12 +858,11 @@ private JFrame frame;
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-        
         try {
             id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
             
@@ -935,12 +936,11 @@ private JFrame frame;
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
 
             // Connection con;
@@ -979,6 +979,7 @@ private JFrame frame;
         }
 
     }//GEN-LAST:event_jButton19ActionPerformed
+
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:

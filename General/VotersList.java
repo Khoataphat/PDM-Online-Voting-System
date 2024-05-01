@@ -466,7 +466,6 @@ public class VotersList extends javax.swing.JFrame {
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
                                 /*voterID, Name, Gender, Age, Email, Username, Password
                     "voterID", "Name", "Gender", "Age", "Email", "Username", "Password"

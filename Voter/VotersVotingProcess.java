@@ -616,19 +616,18 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
-        String un = "sa";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
             /*
             "Candidate_No", "Candidate_ID", "Candidate_Name", "Gender", "Age", "Email"
             Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email
              */
 
-            con = DriverManager.getConnection(url, un, password);
+            con = DriverManager.getConnection(url, username, password);
             pst = con.prepareStatement("select Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email  from candidates");
 
             rs = pst.executeQuery();
@@ -666,15 +665,14 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         int vote = 1;
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
-        String un = "sa";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
 
-            con = DriverManager.getConnection(url, un, password);
+            con = DriverManager.getConnection(url, username, password);
             System.out.println("Connected To MySql Database!");
 
             pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
@@ -699,15 +697,14 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         int vote = 2;
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
-        String un = "sa";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
 
-            con = DriverManager.getConnection(url, un, password);
+            con = DriverManager.getConnection(url, username, password);
             System.out.println("Connected To MySql Database!");
 
             pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
@@ -732,15 +729,14 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         int vote = 3;
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
-        String un = "sa";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url, un, password);
+            con = DriverManager.getConnection(url,username, password);
             System.out.println("Connected To MySql Database!");
             
             //System.out.println(username);
@@ -768,15 +764,14 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         int vote = 4;
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
-        String un = "sa";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url, un, password);
+            con = DriverManager.getConnection(url,username, password);
             System.out.println("Connected To MySql Database!");
 
             pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
@@ -801,14 +796,13 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         int vote = 5;
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
-        String un = "sa";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
-            con = DriverManager.getConnection(url, un, password);
+            con = DriverManager.getConnection(url, username, password);
             System.out.println("Connected To MySql Database!");
 
             pst = con.prepareStatement("insert into votersvoting values(?,?,?)");

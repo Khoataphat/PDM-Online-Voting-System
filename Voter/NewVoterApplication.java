@@ -5,16 +5,16 @@
 package Voters;
 
 import General.*;
-import Admin.*;
-import java.awt.Color;
+
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JButton;
-import javax.swing.JOptionPane;
+import java.util.Objects;
+import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 
 /**
@@ -26,9 +26,7 @@ public class NewVoterApplication extends javax.swing.JFrame {
     
     Connection con = null;
     PreparedStatement pst = null;
-    ResultSet rs = null;
-    int q, i, id, deleteItem;
-    
+
     /**
      * Creates new form Voters
      */
@@ -91,33 +89,34 @@ public class NewVoterApplication extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        pnRoot = new javax.swing.JPanel();
-        pnSide = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        pnCenter = new javax.swing.JPanel();
+        // Variables declaration - do not modify//GEN-BEGIN:variables
+        ButtonGroup buttonGroup1 = new ButtonGroup();
+        JPanel pnRoot = new JPanel();
+        JPanel pnSide = new JPanel();
+        JLabel jLabel8 = new JLabel();
+        JLabel jLabel9 = new JLabel();
+        JLabel jLabel10 = new JLabel();
+        JLabel jLabel12 = new JLabel();
+        JLabel jLabel13 = new JLabel();
+        JPanel jPanel1 = new JPanel();
+        JLabel jLabel14 = new JLabel();
+        JLabel jLabel15 = new JLabel();
+        JLabel jLabel16 = new JLabel();
+        JButton jButton6 = new JButton();
+        JPanel pnCenter = new JPanel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        pcTop = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        JPanel pcTop = new JPanel();
+        JLabel jLabel2 = new JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPasswordField1 = new javax.swing.JPasswordField();
         jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        JLabel jLabel1 = new JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        JScrollPane jScrollPane2 = new JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jButton3 = new javax.swing.JButton();
 
@@ -128,23 +127,23 @@ public class NewVoterApplication extends javax.swing.JFrame {
         pnSide.setBackground(new java.awt.Color(21, 25, 28));
         pnSide.setPreferredSize(new java.awt.Dimension(300, 0));
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Name");
 
-        jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 255, 102));
         jLabel9.setText("Username");
 
-        jLabel10.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 255, 102));
         jLabel10.setText("Password");
 
-        jLabel12.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 255, 102));
         jLabel12.setText("Age");
 
-        jLabel13.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 255, 102));
         jLabel13.setText("Phone no");
 
@@ -161,15 +160,15 @@ public class NewVoterApplication extends javax.swing.JFrame {
             .addGap(0, 120, Short.MAX_VALUE)
         );
 
-        jLabel14.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 255, 102));
         jLabel14.setText("Address");
 
-        jLabel15.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 255, 102));
         jLabel15.setText("Gender");
 
-        jLabel16.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 24)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 24)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 255, 102));
         jLabel16.setText("Aadhaar No.");
 
@@ -177,11 +176,7 @@ public class NewVoterApplication extends javax.swing.JFrame {
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("VOTE IS OUR RIGHT");
         jButton6.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
+        jButton6.addActionListener(this::jButton6ActionPerformed);
 
         javax.swing.GroupLayout pnSideLayout = new javax.swing.GroupLayout(pnSide);
         pnSide.setLayout(pnSideLayout);
@@ -241,27 +236,15 @@ public class NewVoterApplication extends javax.swing.JFrame {
 
         pnCenter.setBackground(new java.awt.Color(34, 40, 44));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
-            }
-        });
+        jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
-            }
-        });
+        jTextField3.addActionListener(this::jTextField3ActionPerformed);
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
+        jTextField6.addActionListener(this::jTextField6ActionPerformed);
 
         pcTop.setBackground(new java.awt.Color(34, 40, 44));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", 1, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Voter's Registration Form");
 
@@ -283,24 +266,16 @@ public class NewVoterApplication extends javax.swing.JFrame {
         );
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(0, 255, 0));
         jButton1.setText("Reset");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+        jButton1.addActionListener(this::jButton1ActionPerformed);
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 255, 0));
         jButton2.setText("Submit Register Form");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
+        jButton2.addActionListener(this::jButton2ActionPerformed);
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\hta_fill-application.png")); // NOI18N
 
@@ -313,14 +288,10 @@ public class NewVoterApplication extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTextArea1);
 
         jButton3.setBackground(new java.awt.Color(0, 0, 0));
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", Font.BOLD, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 255, 51));
         jButton3.setText("Back To Home");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
+        jButton3.addActionListener(this::jButton3ActionPerformed);
 
         javax.swing.GroupLayout pnCenterLayout = new javax.swing.GroupLayout(pnCenter);
         pnCenter.setLayout(pnCenterLayout);
@@ -419,11 +390,11 @@ public class NewVoterApplication extends javax.swing.JFrame {
             pst = con.prepareStatement("insert into newvoters values(?,?,?,?,?,?,?,?)");
 
             pst.setString(1, jTextField2.getText());
-            pst.setString(2, jComboBox2.getSelectedItem().toString());
+            pst.setString(2, Objects.requireNonNull(jComboBox2.getSelectedItem()).toString());
             pst.setString(3, jTextField3.getText());
             pst.setString(4, jPasswordField1.getText());
             pst.setString(5, jTextField6.getText());
-            pst.setString(6, jComboBox1.getSelectedItem().toString());
+            pst.setString(6, Objects.requireNonNull(jComboBox1.getSelectedItem()).toString());
             pst.setString(7, jTextArea1.getText());
             pst.setString(8, jTextField1.getText());
 
@@ -459,7 +430,7 @@ public class NewVoterApplication extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -472,54 +443,26 @@ public class NewVoterApplication extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewVoterApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewVoterApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewVoterApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewVoterApplication.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewVoterApplication().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new NewVoterApplication().setVisible(true));
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JPanel pcTop;
-    private javax.swing.JPanel pnCenter;
-    private javax.swing.JPanel pnRoot;
-    private javax.swing.JPanel pnSide;
     // End of variables declaration//GEN-END:variables
 }

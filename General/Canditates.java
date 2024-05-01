@@ -68,10 +68,11 @@ public class Canditates extends javax.swing.JFrame {
     }
     
     public void upDateDB(){
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");

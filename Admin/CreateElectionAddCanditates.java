@@ -962,41 +962,45 @@ private JFrame frame;
         // TODO add your handling code here:
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
-        
+        /*Thục Minh: Related to picture
+
         jLabel23 = new JLabel("image");
         jLabel25 = new JLabel("image");
-        
+
+         */
+
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
-            
+            int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
+
+            int deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to delete item",
                     "Warning", JOptionPane.YES_NO_OPTION);
-            
+
             if(deleteItem == JOptionPane.YES_NO_OPTION){
-                
+                con = DriverManager.getConnection(url, "sa", "123456789");
+                pst = con.prepareStatement("DELETE FROM candidates WHERE Candidate_ID = ?;");
+
                 pst.setInt(1, id);
                 pst.executeUpdate();
-                
-                
+
+                JOptionPane.showMessageDialog(this, "Candidate Details Updated");
+
                 upDateDB();
-                
+
+                // Clearing input fields
                 jTextField1.setText("");
                 jTextField1.requestFocus();
-                jTextField9.setText("");
                 jTextField7.setText("");
                 jComboBox1.setSelectedItem("Male");
                 jComboBox2.setSelectedItem("25");
-                jTextField4.setText("");
-                jTextField2.setText("");
-                jTextField3.setText("");
-                jTextField5.setText("");
-                jTextArea1.setText("");
-                jTextField8.setText("");
-                jTextField6.setText("");
-                jTextField10.setText("");
-                jLabel23.setIcon(new ImageIcon(getClass().getResource("C:\\icons hub\\icons8-people-25.png")));
-                jLabel25.setIcon(new ImageIcon(getClass().getResource("C:\\icons hub\\icons8-elections-25.png")));
+
             }
         } catch (Exception e) {
-            
+
             JOptionPane.showMessageDialog(null, e);
         }
     }//GEN-LAST:event_jButton18ActionPerformed
