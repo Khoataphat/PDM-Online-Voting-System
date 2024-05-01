@@ -120,7 +120,6 @@ public class VotersList extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-menu-40.png")); // NOI18N
         jButton6.setText("VOTE IS OUR RIGHT");
         jButton6.setPreferredSize(new java.awt.Dimension(200, 40));
         jPanel1.add(jButton6);
@@ -187,17 +186,6 @@ public class VotersList extends javax.swing.JFrame {
         });
         pnSide.add(jButton5);
 
-        jButton7.setForeground(new java.awt.Color(0, 255, 204));
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-user-manual-25.png")); // NOI18N
-        jButton7.setText("INSTRUCTIONS");
-        jButton7.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        pnSide.add(jButton7);
-
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
@@ -215,7 +203,7 @@ public class VotersList extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
-        jButton13.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-18-plus-100.png")); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -223,13 +211,7 @@ public class VotersList extends javax.swing.JFrame {
         });
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel5.setText("IF YOU ARE ABOVE");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel6.setText("APPLY HERE FOR");
-
-        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel7.setText("VOTER ID");
+        jLabel5.setText("REGISTER NOW");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -273,11 +255,9 @@ public class VotersList extends javax.swing.JFrame {
         pnCBottom.setPreferredSize(new java.awt.Dimension(734, 100));
 
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-location-40.png")); // NOI18N
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-date-40.png")); // NOI18N
         jLabel3.setText("Group 6 - PDM");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
@@ -392,7 +372,7 @@ public class VotersList extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", 3, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
-        jLabel8.setText("Any Issues or Changes Contact +91 9176475511 (Voters)");
+        jLabel8.setText("Any Issues or Changes Contact Admin");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -470,14 +450,6 @@ public class VotersList extends javax.swing.JFrame {
         
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        Instructions h = new Instructions();
-        h.show();
-        
-        dispose();
-    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
@@ -567,69 +539,6 @@ public class VotersList extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VotersList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

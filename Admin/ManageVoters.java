@@ -201,7 +201,6 @@ public class ManageVoters extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(0, 0, 0));
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-menu-40.png")); // NOI18N
         jButton6.setText("VOTE IS OUR RIGHT");
         jButton6.setPreferredSize(new java.awt.Dimension(200, 40));
         jPanel1.add(jButton6);
@@ -267,17 +266,6 @@ public class ManageVoters extends javax.swing.JFrame {
             }
         });
         pnSide.add(jButton5);
-
-        jButton7.setForeground(new java.awt.Color(0, 255, 204));
-        jButton7.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-user-manual-25.png")); // NOI18N
-        jButton7.setText("INSTRUCTIONS");
-        jButton7.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        pnSide.add(jButton7);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -362,11 +350,9 @@ public class ManageVoters extends javax.swing.JFrame {
         pnCBottom.setPreferredSize(new java.awt.Dimension(734, 100));
 
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-location-40.png")); // NOI18N
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-date-40.png")); // NOI18N
         jLabel3.setText("Group 6 - PDM");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
@@ -775,18 +761,6 @@ public class ManageVoters extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Instructions Page",
-                    "Warning", JOptionPane.YES_NO_OPTION);
-        if(movetohome == JOptionPane.YES_NO_OPTION){
-            Instructions h = new Instructions();
-            h.show();
-            
-            dispose();
-        }
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
         FirstTimeVotersDetails f = new FirstTimeVotersDetails();
@@ -1039,7 +1013,6 @@ private JFrame frame;
             java.util.logging.Logger.getLogger(ManageVoters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
