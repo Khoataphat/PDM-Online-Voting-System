@@ -30,6 +30,8 @@ public class VotersLogin extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+
+    ResultSet rs1 = null;
     int q, i, id, deleteItem;
     
     public VotersLogin() {
@@ -524,23 +526,52 @@ public class VotersLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = jTextField2.getText();
         String password = jPasswordField1.getPassword().toString();
+        String email = jTextField2.getText();
         System.out.println("pwd: "+password);
         if(username.isEmpty() || password.isEmpty()){
             JOptionPane.showMessageDialog(this, "Username / Password Should not be empty.");
         }
         else{
+            String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+            String databaseName = "OnlineVoting";
+            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
             try {
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+                con = DriverManager.getConnection(url, "sa", "123456789");
                 String query = "select * from voterslist where Username = '"+jTextField2.getText()+"' and Password = '"+jPasswordField1.getText()+"'";
                 Statement st = con.createStatement();
                 rs = st.executeQuery(query);
+
+                //Thục Minh
+                String candidateEmail = jTextField2.getText();
+                String query3 = "SELECT * FROM candidates WHERE EMAIL = '" + candidateEmail + "'";
+                Statement st3 = con.createStatement();
+                ResultSet rs1 = st3.executeQuery(query3);
+
+                //Thục Min
+
+
                 if(rs.next()){
                     JOptionPane.showMessageDialog(this, "Login Successful");
-                    
+
                     String query2 = "select * from votersvoting where Username = '"+jTextField2.getText()+"' and Password = '"+jPasswordField1.getText()+"'";
                     Statement st2 = con.createStatement();
                     rs = st2.executeQuery(query2);
-                    
+
+                    String candidateQuery = "SELECT * FROM voterslist WHERE EMAIL ='"+jTextField2.getText()+ "'UNION SELECT * FROM candidates WHERE EMAIL ='" +jTextField2.getText()+"'";
+                    PreparedStatement candidateStatement = con.prepareStatement(candidateQuery);
+                    candidateStatement.setString(1, username);
+                    ResultSet candidateResult = candidateStatement.executeQuery();
+
+                    if (candidateResult.next()) {
+                        JOptionPane.showMessageDialog(this, "Candidate cannot vote");
+                    } else{
+                        VotersVotingProcess v = new VotersVotingProcess(jTextField2.getText(), jPasswordField1.getText());
+                        v.show();
+
+                        dispose();
+                    }
+
+
                     if(rs.next()){
                         JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
                     }
@@ -550,8 +581,8 @@ public class VotersLogin extends javax.swing.JFrame {
 
                         dispose();
                     }
-                }
-                else{
+
+                } else{
                     JOptionPane.showMessageDialog(this, "Login Failed");
                 }
             }
@@ -662,5 +693,6 @@ public class VotersLogin extends javax.swing.JFrame {
     private javax.swing.JPanel pnSide;
     private javax.swing.JPanel pniCCenter;
     private javax.swing.JPanel pniCTop;
+
     // End of variables declaration//GEN-END:variables
 }

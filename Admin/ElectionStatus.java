@@ -72,8 +72,12 @@ public class ElectionStatus extends javax.swing.JFrame {
 
     
     public int noCand(){
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select count(Candidate_No) from candidates");
 
             rs = pst.executeQuery();
@@ -96,9 +100,12 @@ public class ElectionStatus extends javax.swing.JFrame {
     
     
     public int novoters(){
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select count(Username) from votersvoting");
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select count(voterID) from votersvoting");
 
             rs = pst.executeQuery();
             

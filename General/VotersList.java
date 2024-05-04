@@ -489,32 +489,41 @@ public class VotersList extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select * from voterslist");
+            con = DriverManager.getConnection(url, username, password);
+            pst = con.prepareStatement("select voterID, FullName, Gender, Age, Email from voterslist");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
 
-            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
-            RecordTable.setRowCount(0);
+            // Define your custom column names
+            String[] columnNames = {"Voter ID", "FullName", "Gender", "Age", "Email"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable1.setModel(RecordTable);
 
             while (rs.next()){
                 Vector columnData = new Vector();
 
-                for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("voterID"));
-                    columnData.add(rs.getString("Name"));;
-                    columnData.add(rs.getString("Gender"));
-                    columnData.add(rs.getString("Address"));
-                    columnData.add(rs.getString("Aadhaar_No"));
-                    columnData.add(rs.getString("Phone_no"));
-                }
+                // Fetch column data using the correct column names
+                columnData.add(rs.getString("voterID"));
+                columnData.add(rs.getString("FULLNAME"));
+                columnData.add(rs.getString("GENDER"));
+                columnData.add(rs.getString("AGE"));
+                columnData.add(rs.getString("EMAIL"));
+
                 RecordTable.addRow(columnData);
             }
+
 
         }
         catch (Exception ex) {

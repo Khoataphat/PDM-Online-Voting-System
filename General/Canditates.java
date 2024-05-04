@@ -68,27 +68,35 @@ public class Canditates extends javax.swing.JFrame {
     }
     
     public void upDateDB(){
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select Candidate_Name, Party_Name, Age, Gender from candidates");
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select ID, FULLNAME, GENDER, AGE, EMAIL from candidates");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
 
-            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
-            RecordTable.setRowCount(0);
+            // Define custom column names
+            String[] columnNames = {"ID", "Full Name", "Gender", "Age", "Email"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable1.setModel(RecordTable);
 
             while (rs.next()){
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("Candidate_Name"));
-                    columnData.add(rs.getString("Party_Name"));
-                    columnData.add(rs.getString("Age"));
-                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("ID"));
+                    columnData.add(rs.getString("FULLNAME"));
+                    columnData.add(rs.getString("GENDER"));
+                    columnData.add(rs.getString("AGE"));
+                    columnData.add(rs.getString("EMAIL"));
                 }
                 RecordTable.addRow(columnData);
             }

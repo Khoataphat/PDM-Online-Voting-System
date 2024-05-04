@@ -103,34 +103,47 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     
     
     public void upDateDB(){
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select * from candidates");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
+            /*
 
             DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
             RecordTable.setRowCount(0);
+            */
+
+            // Define your custom column names
+            String[] columnNames = {"ID", "FULLNAME", "GENDER", "AGE", "EMAIL"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable2.setModel(RecordTable);
 
             while (rs.next()){
                 Vector columnData = new Vector();
+                //Thục Minh: Scope to appear the candidates table_The table in the right-hand corner
 
                 for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("Candidate_No"));
-                    columnData.add(rs.getString("Party_Name"));
-                    columnData.add(rs.getString("Candidate_Name"));
-                    columnData.add(rs.getString("Gender"));
-                    columnData.add(rs.getString("Age"));
-                    columnData.add(rs.getString("Net_Worth"));
-                    columnData.add(rs.getString("Educational_qualification"));
-                    columnData.add(rs.getString("Previous_Election_Status"));
+                    //ID, FULLNAME, GENDER, AGE, EMAIL, USERNAME , PASSWORD
+                    columnData.add(rs.getString("ID"));
+                    columnData.add(rs.getString("FULLNAME"));
+                    columnData.add(rs.getString("GENDER"));
+                    columnData.add(rs.getString("AGE"));
+                    columnData.add(rs.getString("EMAIL"));
+                    /*
                     columnData.add(rs.getString("Phone_No"));
                     columnData.add(rs.getString("Address"));
                     columnData.add(rs.getString("Aadhar_No"));
+                    /*
                     
                     byte[] imagedata1 = rs.getBytes("Passport_Size_Photo");
                     format1 = new ImageIcon(imagedata1);
@@ -147,6 +160,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                     ImageIcon image2 = new ImageIcon(img22);
                     
                     columnData.add(image2);
+
+                     */
 
                 }
                 RecordTable.addRow(columnData);
@@ -919,36 +934,67 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+        /*Thục Minh: Adding Picture
         
         File f1 = new File(path1);
         File f2 = new File(path2);
+
+         */
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         
         try{
+            /* Thục Minh: Adding picture
+
+
             
             InputStream is1 = new FileInputStream(f1);
             InputStream is2 = new FileInputStream(f2);
+
+             */
             
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
+            //Thục Minh: Placeholder decrease from 13 to 7 as I delete many original attributes
+            // CONNECT TO BACKEND
 
-            pst = con.prepareStatement("insert into candidates values(?,?,?,?,?,?,?,?,?,?,?,?,?)");//'"+image1+"','"+image2+"')");
+            pst = con.prepareStatement("Insert into candidates values(?,?,?,?,?,?,?)");//'"+image1+"','"+image2+"')");
+            pst = con.prepareStatement("INSERT INTO candidates (ID, FULLNAME, GENDER, AGE, EMAIL, USERNAME, PASSWORD) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pst.setString(1, jTextField1.getText()); // ID
+            pst.setString(2, jTextField7.getText()); // FULLNAME
+            pst.setString(3, jComboBox1.getSelectedItem().toString()); // GENDER
+            pst.setString(4, jComboBox2.getSelectedItem().toString()); // AGE
+            pst.setString(5, jTextField2.getText()); // EMAIL
+            pst.setString(6, jTextField3.getText()); // USERNAME
+            //pst.setString(7, jPasswordField1.getText()); // PASSWORD BACKEND
 
-            pst.setString(1, jTextField1.getText());
-            pst.setString(2, jTextField9.getText());
-            pst.setString(3, jTextField7.getText());
-            pst.setString(4, jComboBox1.getSelectedItem().toString());
-            pst.setString(5, jComboBox2.getSelectedItem().toString());
-            pst.setString(6, jTextField4.getText());
-            pst.setString(7, jTextField2.getText());
-            pst.setString(8, jTextField3.getText());
-            pst.setString(9, jTextField5.getText());
-            pst.setString(10, jTextArea1.getText());
-            pst.setString(11, jTextField8.getText());
-            pst.setBlob(12, is1);
-            pst.setBlob(13, is2);
+            /*
+            // Candidate_No = ?, Party_Name = ?, Candidate_Name = ?, Gender = ?, Age = ?, Net_Worth = ?, Educational_qualification = ?, Previous_Election_Status = ?, Phone_No = ?, Address = ?, Aadhar_No = ?, Passport_Size_Photo = ?, Electrol_Symbol = ? where Candidate_No = ?"
+            pst.setString(1, jTextField1.getText()); //Candidate_No = ?,
+            // pst.setString(2, jTextField9.getText()); // Party_Name = ?
+            pst.setString(3, jTextField7.getText()); // Candidate_Name = ?
+            pst.setString(4, jComboBox1.getSelectedItem().toString()); // Gender = ?
+            pst.setString(5, jComboBox2.getSelectedItem().toString()); // Age = ?
+
+            /*pst.setString(6, jTextField4.getText()); // Net_Worth = ?,
+            pst.setString(7, jTextField2.getText()); // Educational_qualification = ?,
+            pst.setString(8, jTextField3.getText()); // Previous_Election_Status = ?
+            pst.setString(9, jTextField5.getText()); // Phone_No = ?
+            pst.setString(10, jTextArea1.getText()); // , Address = ?
+            pst.setString(11, jTextField8.getText()); // , Aadhar_No = ?,
+            */
+
+
+            /* Thục Minh: Adding picture
+            pst.setBlob(12, is1); // Passport_Size_Photo = ?
+            pst.setBlob(13, is2); // , Electrol_Symbol = ?
+
+             */
+
 
             pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "New Candidate Added");
+            JOptionPane.showMessageDialog(this, "New Candidate Added!");
             upDateDB();
         }
         catch (Exception ex) {
@@ -958,19 +1004,30 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
-        
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+
+        /* Thục Minh: Adding picture
+
         File f1 = new File(path1);
         File f2 = new File(path2);
+
+         */
         
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-            
+
+            /* Thục Minh: Adding picture
             InputStream is1 = new FileInputStream(f1);
             InputStream is2 = new FileInputStream(f2);
+
+             */
             
             
-            pst = con.prepareStatement("update candidates set Candidate_No = ?, Party_Name = ?, Candidate_Name = ?, Gender = ?, Age = ?, Net_Worth = ?, Educational_qualification = ?, Previous_Election_Status = ?, Phone_No = ?, Address = ?, Aadhar_No = ?, Passport_Size_Photo = ?, Electrol_Symbol = ? where Candidate_No = ?");  //, Passport_Size_Photo = ?, Electoral_Symbol= ? 
+            pst = con.prepareStatement("UPDATE candidates SET ID = ?, FULLNAME = ?, GENDER = ?, AGE = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?;\n");
 
             pst.setString(1, jTextField1.getText());
             pst.setString(2, jTextField9.getText());
@@ -979,13 +1036,20 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             pst.setString(5, jComboBox2.getSelectedItem().toString());
             pst.setString(6, jTextField4.getText());
             pst.setString(7, jTextField2.getText());
+            /* Thục Minh: Cần xem kỹ hơn vì có thể có vấn đề tại ComboBox - Xem bên backend xóa thế nào
             pst.setString(8, jTextField3.getText());
             pst.setString(9, jTextField5.getText());
             pst.setString(10, jTextArea1.getText());
             pst.setString(11, jTextField8.getText());
+            */
+
+            /* Thục Minh: Adding picture
             pst.setBlob(12, is1);
             pst.setBlob(13, is2);
+
+            // Thục Minh: Bỏ đi dòng address - Nhớ xem lại có phải attribute address không
             pst.setString(14, jTextField1.getText());
+            */
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Candidates Were Updated");
@@ -1012,27 +1076,43 @@ private JFrame frame;
         // TODO add your handling code here:
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
+        /*Thục Minh: Related to picture
         
         jLabel23 = new JLabel("image");
         jLabel25 = new JLabel("image");
-        
+
+         */
+
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+
         try {
-            id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
-            
-            deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to delete item",
+            int id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
+
+            int deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to delete item",
                     "Warning", JOptionPane.YES_NO_OPTION);
-            
+
             if(deleteItem == JOptionPane.YES_NO_OPTION){
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-                pst = con.prepareStatement("delete from candidates where Candidate_No = ?");
-                
+                con = DriverManager.getConnection(url, "sa", "123456789");
+                pst = con.prepareStatement("DELETE FROM candidates WHERE ID = ?");
+
                 pst.setInt(1, id);
                 pst.executeUpdate();
-                
-                JOptionPane.showMessageDialog(this, "Candidates Detals Updated");
-                
+
+                JOptionPane.showMessageDialog(this, "Candidate Details Updated");
+
                 upDateDB();
-                
+
+                // Clearing input fields
+                jTextField1.setText("");
+                jTextField1.requestFocus();
+                jTextField7.setText("");
+                jComboBox1.setSelectedItem("Male");
+                jComboBox2.setSelectedItem("25");
+
+                /*
                 jTextField1.setText("");
                 jTextField1.requestFocus();
                 jTextField9.setText("");
@@ -1047,8 +1127,11 @@ private JFrame frame;
                 jTextField8.setText("");
                 jTextField6.setText("");
                 jTextField10.setText("");
+
                 jLabel23.setIcon(new ImageIcon(getClass().getResource("C:\\icons hub\\icons8-people-25.png")));
                 jLabel25.setIcon(new ImageIcon(getClass().getResource("C:\\icons hub\\icons8-elections-25.png")));
+
+                 */
             }
         } catch (Exception e) {
             

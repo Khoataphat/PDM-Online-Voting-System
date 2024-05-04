@@ -33,10 +33,7 @@ public class ManageVoters extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    //private static final String username = "Sarath";
-    //private static final String password = "kd!32mb*U+GA8Jk";
-    //private static final String dataConn = "jdbc:mysql://localhost:3306/voting";  // jdbc:mysql://localhost:3306/voting
-    
+
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
@@ -88,9 +85,14 @@ public class ManageVoters extends javax.swing.JFrame {
     
     
     public void upDateDB(){
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+
+
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select * from voterslist");
 
             rs = pst.executeQuery();
@@ -98,13 +100,16 @@ public class ManageVoters extends javax.swing.JFrame {
 
             q = stData.getColumnCount();
 
-            DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
-            RecordTable.setRowCount(0);
+            String[] columnNames = {"Voter ID", "FullName", "Gender", "Age", "Email"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable2.setModel(RecordTable);
 
             while (rs.next()){
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
+                    /*
                     columnData.add(rs.getString("voterID"));
                     columnData.add(rs.getString("Name"));
                     columnData.add(rs.getString("Username"));
@@ -114,6 +119,15 @@ public class ManageVoters extends javax.swing.JFrame {
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Address"));
                     columnData.add(rs.getString("Aadhaar_No"));
+
+                     */
+                    columnData.add(rs.getString("voterID"));
+                    columnData.add(rs.getString("FULLNAME"));
+                    columnData.add(rs.getString("GENDER"));
+                    columnData.add(rs.getString("AGE"));
+                    columnData.add(rs.getString("EMAIL"));
+                    columnData.add(rs.getString("USERNAME"));
+                    columnData.add(rs.getString("PASSWORD"));
                 }
                 RecordTable.addRow(columnData);
             }
@@ -798,16 +812,21 @@ public class ManageVoters extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
        // TODO add your handling code here:
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
 
             // Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
 
             //Statement st = con.createStatement();
             //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
             // PreparedStatement
-            pst = con.prepareStatement("insert into voterslist values(?,?,?,?,?,?,?,?,?)");
+            //THỤC MINH: From 9 to 7
+            pst = con.prepareStatement("insert into voterslist values(?,?,?,?,?,?,?)");
 
             //Class.forName("com.mysql.jdbc.Driver");
             //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
@@ -823,8 +842,11 @@ public class ManageVoters extends javax.swing.JFrame {
             pst.setString(5, jTextField5.getText());
             pst.setString(6, jTextField3.getText());
             pst.setString(7, jComboBox1.getSelectedItem().toString());
+            /*
             pst.setString(8, jTextArea1.getText());
             pst.setString(9, jTextField8.getText());
+
+             */
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Voter Added");
@@ -867,6 +889,12 @@ private JFrame frame;
         // TODO add your handling code here:
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
+
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         
         try {
             id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
@@ -875,7 +903,7 @@ private JFrame frame;
                     "Warning", JOptionPane.YES_NO_OPTION);
             
             if(deleteItem == JOptionPane.YES_NO_OPTION){
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+                con = DriverManager.getConnection(url, username, password);
                 pst = con.prepareStatement("delete from voterslist where voterID = ?");
                 
                 pst.setInt(1, id);
@@ -941,16 +969,22 @@ private JFrame frame;
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
 
             // Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, username, password);
             System.out.println("Connected To MySql Database!");
 
             //Statement st = con.createStatement();
             //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
             // PreparedStatement
-            pst = con.prepareStatement("update voterslist set voterID = ?, Name = ?, Username = ?, Password = ?, Email = ?, Phone_no = ?, Gender = ?, Address = ?, Aadhaar_No = ? where voterID = ?");
+            pst = con.prepareStatement("UPDATE voterslist SET voterID = ?, FullName = ?, Gender = ?, Age = ?, Email = ? WHERE voterID = ?;");
 
             //Class.forName("com.mysql.jdbc.Driver");
             //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
