@@ -172,10 +172,10 @@ public class AdminLogin extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-
-        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
+// BaoAnh
+/*        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
         jButton13.addActionListener(this::jButton13ActionPerformed);
-
+*/
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("REGISTER NOW");
 
@@ -435,15 +435,15 @@ public class AdminLogin extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+// BaoAnh xóa button13
+/*    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
         NewVoterApplication h = new NewVoterApplication();
         h.setVisible(true);
         
         dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
-
+*/
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         String pwd = "jojo";

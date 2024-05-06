@@ -205,14 +205,14 @@ public class VotersLogin extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-
-        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
+//BaoAnh
+/*        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-
+*/
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("REGISTER NOW");
 
@@ -485,16 +485,56 @@ public class VotersLogin extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+// BaoAnh
+/*    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
         NewVoterApplication n = new NewVoterApplication();
         n.show();
         
         dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
+*/
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        String username = jTextField2.getText();
+        String password = new String(jPasswordField1.getPassword()); // Convert password to string correctly
+        String email = jTextField2.getText();
+        System.out.println("pwd: " + password);
+
+        if(username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username / Password should not be empty.");
+        } else {
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+            String databaseName = "Online-Voting";
+            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+            try {
+                con = DriverManager.getConnection(url, "sa", "123456789");
+                String query = "SELECT * FROM voterslist WHERE Username = ? AND Password = ?";
+                pst = con.prepareStatement(query);
+                pst.setString(1, jTextField2.getText());
+                pst.setString(2, jPasswordField1.getText());
+                rs = pst.executeQuery();
+
+                if(rs.next()) {
+                    JOptionPane.showMessageDialog(this, "Login Successful");
+                    VotersPage v = new VotersPage(jTextField2.getText(), jPasswordField1.getText());
+                    v.setVisible(true);
+
+                    dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Login Failed");
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+/*   private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         String username = jTextField2.getText();
         String password = new String(jPasswordField1.getPassword()); // Convert password to string correctly
@@ -551,7 +591,7 @@ public class VotersLogin extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButton12ActionPerformed
-
+*/
 
 
 
