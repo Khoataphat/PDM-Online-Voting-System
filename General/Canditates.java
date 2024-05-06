@@ -70,7 +70,7 @@ public class Canditates extends javax.swing.JFrame {
     }
     
     public void upDateDB(){
-        try{
+        /*try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
             pst = con.prepareStatement("select Candidate_Name, Party_Name, Age, Gender from candidates");
@@ -91,6 +91,45 @@ public class Canditates extends javax.swing.JFrame {
                     columnData.add(rs.getString("Party_Name"));
                     columnData.add(rs.getString("Age"));
                     columnData.add(rs.getString("Gender"));
+                }
+                RecordTable.addRow(columnData);
+            }
+
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }*/
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+            //Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select * from candidates");
+
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = rs.getMetaData();
+
+            q = stData.getColumnCount();
+
+            // Define custom column names
+            String[] columnNames = {"Candidate_No", "Candidate_ID","Candidate_Name","Gender", "Age", "Email"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable1.setModel(RecordTable);
+
+            while (rs.next()){
+                Vector columnData = new Vector();
+
+                for(i = 1;i <= q; i++){
+                    columnData.add(rs.getString("Candidate_No"));
+                    columnData.add(rs.getString("Candidate_ID"));
+                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
                 }
                 RecordTable.addRow(columnData);
             }
@@ -392,7 +431,7 @@ public class Canditates extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Candidate Name", "Party Name", "Age", "Gender"
+                    "Candidate_No", "Candidate_ID","Candidate_Name","Gender", "Age", "Email"
             }
         ) {
             final boolean[] canEdit = new boolean [] {

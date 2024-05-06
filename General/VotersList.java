@@ -359,7 +359,7 @@ public class VotersList extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "voterID", "Name", "Gender", "Aadhar No", "Address", "Age"
+                    "Voter ID", "Name", "Gender", "Age", "Email"
             }
         ));
         jTable1.setEnabled(false);
@@ -438,7 +438,7 @@ public class VotersList extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        try{
+        /*try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
             pst = con.prepareStatement("select * from voterslist");
@@ -469,7 +469,48 @@ public class VotersList extends javax.swing.JFrame {
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-    }//GEN-LAST:event_jTable1MouseClicked
+    }//GEN-LAST:event_jTable1MouseClicked*/
+            String serverName = "MSI\\SQLEXPRESS";
+            String databaseName = "Online-Voting";
+            String username = "sa";
+            String password = "123456789";
+            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=false;trustServerCertificate=true;";
+
+            try{
+                //Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, username, password);
+                pst = con.prepareStatement("select * from voterslist");
+
+                rs = pst.executeQuery();
+                ResultSetMetaData stData = rs.getMetaData();
+
+                q = stData.getColumnCount();
+
+                // Define your custom column names
+                String[] columnNames = {"Voter ID", "Name", "Gender", "Age", "Email"};
+
+                DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+                RecordTable.setRowCount(0);
+
+                while (rs.next()){
+                    Vector columnData = new Vector();
+
+                    // Fetch column data using the correct column names
+                    columnData.add(rs.getString("VoterID"));
+                    columnData.add(rs.getString("Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
+
+                    RecordTable.addRow(columnData);
+                }
+
+
+            }
+            catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
