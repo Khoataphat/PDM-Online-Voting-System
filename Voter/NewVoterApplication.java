@@ -413,11 +413,21 @@ public class NewVoterApplication extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+                                            /* voterID, Name, Gender, Age, Email, Username, Password
+                    "voterID", "Name", "Gender", "Age", "Email", "Username", "Password"
+                     */
+
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
 
-            pst = con.prepareStatement("insert into newvoters values(?,?,?,?,?,?,?,?)");
+            // Thục Minh: Decreace to 7 ? since I have only 7 attribute, need backend fix the the blank aka pst
+
+            pst = con.prepareStatement("insert into newvoters values(?,?,?,?,?,?,?)");
 
             pst.setString(1, jTextField2.getText());
             pst.setString(2, jComboBox2.getSelectedItem().toString());
