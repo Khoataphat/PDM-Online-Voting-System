@@ -289,14 +289,14 @@ public class ManageVoters extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-
-        jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
+//BaoAnh
+/*        jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-
+*/
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("FIRST TIME VOTERS ");
 
@@ -766,15 +766,15 @@ public class ManageVoters extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+//BaoAnh
+/*    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
         FirstTimeVotersDetails f = new FirstTimeVotersDetails();
         f.show();
         
         
     }//GEN-LAST:event_jButton13ActionPerformed
-
+*/
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
        // TODO add your handling code here:
@@ -881,6 +881,10 @@ private JFrame frame;
                 upDateDB();
                 
                 jTextField1.setText("");
+                
+
+
+
                 jTextField1.requestFocus();
                 jTextField2.setText("");
                 jTextField7.setText("");
@@ -967,8 +971,8 @@ private JFrame frame;
             pst.setString(6, jTextField3.getText());
             pst.setString(7, jComboBox1.getSelectedItem().toString());
             pst.setString(8, jTextArea1.getText());
-            pst.setString(9, jTextField8.getText());
-            pst.setString(10, jTextField1.getText());
+//            pst.setString(9, jTextField8.getText());
+//            pst.setString(10, jTextField1.getText());
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Voters Were Updated");

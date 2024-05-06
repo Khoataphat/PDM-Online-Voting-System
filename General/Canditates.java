@@ -245,14 +245,14 @@ public class Canditates extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-
-        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
+// BaoAnh
+/*        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
             }
         });
-
+*/
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("REGISTER NOW");
 
@@ -500,15 +500,15 @@ public class Canditates extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+// BaoAnh xóa button 13
+/*    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
         NewVoterApplication h = new NewVoterApplication();
         h.show();
 
         dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
-
+*/
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         AdminLogin h = new AdminLogin();
