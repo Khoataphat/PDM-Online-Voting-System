@@ -890,18 +890,21 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         
-        File f1 = new File(path1);
-        File f2 = new File(path2);
-        
+        //File f1 = new File(path1);
+        //File f2 = new File(path2);
+
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             
-            InputStream is1 = new FileInputStream(f1);
-            InputStream is2 = new FileInputStream(f2);
-            
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            //InputStream is1 = new FileInputStream(f1);
+            //InputStream is2 = new FileInputStream(f2);
+
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
 
-            pst = con.prepareStatement("insert into candidates values(?,?,?,?,?,?,?,?,?,?,?,?,?)");//'"+image1+"','"+image2+"')");
+            pst = con.prepareStatement("insert into candidates values(?,?,?,?,?,?)");//'"+image1+"','"+image2+"')");
 
             pst.setString(1, jTextField1.getText());
             //pst.setString(2, jTextField9.getText());
@@ -914,8 +917,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             //pst.setString(9, jTextField5.getText());
             pst.setString(6, jTextArea1.getText());
             //pst.setString(11, jTextField8.getText());
-            pst.setBlob(12, is1);
-            pst.setBlob(13, is2);
+            //pst.setBlob(12, is1);
+            //pst.setBlob(13, is2);
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Candidate Added");
@@ -929,18 +932,20 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
         
-        File f1 = new File(path1);
-        File f2 = new File(path2);
-        
+        //File f1 = new File(path1);
+        //File f2 = new File(path2);
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
             
-            InputStream is1 = new FileInputStream(f1);
-            InputStream is2 = new FileInputStream(f2);
+            //InputStream is1 = new FileInputStream(f1);
+            //InputStream is2 = new FileInputStream(f2);
             
             
-            pst = con.prepareStatement("update candidates set Candidate_No = ?, Party_Name = ?, Candidate_Name = ?, Gender = ?, Age = ?, Net_Worth = ?, Educational_qualification = ?, Previous_Election_Status = ?, Phone_No = ?, Address = ?, Aadhar_No = ?, Passport_Size_Photo = ?, Electrol_Symbol = ? where Candidate_No = ?");  //, Passport_Size_Photo = ?, Electoral_Symbol= ? 
+            pst = con.prepareStatement("UPDATE candidates SET Candidate_No = ?, Candidate_ID= ?, Candidate_Name= ?, Gender= ?, Age= ?, Email= ? WHERE Candidate_ID = ?;");  //, Passport_Size_Photo = ?, Electoral_Symbol= ?
 
             pst.setString(1, jTextField1.getText());
             //pst.setString(2, jTextField9.getText());
@@ -953,9 +958,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             //pst.setString(9, jTextField5.getText());
             pst.setString(6, jTextArea1.getText());
             //pst.setString(11, jTextField8.getText());
-            pst.setBlob(12, is1);
-            pst.setBlob(13, is2);
-            pst.setString(14, jTextField1.getText());
+            //pst.setBlob(12, is1);
+            //pst.setBlob(13, is2);
+            //pst.setString(14, jTextField1.getText());
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Candidates Were Updated");
@@ -985,7 +990,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         
         //jLabel23 = new JLabel("image");
         //jLabel25 = new JLabel("image");
-        
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
             id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
             
@@ -993,8 +1000,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                     "Warning", JOptionPane.YES_NO_OPTION);
             
             if(deleteItem == JOptionPane.YES_NO_OPTION){
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-                pst = con.prepareStatement("delete from candidates where Candidate_No = ?");
+                con = DriverManager.getConnection(url, "sa", "123456789");
+                pst = con.prepareStatement("delete from candidates where Candidate_ID = ?");
                 
                 pst.setInt(1, id);
                 pst.executeUpdate();

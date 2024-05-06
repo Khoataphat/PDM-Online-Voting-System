@@ -86,13 +86,13 @@ public class ManageVoters extends javax.swing.JFrame {
     
     
     //======================================================================Function=========================================
-    
-    
+
+
     public void upDateDB(){
-        try{
+        /*try{
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select * from voterslist");
+            pst = con.prepareStatement("select * from candidates");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -106,15 +106,78 @@ public class ManageVoters extends javax.swing.JFrame {
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("voterID"));
+                    columnData.add(rs.getString("Candidate_No"));
+                    columnData.add(rs.getString("Party_Name"));
+                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Net_Worth"));
+                    columnData.add(rs.getString("Educational_qualification"));
+                    columnData.add(rs.getString("Previous_Election_Status"));
+                    columnData.add(rs.getString("Phone_No"));
+                    columnData.add(rs.getString("Address"));
+                    columnData.add(rs.getString("Aadhar_No"));
+
+                    byte[] imagedata1 = rs.getBytes("Passport_Size_Photo");
+                    ImageIcon format1 = new ImageIcon(imagedata1);
+                    Image mm1 = format1.getImage();
+                    Image img21 = mm1.getScaledInstance(56, 70, Image.SCALE_SMOOTH);
+                    ImageIcon image1 = new ImageIcon(img21);
+
+                    columnData.add(image1);
+
+                    byte[] imagedata2 = rs.getBytes("Electrol_Symbol");
+                    ImageIcon format2 = new ImageIcon(imagedata2);
+                    Image mm2 = format2.getImage();
+                    Image img22 = mm2.getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+                    ImageIcon image2 = new ImageIcon(img22);
+
+                    columnData.add(image2);
+
+                }
+                RecordTable.addRow(columnData);
+            }
+
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }*/
+
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+
+
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select * from voterslist");
+
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = rs.getMetaData();
+
+            q = stData.getColumnCount();
+
+            String[] columnNames = {"VoterID", "Name", "Gender", "Age", "Email", "Username", "Password"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable2.setModel(RecordTable);
+
+            while (rs.next()){
+                Vector columnData = new Vector();
+
+                for(i = 1;i <= q; i++){
+                    /*voterID, Name, Gender, Age, Email, Username, Password
+                    "voterID", "Name", "Gender", "Age", "Email", "Username", "Password"
+                     */
+                    columnData.add(rs.getString("VoterID"));
                     columnData.add(rs.getString("Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
                     columnData.add(rs.getString("Username"));
                     columnData.add(rs.getString("Password"));
-                    columnData.add(rs.getString("Email"));
-                    columnData.add(rs.getString("Phone_no"));
-                    columnData.add(rs.getString("Gender"));
-                    columnData.add(rs.getString("Address"));
-                    columnData.add(rs.getString("Aadhaar_No"));
                 }
                 RecordTable.addRow(columnData);
             }
@@ -479,7 +542,7 @@ public class ManageVoters extends javax.swing.JFrame {
         jButton18.addActionListener(this::jButton18ActionPerformed);
 
         jLabel9.setForeground(new java.awt.Color(0, 255, 204));
-        jLabel9.setText("voterid");
+        jLabel9.setText("VoterID");
 
         jLabel10.setForeground(new java.awt.Color(0, 255, 204));
         jLabel10.setText("Name");
@@ -494,7 +557,7 @@ public class ManageVoters extends javax.swing.JFrame {
         jLabel13.setText("Password");
 
         jLabel14.setForeground(new java.awt.Color(0, 255, 204));
-        jLabel14.setText("phone no");
+        jLabel14.setText("Age");
 
         jLabel15.setForeground(new java.awt.Color(0, 255, 204));
         jLabel15.setText("Gender");
@@ -837,13 +900,13 @@ private JFrame frame;
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        jTextField1.setText(RecordTable.getValueAt(SelectedRows, 0).toString());
-        jTextField2.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
-        jTextField7.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
-        jTextField6.setText(RecordTable.getValueAt(SelectedRows, 3).toString());
-        jTextField5.setText(RecordTable.getValueAt(SelectedRows, 4).toString());
-        jTextField3.setText(RecordTable.getValueAt(SelectedRows, 5).toString());
-        jComboBox1.setSelectedItem(RecordTable.getValueAt(SelectedRows, 6));
+        jTextField1.setText(RecordTable.getValueAt(SelectedRows, 0).toString());//id
+        jTextField2.setText(RecordTable.getValueAt(SelectedRows, 1).toString());//name
+        jTextField7.setText(RecordTable.getValueAt(SelectedRows, 5).toString());//username
+        jTextField6.setText(RecordTable.getValueAt(SelectedRows, 6).toString());//password
+        jTextField5.setText(RecordTable.getValueAt(SelectedRows, 4).toString());//email
+        jTextField3.setText(RecordTable.getValueAt(SelectedRows, 3).toString());//age
+        jComboBox1.setSelectedItem(RecordTable.getValueAt(SelectedRows, 2));//gender
         jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
         jTextField8.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
 

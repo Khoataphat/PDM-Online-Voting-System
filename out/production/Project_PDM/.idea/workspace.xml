@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="41f18e7d-7654-4b9d-b263-69c0ac0c9257" name="Changes" comment="Commit by Khoa" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Merge.Settings">
+    <option name="BRANCH" value="origin/Minh" />
+  </component>
+  <component name="Git.Rebase.Settings">
+    <option name="NEW_BASE" value="origin/Minh" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Khoataphat&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Khoataphat/Online-Voting-System.git&quot;,
+    &quot;accountId&quot;: &quot;9f1eee13-27b3-47e3-8571-bfafc6f2d3d3&quot;
+  }
+}</component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2eSYpj3IcocUy3icjeMz1QJREgT" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CreateElectionAddCanditates.executor": "Run",
+    "Application.ElectionResults.executor": "Run",
+    "Application.Home.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "Test-2",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/File Code Java/Voting-System-Application/JDBC/sqljdbc_12.6.0.0_enu/sqljdbc_12.6/enu/jars/mssql-jdbc-12.6.0.jre11.jar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "azure"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\File Code Java\Voting-System-Application" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Home">
+    <configuration name="CreateElectionAddCanditates" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Admin.CreateElectionAddCanditates" />
+      <module name="Voting-System-Application--main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Admin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElectionResults" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Admin.ElectionResults" />
+      <module name="Voting-System-Application--main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Admin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Home" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="General.Home" />
+      <module name="Project_PDM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="General.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Home" />
+        <item itemvalue="Application.ElectionResults" />
+        <item itemvalue="Application.CreateElectionAddCanditates" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-18abd8497189-intellij.indexing.shared.core-IU-241.14494.240" />
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-IU-241.14494.240" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="41f18e7d-7654-4b9d-b263-69c0ac0c9257" name="Changes" comment="" />
+      <created>1711899630513</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1711899630513</updated>
+      <workItem from="1711899631570" duration="574000" />
+      <workItem from="1711900424926" duration="1337000" />
+      <workItem from="1711941464737" duration="27000" />
+      <workItem from="1712545200515" duration="353000" />
+      <workItem from="1712545845375" duration="866000" />
+      <workItem from="1712559008838" duration="120000" />
+      <workItem from="1712561691539" duration="243000" />
+      <workItem from="1712564852783" duration="313000" />
+      <workItem from="1714045327265" duration="786000" />
+      <workItem from="1714125588917" duration="2523000" />
+      <workItem from="1714128145348" duration="6180000" />
+      <workItem from="1714138176463" duration="4822000" />
+      <workItem from="1714207230400" duration="1114000" />
+      <workItem from="1714223749561" duration="319000" />
+      <workItem from="1714224520743" duration="2113000" />
+      <workItem from="1714311106155" duration="585000" />
+      <workItem from="1714311711250" duration="3935000" />
+      <workItem from="1714317595603" duration="272000" />
+      <workItem from="1714317887178" duration="24000" />
+      <workItem from="1714387814782" duration="320000" />
+      <workItem from="1714405197206" duration="3129000" />
+      <workItem from="1714459860525" duration="13740000" />
+      <workItem from="1714485811195" duration="7762000" />
+      <workItem from="1714549963840" duration="1726000" />
+      <workItem from="1714551713451" duration="8700000" />
+      <workItem from="1714560668191" duration="151000" />
+      <workItem from="1714561040358" duration="392000" />
+      <workItem from="1714569381651" duration="6190000" />
+      <workItem from="1714617855790" duration="742000" />
+      <workItem from="1714622819897" duration="1201000" />
+      <workItem from="1714634743540" duration="46000" />
+      <workItem from="1714704692522" duration="2394000" />
+      <workItem from="1714708574702" duration="3006000" />
+      <workItem from="1714744835746" duration="1287000" />
+      <workItem from="1714791953582" duration="481000" />
+      <workItem from="1714805438599" duration="2170000" />
+      <workItem from="1714829345151" duration="1200000" />
+      <workItem from="1714883551620" duration="178000" />
+      <workItem from="1714883739173" duration="631000" />
+      <workItem from="1714885890386" duration="297000" />
+      <workItem from="1714888996686" duration="339000" />
+      <workItem from="1714897704474" duration="214000" />
+      <workItem from="1714904482025" duration="4557000" />
+      <workItem from="1714924767785" duration="369000" />
+      <workItem from="1714925602866" duration="4720000" />
+      <workItem from="1714976396405" duration="213000" />
+      <workItem from="1714976618783" duration="4613000" />
+      <workItem from="1714988558369" duration="2362000" />
+      <workItem from="1714992910990" duration="6584000" />
+      <workItem from="1715005564128" duration="1502000" />
+      <workItem from="1715007251745" duration="2315000" />
+      <workItem from="1715012343412" duration="628000" />
+    </task>
+    <task id="LOCAL-00001" summary="ditmemay">
+      <option name="closed" value="true" />
+      <created>1714317003933</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714317003933</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Commit by Khoa">
+      <option name="closed" value="true" />
+      <created>1714550206689</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1714550206689</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Commit by Khoa">
+      <option name="closed" value="true" />
+      <created>1714560793084</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1714560793084</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Commit by Khoa">
+      <option name="closed" value="true" />
+      <created>1714994071466</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1714994071466</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Commit by Khoa">
+      <option name="closed" value="true" />
+      <created>1715009750149</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1715009750149</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Commit by Khoa">
+      <option name="closed" value="true" />
+      <created>1715012900890</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1715012900890</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ditmemay" />
+    <MESSAGE value="Commit by Khoa" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit by Khoa" />
+  </component>
+</project>
