@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e6b0fb30-c0a8-4f24-881b-86d046b40858" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminPage$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminPage$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminPage$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminPage$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/AdminPage.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElection$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElection$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElection$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElection$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElection.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElection.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/CreateElectionAddCanditates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionResults$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionResults$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionResults.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionResults.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionStatus$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionStatus$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionStatus$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionStatus$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionStatus.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ElectionStatus.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/FirstTimeVotersDetails.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Admin/ManageVoters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/Canditates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/General/VotersList.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/NewVoterApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/NewVoterApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersLogin.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Voting-System-Application--main/Voters/VotersVotingProcess.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/Minh" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Banhx3&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Khoataphat/Online-Voting-System.git&quot;,
+    &quot;accountId&quot;: &quot;5034b2f6-fb6f-4e50-ae5b-fa10172a441b&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2g5EMFyUVLVMlEo20Hg3kOd6ynR" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.AdminPage.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ElectionStatus.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Home.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VotersList.executor&quot;: &quot;Run&quot;,
+    &quot;Application.VotersLogin.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;F:/jdbc for SQL Sẻver/sqljdbc_12.6.0.0_enu/sqljdbc_12.6/enu/jars/mssql-jdbc-12.6.0.jre11.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RunManager">
+    <configuration name="VotersList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="General.VotersList" />
+      <module name="Voting-System-Application--main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="General.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.VotersList" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e6b0fb30-c0a8-4f24-881b-86d046b40858" name="Changes" comment="" />
+      <created>1714978988745</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714978988745</updated>
+      <workItem from="1714978989865" duration="58000" />
+      <workItem from="1714979050085" duration="3583000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Admin/ElectionResults.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
