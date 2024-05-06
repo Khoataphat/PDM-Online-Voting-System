@@ -259,12 +259,12 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         JLabel jLabel14 = new JLabel();
         JLabel jLabel15 = new JLabel();
         //JLabel jLabel17 = new JLabel();
-        //JLabel jLabel18 = new JLabel();
+        JLabel jLabel18 = new JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         JScrollPane jScrollPane2 = new JScrollPane();
-        //jTextArea1 = new javax.swing.JTextArea();
+        jTextArea1 = new javax.swing.JTextArea();
         //jTextField5 = new javax.swing.JTextField();
         //jTextField7 = new javax.swing.JTextField();
         //jTextField8 = new javax.swing.JTextField();
@@ -274,7 +274,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         JLabel jLabel16 = new JLabel();
         jTextField4 = new javax.swing.JTextField();
         //JLabel jLabel19 = new JLabel();
-        //JLabel jLabel20 = new JLabel();
+        JLabel jLabel20 = new JLabel();
         //JButton jButton8 = new JButton();
         //JLabel jLabel21 = new JLabel();
         //JButton jButton9 = new JButton();
@@ -550,17 +550,17 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         jLabel15.setText("Gender");
 
-        //jLabel17.setText("Aadhaar No");
+        //jLabel17.setText("");
 
-        //jLabel18.setText("Address");
+        jLabel18.setText("Email");
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
-        //jTextArea1.setColumns(20);
-        //jTextArea1.setRows(5);
-        //jScrollPane2.setViewportView(jTextArea1);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(2);
+        jScrollPane2.setViewportView(jTextArea1);
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -596,7 +596,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         //jLabel19.setText("Rs");
 
-        //jLabel20.setText("passport size photo");
+        jLabel20.setText("");
 
         /*jButton8.setText("Upload");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -662,22 +662,22 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                                     .addComponent(jLabel10)
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel14)
-                                    //.addComponent(jLabel20)
+                                    .addComponent(jLabel20)
                                     .addComponent(jLabel16))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pniCCenterLayout.createSequentialGroup()
                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBox1, 0, 117, Short.MAX_VALUE)
+                                            .addComponent(jComboBox1, 0, 130, Short.MAX_VALUE)
                                             .addComponent(jTextField2)
                                             .addComponent(jTextField3)
                                             .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                         /*.addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
-                                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             //.addComponent(jLabel13)
@@ -727,7 +727,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                                         .addGap(54, 54, 54)))
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(pniCCenterLayout.createSequentialGroup()
-                                        //.addComponent(jLabel18)
+                                        .addComponent(jLabel18)
                                         .addGap(18, 18, 18)
                                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pniCCenterLayout.createSequentialGroup()
@@ -784,7 +784,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                             /*.addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
                         .addGap(18, 18, 18)
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            //.addComponent(jLabel20)
+                            .addComponent(jLabel20)
                             //.addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             //.addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -795,14 +795,15 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             /*.addComponent(jButton8)*/
                             /*.addComponent(jButton9)*/)
-                        .addGap(31, 31, 31)
+                        .addGap(0, 0, 0)
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             //.addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             //.addComponent(jLabel17)
                             .addComponent(jLabel16)
                             .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            //.addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             /*.addComponent(jLabel19)*/)
-                        .addGap(18, 18, 18)
+                        .addGap(150, 150, 150)
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -819,7 +820,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                                 .addComponent(jLabel24))
                             .addGroup(pniCCenterLayout.createSequentialGroup()
                                 .addGap(52, 52, 52)
-                                /*.addComponent(jLabel18)*/)
+                                .addComponent(jLabel18))
                             .addGroup(pniCCenterLayout.createSequentialGroup()
                                 .addGap(52, 52, 52)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))))
@@ -911,7 +912,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             pst.setString(2, jTextField2.getText());
             pst.setString(3, jTextField3.getText());
             //pst.setString(9, jTextField5.getText());
-            //pst.setString(10, jTextArea1.getText());
+            pst.setString(6, jTextArea1.getText());
             //pst.setString(11, jTextField8.getText());
             pst.setBlob(12, is1);
             pst.setBlob(13, is2);
@@ -950,7 +951,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             pst.setString(2, jTextField2.getText());
             pst.setString(3, jTextField3.getText());
             //pst.setString(9, jTextField5.getText());
-            //pst.setString(10, jTextArea1.getText());
+            pst.setString(6, jTextArea1.getText());
             //pst.setString(11, jTextField8.getText());
             pst.setBlob(12, is1);
             pst.setBlob(13, is2);
@@ -1012,7 +1013,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                 jTextField2.setText("");
                 jTextField3.setText("");
                 //jTextField5.setText("");
-                //jTextArea1.setText("");
+                jTextArea1.setText("");
                 //jTextField8.setText("");
                 //jTextField6.setText("");
                 //jTextField10.setText("");
@@ -1052,18 +1053,18 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         jTextField2.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
         jTextField3.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
         //jTextField5.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
-        //jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 9).toString());
+        jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 5).toString());
         //jTextField8.setText(RecordTable.getValueAt(SelectedRows, 10).toString());
         
-        JLabel imagej1 = (JLabel) RecordTable.getValueAt(SelectedRows, 11);
-        ImageIcon imageJLlIcon1 = (ImageIcon)imagej1.getIcon();
-        Image imageJLFit1 = imageJLlIcon1.getImage().getScaledInstance(56, 70, Image.SCALE_SMOOTH);
+        //JLabel imagej1 = (JLabel) RecordTable.getValueAt(SelectedRows, 11);
+        //ImageIcon imageJLlIcon1 = (ImageIcon)imagej1.getIcon();
+        //Image imageJLFit1 = imageJLlIcon1.getImage().getScaledInstance(56, 70, Image.SCALE_SMOOTH);
         //jLabel23.setIcon(imageJLlIcon1);
         //jTextField6.setText(RecordTable.getValueAt(SelectedRows, 11).toString());
         
-        JLabel imagej2 = (JLabel) RecordTable.getValueAt(SelectedRows, 12);
-        ImageIcon imageJLlIcon2 = (ImageIcon)imagej2.getIcon();
-        Image imageJLFit2 = imageJLlIcon2.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
+        //JLabel imagej2 = (JLabel) RecordTable.getValueAt(SelectedRows, 12);
+        //ImageIcon imageJLlIcon2 = (ImageIcon)imagej2.getIcon();
+        //Image imageJLFit2 = imageJLlIcon2.getImage().getScaledInstance(70, 70, Image.SCALE_SMOOTH);
         //jLabel25.setIcon(imageJLlIcon2);
         //jTextField10.setText(RecordTable.getValueAt(SelectedRows, 12).toString());
              
@@ -1192,7 +1193,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     //private javax.swing.JLabel jLabel23;
     //private javax.swing.JLabel jLabel25;
     private javax.swing.JTable jTable2;
-    //private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     //private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField2;
