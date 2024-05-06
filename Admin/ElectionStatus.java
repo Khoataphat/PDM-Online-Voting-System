@@ -78,12 +78,12 @@ public class ElectionStatus extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select count(Candidate_No) from candidates");
+            pst = con.prepareStatement("select count(Candidate_No) AS Cand_Count from candidates");
 
             rs = pst.executeQuery();
             
             if(rs.next()){
-                String noofcandidates = rs.getString("count(Candidate_No)");
+                String noofcandidates = rs.getString("Cand_Count");
                 jLabel12.setText(noofcandidates);
             }
             
@@ -105,12 +105,12 @@ public class ElectionStatus extends javax.swing.JFrame {
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select count(voterID) from votersvoting");
+            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting");
 
             rs = pst.executeQuery();
             
             if(rs.next()){
-                String noofvoters = rs.getString("count(Username)");
+                String noofvoters = rs.getString("Username_Count");
                 jLabel10.setText(noofvoters);
             }
             

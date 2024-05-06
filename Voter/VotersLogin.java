@@ -500,7 +500,7 @@ public class VotersLogin extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtoGion2ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
@@ -525,7 +525,7 @@ public class VotersLogin extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         String username = jTextField2.getText();
-        String password = jPasswordField1.getPassword().toString();
+        String password = new String(jPasswordField1.getPassword()); // Convert password to string correctly
         String email = jTextField2.getText();
         System.out.println("pwd: "+password);
         if(username.isEmpty() || password.isEmpty()){
@@ -535,62 +535,55 @@ public class VotersLogin extends javax.swing.JFrame {
             String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
             String databaseName = "OnlineVoting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-            try {
+
+            try{
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                String query = "select * from voterslist where Username = '"+jTextField2.getText()+"' and Password = '"+jPasswordField1.getText()+"'";
-                Statement st = con.createStatement();
-                rs = st.executeQuery(query);
-
-                //Thục Minh
-                String candidateEmail = jTextField2.getText();
-                String query3 = "SELECT * FROM candidates WHERE EMAIL = '" + candidateEmail + "'";
-                Statement st3 = con.createStatement();
-                ResultSet rs1 = st3.executeQuery(query3);
-
-                //Thục Min
-
-
-                if(rs.next()){
-                    JOptionPane.showMessageDialog(this, "Login Successful");
-
-                    String query2 = "select * from votersvoting where Username = '"+jTextField2.getText()+"' and Password = '"+jPasswordField1.getText()+"'";
-                    Statement st2 = con.createStatement();
-                    rs = st2.executeQuery(query2);
-
-                    String candidateQuery = "SELECT * FROM voterslist WHERE EMAIL ='"+jTextField2.getText()+ "'UNION SELECT * FROM candidates WHERE EMAIL ='" +jTextField2.getText()+"'";
-                    PreparedStatement candidateStatement = con.prepareStatement(candidateQuery);
-                    candidateStatement.setString(1, username);
-                    ResultSet candidateResult = candidateStatement.executeQuery();
-
-                    if (candidateResult.next()) {
-                        JOptionPane.showMessageDialog(this, "Candidate cannot vote");
-                    } else{
-                        VotersVotingProcess v = new VotersVotingProcess(jTextField2.getText(), jPasswordField1.getText());
-                        v.show();
-
-                        dispose();
-                    }
-
-
+                // Fix SQL query to prevent SQL injection vulnerability
+                String query = "SELECT candidates.Email FROM candidates, voterslist where Candidate_ID = VoterID AND Username = ? AND Password = ?";
+                PreparedStatement pst = con.prepareStatement(query);
+                pst.setString(1, jTextField2.getText());
+                pst.setString(2, jPasswordField1.getText());
+                rs = pst.executeQuery();
+                if (rs.next()){
+                    JOptionPane.showMessageDialog(this, "Candidate cannot vote");
+                }else{
+                    query = "SELECT * FROM voterslist WHERE Username = ? AND Password = ?";
+                    pst = con.prepareStatement(query);
+                    pst.setString(1, jTextField2.getText());
+                    pst.setString(2, jPasswordField1.getText());
+                    rs = pst.executeQuery();
                     if(rs.next()){
-                        JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
+                        JOptionPane.showMessageDialog(this, "Login Successful");
+
+                        query = "SELECT * FROM votersvoting WHERE Username = ? ";
+                        pst = con.prepareStatement(query);
+                        pst.setString(1, jTextField2.getText());
+                        //pst.setString(2, jPasswordField1.getText());
+                        rs = pst.executeQuery();
+
+                        if(rs.next()){
+                            JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
+                        }
+                        else{
+                            VotersVotingProcess v = new VotersVotingProcess(jTextField2.getText(), jPasswordField1.getText());
+                            v.show();
+
+                            dispose();
+                        }
                     }
                     else{
-                        VotersVotingProcess v = new VotersVotingProcess(jTextField2.getText(), jPasswordField1.getText());
-                        v.show();
-
-                        dispose();
+                        JOptionPane.showMessageDialog(this, "Login Failed");
                     }
-
-                } else{
-                    JOptionPane.showMessageDialog(this, "Login Failed");
                 }
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
         }
     }//GEN-LAST:event_jButton12ActionPerformed
+
+
+
+
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
@@ -693,6 +686,7 @@ public class VotersLogin extends javax.swing.JFrame {
     private javax.swing.JPanel pnSide;
     private javax.swing.JPanel pniCCenter;
     private javax.swing.JPanel pniCTop;
+
 
     // End of variables declaration//GEN-END:variables
 }

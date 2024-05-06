@@ -75,7 +75,7 @@ public class Canditates extends javax.swing.JFrame {
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select ID, FULLNAME, GENDER, AGE, EMAIL from candidates");
+            pst = con.prepareStatement("select * from candidates");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -83,7 +83,7 @@ public class Canditates extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"ID", "Full Name", "Gender", "Age", "Email"};
+            String[] columnNames = {"Candidate_No", "Candidate_ID", "Candidate_Name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -92,11 +92,13 @@ public class Canditates extends javax.swing.JFrame {
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("ID"));
-                    columnData.add(rs.getString("FULLNAME"));
-                    columnData.add(rs.getString("GENDER"));
-                    columnData.add(rs.getString("AGE"));
-                    columnData.add(rs.getString("EMAIL"));
+                    columnData.add(rs.getString("Candidate_No"));
+                    columnData.add(rs.getString("Candidate_ID"));
+                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
+
                 }
                 RecordTable.addRow(columnData);
             }

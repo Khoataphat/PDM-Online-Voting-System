@@ -108,12 +108,12 @@ public class ElectionResults extends javax.swing.JFrame {
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select count(Username) from votersvoting");
+            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting");
 
             rs = pst.executeQuery();
 
             if(rs.next()){
-                String noofvoters = rs.getString("count(Username)");
+                String noofvoters = rs.getString("Username_Count");
                 jLabel10.setText(noofvoters);
             }
 
@@ -833,18 +833,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select FullName from candidates where Candidate_No = 1");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb01.setText(rs.getString("FullName"));
-                cand_name[0] = rs.getString("FullName");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 1");
+                lb01.setText(rs.getString("Candidate_Name"));
+                cand_name[0] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 1");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel7.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[0] = rs.getInt("count(Username)");
+                    jPanel7.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[0] = rs.getInt("Username_Count");
 
                 }
                 else{
@@ -864,18 +864,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select FullName from candidates where Candidate_No = 2");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 2");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb02.setText(rs.getString("FullName"));
-                cand_name[1] = rs.getString("FullName");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 2");
+                lb02.setText(rs.getString("Candidate_Name"));
+                cand_name[1] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Username) AS Username_Count  from votersvoting where Candidate_No = 2");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel8.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[1] = rs.getInt("count(Username)");
+                    jPanel8.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[1] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel8.setSize(84, 5);
@@ -894,18 +894,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select FullName from candidates where Candidate_No = 3");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 3");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb03.setText(rs.getString("FullName"));
-                cand_name[2] = rs.getString("FullName");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 3");
+                lb03.setText(rs.getString("Candidate_Name"));
+                cand_name[2] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 3");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel9.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[2] = rs.getInt("count(Username)");
+                    jPanel9.setSize(84, 30*(rs.getInt("Username_Count ")));
+                    Results[2] = rs.getInt("Username_Count ");
                 }
                 else{
                     jPanel9.setSize(84, 5);
@@ -924,18 +924,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select FullName from candidates where Candidate_No = 4");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 4");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb04.setText(rs.getString("FullName"));
-                cand_name[3] = rs.getString("FullName");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 4");
+                lb04.setText(rs.getString("Candidate_Name"));
+                cand_name[3] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 4");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel10.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[3] = rs.getInt("count(Username)");
+                    jPanel10.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[3] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel10.setSize(84, 5);
@@ -954,18 +954,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select FullName from candidates where Candidate_No = 5");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 5");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb05.setText(rs.getString("FullName"));
-                cand_name[4] = rs.getString("FullName");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 5");
+                lb05.setText(rs.getString("Candidate_Name"));
+                cand_name[4] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 5");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel11.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[4] = rs.getInt("count(Username)");
+                    jPanel11.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[4] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel11.setSize(84, 5);
@@ -989,7 +989,8 @@ public class ElectionResults extends javax.swing.JFrame {
         //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
 
         int max = Results[0];
-        int maxi = 0;        for(int i=0;i<5;i++){
+        int maxi = 0;
+        for(int i=0;i<5;i++){
 
             if(max<Results[i]){
                 max = Results[i];

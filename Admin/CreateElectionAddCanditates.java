@@ -108,7 +108,6 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select * from candidates");
 
@@ -123,7 +122,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             */
 
             // Define your custom column names
-            String[] columnNames = {"ID", "FULLNAME", "GENDER", "AGE", "EMAIL"};
+            String[] columnNames = {"Candidate_No", "Candidate_ID", "Candidate_Name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -133,12 +132,13 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                 //Thục Minh: Scope to appear the candidates table_The table in the right-hand corner
 
                 for(i = 1;i <= q; i++){
-                    //ID, FULLNAME, GENDER, AGE, EMAIL, USERNAME , PASSWORD
-                    columnData.add(rs.getString("ID"));
-                    columnData.add(rs.getString("FULLNAME"));
-                    columnData.add(rs.getString("GENDER"));
-                    columnData.add(rs.getString("AGE"));
-                    columnData.add(rs.getString("EMAIL"));
+                    //"Candidate_No", "Candidate_ID", "Candidate_Name", "Gender", "Age", "Email"
+                    columnData.add(rs.getString("Candidate_No"));
+                    columnData.add(rs.getString("Candidate_ID"));
+                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
                     /*
                     columnData.add(rs.getString("Phone_No"));
                     columnData.add(rs.getString("Address"));
@@ -956,11 +956,11 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-            //Thục Minh: Placeholder decrease from 13 to 7 as I delete many original attributes
+            //Thục Minh: Placeholder decrease from 13 to 6 as I delete many original attributes
             // CONNECT TO BACKEND
 
-            pst = con.prepareStatement("Insert into candidates values(?,?,?,?,?,?,?)");//'"+image1+"','"+image2+"')");
-            pst = con.prepareStatement("INSERT INTO candidates (ID, FULLNAME, GENDER, AGE, EMAIL, USERNAME, PASSWORD) VALUES (?, ?, ?, ?, ?, ?, ?)");
+            pst = con.prepareStatement("Insert into candidates values(?,?,?,?,?,?)");//'"+image1+"','"+image2+"')");
+            pst = con.prepareStatement("INSERT INTO candidates (Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email) VALUES (?, ?, ?, ?, ?, ?)");
             pst.setString(1, jTextField1.getText()); // ID
             pst.setString(2, jTextField7.getText()); // FULLNAME
             pst.setString(3, jComboBox1.getSelectedItem().toString()); // GENDER
@@ -1027,7 +1027,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
              */
             
             
-            pst = con.prepareStatement("UPDATE candidates SET ID = ?, FULLNAME = ?, GENDER = ?, AGE = ?, EMAIL = ?, USERNAME = ?, PASSWORD = ? WHERE ID = ?;\n");
+            pst = con.prepareStatement("UPDATE candidates SET Candidate_No = ?, Candidate_ID= ?, Candidate_Name= ?, Gender= ?, Age= ?, Email= ? WHERE Candidate_ID = ?;");
 
             pst.setString(1, jTextField1.getText());
             pst.setString(2, jTextField9.getText());
@@ -1035,8 +1035,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             pst.setString(4, jComboBox1.getSelectedItem().toString());
             pst.setString(5, jComboBox2.getSelectedItem().toString());
             pst.setString(6, jTextField4.getText());
-            pst.setString(7, jTextField2.getText());
             /* Thục Minh: Cần xem kỹ hơn vì có thể có vấn đề tại ComboBox - Xem bên backend xóa thế nào
+            pst.setString(7, jTextField2.getText());
+
             pst.setString(8, jTextField3.getText());
             pst.setString(9, jTextField5.getText());
             pst.setString(10, jTextArea1.getText());
@@ -1096,7 +1097,7 @@ private JFrame frame;
 
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("DELETE FROM candidates WHERE ID = ?");
+                pst = con.prepareStatement("DELETE FROM candidates WHERE Candidate_ID = ?;");
 
                 pst.setInt(1, id);
                 pst.executeUpdate();

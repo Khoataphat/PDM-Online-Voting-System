@@ -650,30 +650,41 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         // TODO add your handling code here:
         String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "OnlineVoting";
-        String username = "sa";
+        String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
+            /*
+            "Candidate_No", "Candidate_ID", "Candidate_Name", "Gender", "Age", "Email"
+            Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email
+             */
 
-            con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select Canditate_No, Canditate_Name,  Party_Name from candidates");
+            con = DriverManager.getConnection(url, un, password);
+            pst = con.prepareStatement("select Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email  from candidates");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
 
-            DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
-            RecordTable.setRowCount(0);
+            // Define custom column names
+            String[] columnNames = {"Candidate_No", "Candidate_ID", "Candidate_Name"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable1.setModel(RecordTable);
 
             while (rs.next()){
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("Canditate_No"));
-                    columnData.add(rs.getString("Canditate_Name"));;
-                    columnData.add(rs.getString("Party_Name"));
+                    columnData.add(rs.getString("Candidate_No"));
+                    columnData.add(rs.getString("Candidate_ID"));
+                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
+
                 }
                 RecordTable.addRow(columnData);
             }
@@ -689,16 +700,16 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         int vote = 1;
         String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "OnlineVoting";
-        String username = "sa";
+        String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
 
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, un, password);
             System.out.println("Connected To MySql Database!");
 
-            pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
+            pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
 
             pst.setString(1, username);
             pst.setString(2, pwd);
@@ -722,13 +733,13 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         int vote = 2;
         String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "OnlineVoting";
-        String username = "sa";
+        String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
 
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, un, password);
             System.out.println("Connected To MySql Database!");
 
             pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
@@ -755,13 +766,13 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         int vote = 3;
         String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "OnlineVoting";
-        String username = "sa";
+        String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, un, password);
             System.out.println("Connected To MySql Database!");
             
             //System.out.println(username);
@@ -791,13 +802,13 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         int vote = 4;
         String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "OnlineVoting";
-        String username = "sa";
+        String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, un, password);
             System.out.println("Connected To MySql Database!");
 
             pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
@@ -824,12 +835,12 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         int vote = 5;
         String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "OnlineVoting";
-        String username = "sa";
+        String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, un, password);
             System.out.println("Connected To MySql Database!");
 
             pst = con.prepareStatement("insert into votersvoting values(?,?,?)");

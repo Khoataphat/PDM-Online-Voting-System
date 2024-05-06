@@ -100,7 +100,7 @@ public class ManageVoters extends javax.swing.JFrame {
 
             q = stData.getColumnCount();
 
-            String[] columnNames = {"Voter ID", "FullName", "Gender", "Age", "Email"};
+            String[] columnNames = {"voterID", "Name", "Gender", "Age", "Email", "Username", "Password"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -109,25 +109,16 @@ public class ManageVoters extends javax.swing.JFrame {
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    /*
-                    columnData.add(rs.getString("voterID"));
-                    columnData.add(rs.getString("Name"));
-                    columnData.add(rs.getString("Username"));
-                    columnData.add(rs.getString("Password"));
-                    columnData.add(rs.getString("Email"));
-                    columnData.add(rs.getString("Phone_no"));
-                    columnData.add(rs.getString("Gender"));
-                    columnData.add(rs.getString("Address"));
-                    columnData.add(rs.getString("Aadhaar_No"));
-
+                    /*voterID, Name, Gender, Age, Email, Username, Password
+                    "voterID", "Name", "Gender", "Age", "Email", "Username", "Password"
                      */
                     columnData.add(rs.getString("voterID"));
-                    columnData.add(rs.getString("FULLNAME"));
-                    columnData.add(rs.getString("GENDER"));
-                    columnData.add(rs.getString("AGE"));
-                    columnData.add(rs.getString("EMAIL"));
-                    columnData.add(rs.getString("USERNAME"));
-                    columnData.add(rs.getString("PASSWORD"));
+                    columnData.add(rs.getString("Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
+                    columnData.add(rs.getString("Username"));
+                    columnData.add(rs.getString("Password"));
                 }
                 RecordTable.addRow(columnData);
             }
@@ -825,6 +816,7 @@ public class ManageVoters extends javax.swing.JFrame {
             //Statement st = con.createStatement();
             //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
             // PreparedStatement
+
             //THỤC MINH: From 9 to 7
             pst = con.prepareStatement("insert into voterslist values(?,?,?,?,?,?,?)");
 
@@ -984,7 +976,7 @@ private JFrame frame;
             //Statement st = con.createStatement();
             //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
             // PreparedStatement
-            pst = con.prepareStatement("UPDATE voterslist SET voterID = ?, FullName = ?, Gender = ?, Age = ?, Email = ? WHERE voterID = ?;");
+            pst = con.prepareStatement("UPDATE voterslist SET voterID = ?, Name= ?, Gender= ?, Age= ?, Email= ?, Username= ?, Password= ?  WHERE voterID = ?;");
 
             //Class.forName("com.mysql.jdbc.Driver");
             //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");

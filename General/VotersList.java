@@ -496,9 +496,11 @@ public class VotersList extends javax.swing.JFrame {
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
+                                /*voterID, Name, Gender, Age, Email, Username, Password
+                    "voterID", "Name", "Gender", "Age", "Email", "Username", "Password"
+                     */
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select voterID, FullName, Gender, Age, Email from voterslist");
+            pst = con.prepareStatement("select voterID, Name, Gender, Age, Email from voterslist");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -506,7 +508,7 @@ public class VotersList extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define your custom column names
-            String[] columnNames = {"Voter ID", "FullName", "Gender", "Age", "Email"};
+            String[] columnNames = {"voterID", "Name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -516,10 +518,10 @@ public class VotersList extends javax.swing.JFrame {
 
                 // Fetch column data using the correct column names
                 columnData.add(rs.getString("voterID"));
-                columnData.add(rs.getString("FULLNAME"));
-                columnData.add(rs.getString("GENDER"));
-                columnData.add(rs.getString("AGE"));
-                columnData.add(rs.getString("EMAIL"));
+                columnData.add(rs.getString("Name"));
+                columnData.add(rs.getString("Gender"));
+                columnData.add(rs.getString("Age"));
+                columnData.add(rs.getString("Email"));
 
                 RecordTable.addRow(columnData);
             }
