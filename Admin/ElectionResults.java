@@ -919,10 +919,10 @@ public class ElectionResults extends javax.swing.JFrame {
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        //jPanel8.setSize(84, 10*5);
-        //jPanel9.setSize(84, 10*4);
-        //jPanel10.setSize(84, 10*2);
-        //jPanel11.setSize(84, 10*11);
+        jPanel8.setSize(84, 10*5);
+        jPanel9.setSize(84, 10*4);
+        jPanel10.setSize(84, 10*2);
+        jPanel11.setSize(84, 10*11);
 
         //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
 

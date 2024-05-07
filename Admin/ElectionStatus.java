@@ -97,8 +97,8 @@ public class ElectionStatus extends javax.swing.JFrame {
 
 
     public int novoters(){
-        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
-        String databaseName = "OnlineVoting";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");

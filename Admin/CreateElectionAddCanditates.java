@@ -994,7 +994,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
-            id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
+            String id = RecordTable.getValueAt(SelectedRows, 2).toString();
             
             deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to delete item",
                     "Warning", JOptionPane.YES_NO_OPTION);
@@ -1003,7 +1003,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                 con = DriverManager.getConnection(url, "sa", "123456789");
                 pst = con.prepareStatement("delete from candidates where Candidate_ID = ?");
                 
-                pst.setInt(1, id);
+                pst.setString(1, id);
                 pst.executeUpdate();
                 
                 JOptionPane.showMessageDialog(this, "Candidates Detals Updated");
