@@ -46,7 +46,7 @@ public class ManageVoters extends javax.swing.JFrame {
     public ManageVoters() {
         initComponents();
         upDateDB();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15, jButton16, jButton18, jButton19};
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15, jButton16, jButton18}; //jBuntton19};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -250,7 +250,7 @@ public class ManageVoters extends javax.swing.JFrame {
         JScrollPane jScrollPane3 = new JScrollPane();
         jTable2 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton19 = new javax.swing.JButton();
+        //jButton19 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -519,7 +519,7 @@ public class ManageVoters extends javax.swing.JFrame {
 
         jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton15.setForeground(new java.awt.Color(0, 255, 204));
-        jButton15.setText("Approve Voters");
+        jButton15.setText("Add Voters");
         jButton15.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton15.addActionListener(this::jButton15ActionPerformed);
 
@@ -599,11 +599,12 @@ public class ManageVoters extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
+        /*
         jButton19.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton19.setForeground(new java.awt.Color(0, 255, 204));
         jButton19.setText("Update Voters");
         jButton19.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton19.addActionListener(this::jButton19ActionPerformed);
+        jButton19.addActionListener(this::jButton19ActionPerformed);*/
 
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
@@ -628,7 +629,7 @@ public class ManageVoters extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(105, 105, 105)
-                                .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                /*.addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
                             .addGroup(pniCCenterLayout.createSequentialGroup()
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -708,7 +709,7 @@ public class ManageVoters extends javax.swing.JFrame {
                     .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    /*.addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
                 .addContainerGap(177, Short.MAX_VALUE))
         );
 
@@ -771,19 +772,23 @@ public class ManageVoters extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
        // TODO add your handling code here:
         try{
-
             // Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
 
             //Statement st = con.createStatement();
             //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
             // PreparedStatement
-            pst = con.prepareStatement("insert into voterslist values(?,?,?,?,?,?,?,?,?)");
 
-            Class.forName("com.mysql.jdbc.Driver");
+            //THỤC MINH: From 9 to 7
+            pst = con.prepareStatement("insert into voterslist values(?,?,?,?,?,?,?)");
+
+            //Class.forName("com.mysql.jdbc.Driver");
             //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
             //pst = sqlConn.prepareStatement("insert into 'voterlist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
 
@@ -792,13 +797,16 @@ public class ManageVoters extends javax.swing.JFrame {
             //ResultSet resultset = statement.executeQuery("insert into 'voterslist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, jTextField1.getText());
             pst.setString(2, jTextField2.getText());
-            pst.setString(3, jTextField7.getText());
-            pst.setString(4, jTextField6.getText());
+            pst.setString(6, jTextField7.getText());
+            pst.setString(7, jTextField6.getText());
             pst.setString(5, jTextField5.getText());
-            pst.setString(6, jTextField3.getText());
-            pst.setString(7, jComboBox1.getSelectedItem().toString());
+            pst.setString(4, jTextField3.getText());
+            pst.setString(3, jComboBox1.getSelectedItem().toString());
+            /*
             pst.setString(8, jTextArea1.getText());
             pst.setString(9, jTextField8.getText());
+
+             */
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Voter Added");
@@ -807,8 +815,8 @@ public class ManageVoters extends javax.swing.JFrame {
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-
     }//GEN-LAST:event_jButton15ActionPerformed
+
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
@@ -841,18 +849,24 @@ private JFrame frame;
         // TODO add your handling code here:
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
-        
+
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try {
-            id = Integer.parseInt(RecordTable.getValueAt(SelectedRows, 0).toString());
-            
+            String id = RecordTable.getValueAt(SelectedRows, 0).toString();
+
             deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to delete item",
                     "Warning", JOptionPane.YES_NO_OPTION);
             
             if(deleteItem == JOptionPane.YES_NO_OPTION){
-                con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+                con = DriverManager.getConnection(url, username, password);
                 pst = con.prepareStatement("delete from voterslist where voterID = ?");
                 
-                pst.setInt(1, id);
+                pst.setString(1, id);
                 pst.executeUpdate();
                 
                 JOptionPane.showMessageDialog(this, "Voters Detals Updated");
@@ -877,8 +891,7 @@ private JFrame frame;
     }//GEN-LAST:event_jButton18ActionPerformed
 
     // -----------------------------------delete voter function -------------------------------------------------------
-    
-    
+
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
@@ -907,26 +920,32 @@ private JFrame frame;
         jTextField5.setText(RecordTable.getValueAt(SelectedRows, 4).toString());//email
         jTextField3.setText(RecordTable.getValueAt(SelectedRows, 3).toString());//age
         jComboBox1.setSelectedItem(RecordTable.getValueAt(SelectedRows, 2));//gender
-        jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
-        jTextField8.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
+        //jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
+        //jTextField8.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
 
     }//GEN-LAST:event_jTable2MouseClicked
 
+    /*
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // TODO add your handling code here:
         // TODO add your handling code here:
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
 
             // Connection con;
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, username, password);
             System.out.println("Connected To MySql Database!");
 
             //Statement st = con.createStatement();
             //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
             // PreparedStatement
-            pst = con.prepareStatement("update voterslist set voterID = ?, Name = ?, Username = ?, Password = ?, Email = ?, Phone_no = ?, Gender = ?, Address = ?, Aadhaar_No = ? where voterID = ?");
+            pst = con.prepareStatement("UPDATE voterslist SET voterID = ?, Name= ?, Gender= ?, Age= ?, Email= ?, Username= ?, Password= ?  WHERE voterID = ?;");
 
-            Class.forName("com.mysql.jdbc.Driver");
+            //Class.forName("com.mysql.jdbc.Driver");
             //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
             //pst = sqlConn.prepareStatement("insert into 'voterslist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
 
@@ -935,14 +954,14 @@ private JFrame frame;
             //ResultSet resultset = statement.executeQuery("insert into 'voterslist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, jTextField1.getText());
             pst.setString(2, jTextField2.getText());
-            pst.setString(3, jTextField7.getText());
-            pst.setString(4, jTextField6.getText());
+            pst.setString(6, jTextField7.getText());
+            pst.setString(7, jTextField6.getText());
             pst.setString(5, jTextField5.getText());
-            pst.setString(6, jTextField3.getText());
-            pst.setString(7, jComboBox1.getSelectedItem().toString());
+            pst.setString(4, jTextField3.getText());
+            pst.setString(3, jComboBox1.getSelectedItem().toString());
             pst.setString(8, jTextArea1.getText());
-            pst.setString(9, jTextField8.getText());
-            pst.setString(10, jTextField1.getText());
+            //pst.setString(9, jTextField8.getText());
+            //pst.setString(10, jTextField1.getText());
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Voters Were Updated");
@@ -952,7 +971,7 @@ private JFrame frame;
             JOptionPane.showMessageDialog(null, ex);
         }
 
-    }//GEN-LAST:event_jButton19ActionPerformed
+    }//GEN-LAST:event_jButton19ActionPerformed*/
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
@@ -1019,7 +1038,7 @@ private JFrame frame;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton18;
-    private javax.swing.JButton jButton19;
+    //private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
