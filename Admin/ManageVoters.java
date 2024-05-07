@@ -329,7 +329,6 @@ public class ManageVoters extends javax.swing.JFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
         jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
-        jButton13.addActionListener(this::jButton13ActionPerformed);
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("FIRST TIME VOTERS ");
@@ -762,13 +761,7 @@ public class ManageVoters extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        FirstTimeVotersDetails f = new FirstTimeVotersDetails();
-        f.show();
         
-        
-    }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
