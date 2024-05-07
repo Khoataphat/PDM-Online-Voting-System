@@ -4,8 +4,8 @@
  */
 package Voters;
 
-import Admin.*;
 import General.*;
+import Admin.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -14,16 +14,17 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.Arrays;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author welcome
  */
-public class VotersLogin extends javax.swing.JFrame {
+public class VotersVotingProcess extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
@@ -32,10 +33,16 @@ public class VotersLogin extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    int q;
+    int i;
 
-    public VotersLogin() {
+    String username;
+    String pwd;
+    
+    public VotersVotingProcess(String username, String pwd) {
+        
         initComponents();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12, jButton13};
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -64,6 +71,15 @@ public class VotersLogin extends javax.swing.JFrame {
                 
             });
         }
+        
+        
+        this.username = username;
+        this.pwd = pwd;
+        
+    }
+
+    private VotersVotingProcess() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
@@ -101,13 +117,17 @@ public class VotersLogin extends javax.swing.JFrame {
         JPanel jPanel2 = new JPanel();
         JPanel jPanel3 = new JPanel();
         JPanel jPanel4 = new JPanel();
+        JButton jButton15 = new JButton();
         JPanel pniCCenter = new JPanel();
-        JButton jButton8 = new JButton();
-        jButton12 = new javax.swing.JButton();
         JLabel jLabel8 = new JLabel();
-        JLabel jLabel9 = new JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        JScrollPane jScrollPane1 = new JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        JButton jButton8 = new JButton();
+        JButton jButton9 = new JButton();
+        JButton jButton10 = new JButton();
+        JButton jButton11 = new JButton();
+        JButton jButton12 = new JButton();
+        JButton jButton14 = new JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -250,7 +270,7 @@ public class VotersLogin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(105, 105, 105)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2819, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1282, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGap(176, 176, 176))
         );
@@ -272,7 +292,7 @@ public class VotersLogin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel2.setText("Voters Login Page");
+        jLabel2.setText("Cast Your Vote");
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -313,17 +333,23 @@ public class VotersLogin extends javax.swing.JFrame {
             .addGap(0, 39, Short.MAX_VALUE)
         );
 
+        jButton15.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
+        jButton15.setText("Back");
+        jButton15.addActionListener(this::jButton15ActionPerformed);
+
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
         pniCTop.setLayout(pniCTopLayout);
         pniCTopLayout.setHorizontalGroup(
             pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pniCTopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(1728, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(pniCTopLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2567, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
+                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -340,7 +366,9 @@ public class VotersLogin extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(72, 72, 72))
                     .addGroup(pniCTopLayout.createSequentialGroup()
-                        .addComponent(jLabel2)
+                        .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -348,67 +376,97 @@ public class VotersLogin extends javax.swing.JFrame {
 
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
-        jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\politics-election-voting-cartoon_1284-23116.jpg")); // NOI18N
-        jButton8.addActionListener(this::jButton8ActionPerformed);
-
-        jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(0, 255, 204));
-        jButton12.setText("Login");
-        jButton12.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton12MouseClicked(evt);
-            }
-        });
-        jButton12.addActionListener(this::jButton12ActionPerformed);
-
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
-        jLabel8.setText("Voters");
+        jLabel8.setText("Click The No Button To Cast Your Vote");
 
-        jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel9.setText("Enter Credentials");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "CANDIDATE NO", "CANDIDATE NAME", "PARTY NAME"
+            }
+        ));
+        jTable1.setEnabled(false);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jTable1MouseEntered(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
 
-        jTextField2.addActionListener(this::jTextField2ActionPerformed);
+        jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-1-50.png")); // NOI18N
+        jButton8.addActionListener(this::jButton8ActionPerformed);
+
+        jButton9.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-2-50.png")); // NOI18N
+        jButton9.addActionListener(evt -> jButton9ActionPerformed(evt));
+
+        jButton10.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-4-50.png")); // NOI18N
+        jButton10.addActionListener(this::jButton10ActionPerformed);
+
+        jButton11.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-3-50.png")); // NOI18N
+        jButton11.addActionListener(this::jButton11ActionPerformed);
+
+        jButton12.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-5-50.png")); // NOI18N
+        jButton12.addActionListener(this::jButton12ActionPerformed);
+
+        jButton14.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png")); // NOI18N
+        jButton14.setText("  Refresh");
+        jButton14.addActionListener(this::jButton14ActionPerformed);
 
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
         pniCCenterLayout.setHorizontalGroup(
             pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pniCCenterLayout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(116, 116, 116)
-                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
-                        .addComponent(jPasswordField1))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(2609, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(pniCCenterLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 821, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74)
+                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                                .addComponent(jButton11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pniCCenterLayout.createSequentialGroup()
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1167, Short.MAX_VALUE))
         );
         pniCCenterLayout.setVerticalGroup(
             pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pniCCenterLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addContainerGap()
+                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addComponent(jButton8)
-                        .addContainerGap(121, Short.MAX_VALUE))
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton11, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(151, 151, 151))))
+                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         pnCenter.add(pniCCenter, java.awt.BorderLayout.CENTER);
@@ -422,10 +480,15 @@ public class VotersLogin extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        VotersList v = new VotersList();
-        v.show();
+        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to VoterList Page",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+        if(movetohome == JOptionPane.YES_NO_OPTION){
+            VotersList h = new VotersList();
+            h.show();
+            
+            dispose();
+        }
         
-        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
@@ -434,112 +497,295 @@ public class VotersLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Home h = new Home();
-        h.show();
-        
-        dispose();
+        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Home Page",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+        if(movetohome == JOptionPane.YES_NO_OPTION){
+            Home h = new Home();
+            h.show();
+            
+            dispose();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
+        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to LogOut",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+        if(movetohome == JOptionPane.YES_NO_OPTION){
+            VotersLogin h = new VotersLogin();
+            h.show();
+            
+            dispose();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton8ActionPerformed
-
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        NewVoterApplication n = new NewVoterApplication();
-        n.show();
-        
-        dispose();
+        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to NewVoterApplication Page",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+        if(movetohome == JOptionPane.YES_NO_OPTION){
+            
+            dispose();
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        String username = jTextField2.getText();
-        String password = new String(jPasswordField1.getPassword()); // Convert password to string correctly
-        String email = jTextField2.getText();
-        System.out.println("pwd: "+password);
-        if(username.isEmpty() || password.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Username / Password Should not be empty.");
-        }
-        else{
-            String serverName = "MSI\\SQLEXPRESS";
-            String databaseName = "Online-Voting";
-            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
-            try{
-                con = DriverManager.getConnection(url, "sa", "123456789");
-                // Fix SQL query to prevent SQL injection vulnerability
-                String query = "SELECT candidates.Email FROM candidates, voterslist where Candidate_ID = VoterID AND Username = ? AND Password = ?";
-                PreparedStatement pst = con.prepareStatement(query);
-                pst.setString(1, jTextField2.getText());
-                pst.setString(2, jPasswordField1.getText());
-                rs = pst.executeQuery();
-                if (rs.next()){
-                    JOptionPane.showMessageDialog(this, "Candidate cannot vote");
-                }else{
-                    query = "SELECT * FROM voterslist WHERE Username = ? AND Password = ?";
-                    pst = con.prepareStatement(query);
-                    pst.setString(1, jTextField2.getText());
-                    pst.setString(2, jPasswordField1.getText());
-                    rs = pst.executeQuery();
-                    if(rs.next()){
-                        JOptionPane.showMessageDialog(this, "Login Successful");
-
-                        query = "SELECT * FROM votersvoting WHERE Username = ? ";
-                        pst = con.prepareStatement(query);
-                        pst.setString(1, jTextField2.getText());
-                        //pst.setString(2, jPasswordField1.getText());
-                        rs = pst.executeQuery();
-
-                        if(rs.next()){
-                            JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
-                        }
-                        else{
-                            VotersVotingProcess v = new VotersVotingProcess(jTextField2.getText(), jPasswordField1.getText());
-                            v.show();
-
-                            dispose();
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Login Failed");
-                    }
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
-    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_jButton12MouseClicked
+    }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AdminLogin a = new AdminLogin();
-        a.show();
-        
-        dispose();
+        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Admins Login Page",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+        if(movetohome == JOptionPane.YES_NO_OPTION){
+            AdminLogin h = new AdminLogin();
+            h.show();
+            
+            dispose();
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Canditates c = new Canditates();
-        c.show();
-        
-        dispose();
+        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+        if(movetohome == JOptionPane.YES_NO_OPTION){
+            Canditates h = new Canditates();
+            h.show();
+            
+            dispose();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTable1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseEntered
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String un = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+            /*
+            "Candidate_No", "Candidate_ID", "Candidate_Name", "Gender", "Age", "Email"
+            Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email
+             */
+
+            con = DriverManager.getConnection(url, un, password);
+            pst = con.prepareStatement("select Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email  from candidates");
+
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = rs.getMetaData();
+
+            q = stData.getColumnCount();
+
+            // Define custom column names
+            String[] columnNames = {"Candidate_No", "Candidate_ID", "Candidate_Name"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable1.setModel(RecordTable);
+
+            while (rs.next()){
+                Vector columnData = new Vector();
+
+                for(i = 1;i <= q; i++){
+                    columnData.add(rs.getString("Candidate_No"));
+                    columnData.add(rs.getString("Candidate_ID"));
+                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Gender"));
+                    columnData.add(rs.getString("Age"));
+                    columnData.add(rs.getString("Email"));
+
+                }
+                RecordTable.addRow(columnData);
+            }
+
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        int vote = 1;
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String un = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+
+            con = DriverManager.getConnection(url, un, password);
+            System.out.println("Connected To MySql Database!");
+
+            pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
+
+            pst.setString(1, username);
+            pst.setString(2, pwd);
+            pst.setInt(3, vote);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+
+            Home h = new Home();
+            h.show();
+
+            dispose();
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        int vote = 2;
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String un = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+
+            con = DriverManager.getConnection(url, un, password);
+            System.out.println("Connected To MySql Database!");
+
+            pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
+
+            pst.setString(1, username);
+            pst.setString(2, pwd);
+            pst.setInt(3, vote);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+
+            Home h = new Home();
+            h.show();
+
+            dispose();
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        int vote = 3;
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String un = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+
+            con = DriverManager.getConnection(url, un, password);
+            System.out.println("Connected To MySql Database!");
+
+            pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
+
+            pst.setString(1, username);
+            pst.setString(2, pwd);
+            pst.setInt(3, vote);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+
+            Home h = new Home();
+            h.show();
+
+            dispose();
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        int vote = 4;
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String un = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+
+            con = DriverManager.getConnection(url, un, password);
+            System.out.println("Connected To MySql Database!");
+
+            pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
+
+            pst.setString(1, username);
+            pst.setString(2, pwd);
+            pst.setInt(3, vote);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+
+            Home h = new Home();
+            h.show();
+
+            dispose();
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        int vote = 5;
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String un = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+
+            con = DriverManager.getConnection(url, un, password);
+            System.out.println("Connected To MySql Database!");
+
+            pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
+
+            pst.setString(1, username);
+            pst.setString(2, pwd);
+            pst.setInt(3, vote);
+
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+
+            Home h = new Home();
+            h.show();
+
+            dispose();
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // TODO add your handling code here:
+        int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to LogOut",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+        if(movetohome == JOptionPane.YES_NO_OPTION){
+            VotersLogin h = new VotersLogin();
+            h.show();
+            
+            dispose();
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -559,24 +805,22 @@ public class VotersLogin extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VotersLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VotersVotingProcess.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new VotersLogin().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new VotersVotingProcess().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
