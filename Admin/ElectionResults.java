@@ -69,21 +69,27 @@ public class ElectionResults extends javax.swing.JFrame {
     
     
     public int noCand(){
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select count(Candidate_No) from candidates");
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select count(Candidate_No) AS Total from candidates");
 
             rs = pst.executeQuery();
-            
+
             if(rs.next()){
-                String noofcandidates = rs.getString("count(Candidate_No)");
+                String noofcandidates = rs.getString("Total");
                 jLabel12.setText(noofcandidates);
             }
-            
+
             else{
                 return 0;
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -93,21 +99,28 @@ public class ElectionResults extends javax.swing.JFrame {
     
     
     public int novoters(){
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select count(Username) from votersvoting");
+            //Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, username, password);
+            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting");
 
             rs = pst.executeQuery();
-            
+
             if(rs.next()){
-                String noofvoters = rs.getString("count(Username)");
+                String noofvoters = rs.getString("Username_Count");
                 jLabel10.setText(noofvoters);
             }
-            
+
             else{
                 return 0;
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -749,156 +762,159 @@ public class ElectionResults extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        
+
         int[] Results = new int[5];
         String[] cand_name = new String[5];
-        
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb01.setText(rs.getString("Candidate_Name"));
                 cand_name[0] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 1");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 1");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel7.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[0] = rs.getInt("count(Username)");
-                    
+                    jPanel7.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[0] = rs.getInt("Username_Count");
+
                 }
                 else{
                     jPanel7.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb01.setText("No Candidate");
                 jPanel7.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 2");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb02.setText(rs.getString("Candidate_Name"));
                 cand_name[1] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 2");
+                pst= con.prepareStatement("select count(Username) AS Username_Count  from votersvoting where Candidate_No = 2");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel8.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[1] = rs.getInt("count(Username)");
+                    jPanel8.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[1] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel8.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb02.setText("No Candidate");
                 jPanel8.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 3");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb03.setText(rs.getString("Candidate_Name"));
                 cand_name[2] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 3");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 3");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel9.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[2] = rs.getInt("count(Username)");
+                    jPanel9.setSize(84, 30*(rs.getInt("Username_Count ")));
+                    Results[2] = rs.getInt("Username_Count ");
                 }
                 else{
                     jPanel9.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb03.setText("No Candidate");
                 jPanel9.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 4");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb04.setText(rs.getString("Candidate_Name"));
                 cand_name[3] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 4");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 4");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel10.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[3] = rs.getInt("count(Username)");
+                    jPanel10.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[3] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel10.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb04.setText("No Candidate");
                 jPanel10.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 5");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb05.setText(rs.getString("Candidate_Name"));
                 cand_name[4] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) from votersvoting where Selected_Candidates = 5");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 5");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel11.setSize(84, 30*(rs.getInt("count(Username)")));
-                    Results[4] = rs.getInt("count(Username)");
+                    jPanel11.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[4] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel11.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb05.setText("No Candidate");
                 jPanel11.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -907,10 +923,13 @@ public class ElectionResults extends javax.swing.JFrame {
         //jPanel9.setSize(84, 10*4);
         //jPanel10.setSize(84, 10*2);
         //jPanel11.setSize(84, 10*11);
-        
+
+        //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
+
         int max = Results[0];
         int maxi = 0;
         for(int i=0;i<5;i++){
+
             if(max<Results[i]){
                 max = Results[i];
                 maxi = i;

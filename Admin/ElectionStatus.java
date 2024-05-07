@@ -26,7 +26,7 @@ public class ElectionStatus extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    
+
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
@@ -59,62 +59,69 @@ public class ElectionStatus extends javax.swing.JFrame {
                 public void mouseExited(MouseEvent e) {
                     btn.setBackground(new Color(21,25,28));
                 }
-                
+
             });
         }
-        
+
         noCand();
         novoters();
     }
 
-    
+
     public int noCand(){
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select count(Candidate_No) from candidates");
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select count(Candidate_No) AS Cand_Count from candidates");
 
             rs = pst.executeQuery();
-            
+
             if(rs.next()){
-                String noofcandidates = rs.getString("count(Candidate_No)");
+                String noofcandidates = rs.getString("Cand_Count");
                 jLabel12.setText(noofcandidates);
             }
-            
+
             else{
                 return 0;
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
         return 0;
     }
-    
-    
+
+
     public int novoters(){
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/voting", "root", "ashwin");
-            pst = con.prepareStatement("select count(Username) from votersvoting");
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting");
 
             rs = pst.executeQuery();
-            
+
             if(rs.next()){
-                String noofvoters = rs.getString("count(Username)");
+                String noofvoters = rs.getString("Username_Count");
                 jLabel10.setText(noofvoters);
             }
-            
+
             else{
                 return 0;
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
         return 0;
     }
-    
+
     
     /**
      * This method is called from within the constructor to initialize the form.
