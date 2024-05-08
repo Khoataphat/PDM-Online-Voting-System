@@ -15,6 +15,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.*;
+import java.time.LocalDate;
 
 /**
  *
@@ -497,49 +498,29 @@ public class VotersPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
 
-    /*   private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-            // TODO add your handling code here:
-            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-            String databaseName = "Online-Voting";
-            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-            try{
-                con = DriverManager.getConnection(url, "sa", "123456789");
-                // Fix SQL query to prevent SQL injection vulnerability
-                String query = "SELECT candidates.Email FROM candidates, voterslist where Candidate_ID = VoterID AND Username = ? AND Password = ?";
-                PreparedStatement pst = con.prepareStatement(query);
-                rs = pst.executeQuery();
-                if (rs.next()){
-                    JOptionPane.showMessageDialog(this, "Candidate cannot vote");
-                }else{
-                    query = "SELECT * FROM voterslist WHERE Username = ? AND Password = ?";
-                    pst = con.prepareStatement(query);
-                    pst.setString(1, jTextField2.getText());
-                    pst.setString(2, jPasswordField1.getText());
-                    rs = pst.executeQuery();
-                    if(rs.next()){
-                        JOptionPane.showMessageDialog(this, "Login Successful");
-                        query = "SELECT * FROM votersvoting WHERE Username = ? ";
-                        pst = con.prepareStatement(query);
-                        pst.setString(1, jTextField2.getText());
-                        //pst.setString(2, jPasswordField1.getText());
-                        rs = pst.executeQuery();
-                        if(rs.next()){
-                            JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
-                        }
-                        else{
-                            VotersVotingProcess v = new VotersVotingProcess(username, pwd);
-                            v.show();
-                            dispose();
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Login Failed");
-                    }
-                }
-            }
-        }//GEN-LAST:event_jButton12ActionPerformed
-    */
+    private boolean isWithinElectionPeriod() {
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+        try {
+            String query = "SELECT Start_Date, End_Date FROM Election";
+            PreparedStatement pst = con.prepareStatement(query);
+            rs = pst.executeQuery();
 
+            if (rs.next()) {
+                LocalDate startDate = rs.getDate("Start_Date").toLocalDate();
+                LocalDate endDate = rs.getDate("End_Date").toLocalDate();
+                LocalDate currentDate = LocalDate.now();
+
+                return (currentDate.isEqual(startDate) || currentDate.isAfter(startDate))
+                        && (currentDate.isEqual(endDate) || currentDate.isBefore(endDate));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return false;
+    }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
         String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
@@ -559,19 +540,23 @@ public class VotersPage extends javax.swing.JFrame {
             if (rs.next()) {
                 JOptionPane.showMessageDialog(this, "Candidate cannot vote");
             } else {
-                query = "SELECT * FROM votersvoting WHERE Username = ? ";
-                pst = con.prepareStatement(query);
+                if (isWithinElectionPeriod()) {
+                    query = "SELECT * FROM votersvoting WHERE Username = ? ";
+                    pst = con.prepareStatement(query);
 
-                // Set the username value from existing variable
-                pst.setString(1, username);
+                    // Set the username value from existing variable
+                    pst.setString(1, username);
 
-                rs = pst.executeQuery();
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
+                    rs = pst.executeQuery();
+                    if (rs.next()) {
+                        JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
+                    } else {
+                        VotersVotingProcess v = new VotersVotingProcess(username, pwd);
+                        v.show();
+                        dispose();
+                    }
                 } else {
-                    VotersVotingProcess v = new VotersVotingProcess(username, pwd);
-                    v.show();
-                    dispose();
+                    JOptionPane.showMessageDialog(this, "Voting is not allowed at the moment.");
                 }
             }
 

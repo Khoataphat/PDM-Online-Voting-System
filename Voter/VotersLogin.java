@@ -534,68 +534,6 @@ public class VotersLogin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
-/*   private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
-        String username = jTextField2.getText();
-        String password = new String(jPasswordField1.getPassword()); // Convert password to string correctly
-        String email = jTextField2.getText();
-        System.out.println("pwd: "+password);
-        if(username.isEmpty() || password.isEmpty()){
-            JOptionPane.showMessageDialog(this, "Username / Password Should not be empty.");
-        }
-        else{
-            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-            String databaseName = "Online-Voting";
-            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-            try{
-                con = DriverManager.getConnection(url, "sa", "123456789");
-                // Fix SQL query to prevent SQL injection vulnerability
-                String query = "SELECT candidates.Email FROM candidates, voterslist where Candidate_ID = VoterID AND Username = ? AND Password = ?";
-                PreparedStatement pst = con.prepareStatement(query);
-                pst.setString(1, jTextField2.getText());
-                pst.setString(2, jPasswordField1.getText());
-                rs = pst.executeQuery();
-                if (rs.next()){
-                    JOptionPane.showMessageDialog(this, "Candidate cannot vote");
-                }else{
-                    query = "SELECT * FROM voterslist WHERE Username = ? AND Password = ?";
-                    pst = con.prepareStatement(query);
-                    pst.setString(1, jTextField2.getText());
-                    pst.setString(2, jPasswordField1.getText());
-                    rs = pst.executeQuery();
-                    if(rs.next()){
-                        JOptionPane.showMessageDialog(this, "Login Successful");
-
-                        query = "SELECT * FROM votersvoting WHERE Username = ? ";
-                        pst = con.prepareStatement(query);
-                        pst.setString(1, jTextField2.getText());
-                        //pst.setString(2, jPasswordField1.getText());
-                        rs = pst.executeQuery();
-
-                        if(rs.next()){
-                            JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
-                        }
-                        else{
-                            VotersVotingProcess v = new VotersVotingProcess(jTextField2.getText(), jPasswordField1.getText());
-                            v.show();
-
-                            dispose();
-                        }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Login Failed");
-                    }
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        }
-    }//GEN-LAST:event_jButton12ActionPerformed
-*/
-
-
-
-
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
