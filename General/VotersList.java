@@ -460,7 +460,7 @@ public class VotersList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTable1MouseClicked*/
             String serverName = "MSI\\SQLEXPRESS";
-            String databaseName = "Online-Voting";
+            String databaseName = "VOTING ONLINE";
             String username = "sa";
             String password = "123456789";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=false;trustServerCertificate=true;";

@@ -348,6 +348,8 @@ public class Home extends javax.swing.JFrame {
         jButton10.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-shouting-25.png")); // NOI18N
         jButton10.setText("ANNOUNCEMENTS");
         jButton10.setPreferredSize(new java.awt.Dimension(250, 40));
+        jButton10.addActionListener(this::jButton10ActionPerformed);
+        pnSide.add(jButton10);
 
         jButton11.setForeground(new java.awt.Color(0, 255, 204));
         jButton11.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-previous-25.png")); // NOI18N
@@ -448,6 +450,14 @@ public class Home extends javax.swing.JFrame {
         Canditates c = new Canditates();
         c.show();
         
+        dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        ElectionResultsForVoterAndCandidate e = new ElectionResultsForVoterAndCandidate();
+        e.show();
+
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 

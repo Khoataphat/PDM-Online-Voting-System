@@ -564,7 +564,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -614,7 +614,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         // TODO add your handling code here:
         int vote = 1;
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -647,7 +647,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         // TODO add your handling code here:
         int vote = 2;
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -680,7 +680,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         // TODO add your handling code here:
         int vote = 3;
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -713,7 +713,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         // TODO add your handling code here:
         int vote = 4;
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -746,7 +746,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         // TODO add your handling code here:
         int vote = 5;
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String un = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";

@@ -148,7 +148,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     }*/
 
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -894,7 +894,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         //File f2 = new File(path2);
 
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             
@@ -935,7 +935,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         //File f1 = new File(path1);
         //File f2 = new File(path2);
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
@@ -991,7 +991,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         //jLabel23 = new JLabel("image");
         //jLabel25 = new JLabel("image");
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
             String id = RecordTable.getValueAt(SelectedRows, 2).toString();

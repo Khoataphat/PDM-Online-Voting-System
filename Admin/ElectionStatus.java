@@ -70,7 +70,7 @@ public class ElectionStatus extends javax.swing.JFrame {
 
     public int noCand(){
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -98,7 +98,7 @@ public class ElectionStatus extends javax.swing.JFrame {
 
     public int novoters(){
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");

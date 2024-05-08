@@ -145,7 +145,7 @@ public class ManageVoters extends javax.swing.JFrame {
     }*/
 
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -766,7 +766,7 @@ public class ManageVoters extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
        // TODO add your handling code here:
         try{
@@ -844,7 +844,7 @@ private JFrame frame;
         int SelectedRows = jTable2.getSelectedRow();
 
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";

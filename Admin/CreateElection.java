@@ -529,11 +529,7 @@ public class CreateElection extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        AdminPage h = new AdminPage();
-        h.show();
-        
-        dispose();
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     /**

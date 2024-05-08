@@ -458,7 +458,7 @@ public class VotersLogin extends javax.swing.JFrame {
         }
         else{
             String serverName = "MSI\\SQLEXPRESS";
-            String databaseName = "Online-Voting";
+            String databaseName = "VOTING ONLINE";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
             try{

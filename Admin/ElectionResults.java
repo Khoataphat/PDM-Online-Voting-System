@@ -10,10 +10,7 @@ import Voters.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -66,13 +63,11 @@ public class ElectionResults extends javax.swing.JFrame {
         noCand();
         novoters();
     }
-    
-    
+
+    /*
     public int noCand(){
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -96,11 +91,11 @@ public class ElectionResults extends javax.swing.JFrame {
         }
         return 0;
     }
-    
-    
+
+
     public int novoters(){
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -126,8 +121,58 @@ public class ElectionResults extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
         return 0;
+    }*/
+    public int noCand() {
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "VOTING ONLINE";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try (Connection con = DriverManager.getConnection(url, username, password);
+             PreparedStatement pst = con.prepareStatement("SELECT COUNT(Candidate_No) AS Total FROM candidates");
+             ResultSet rs = pst.executeQuery()) {
+
+            if (rs.next()) {
+                int noOfCandidates = rs.getInt("Total");
+                jLabel12.setText(String.valueOf(noOfCandidates));
+                return noOfCandidates;
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database connection error.");
+        }
+        return 0;
     }
-    
+
+
+    public int novoters() {
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "VOTING ONLINE";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try (Connection con = DriverManager.getConnection(url, username, password);
+             PreparedStatement pst = con.prepareStatement("SELECT COUNT(Username) AS Username_Count FROM votersvoting");
+             ResultSet rs = pst.executeQuery()) {
+
+            if (rs.next()) {
+                int noOfVoters = rs.getInt("Username_Count");
+                jLabel10.setText(String.valueOf(noOfVoters));
+                return noOfVoters;
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database connection error.");
+        }
+        return 0;
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -405,6 +450,7 @@ public class ElectionResults extends javax.swing.JFrame {
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png")); // NOI18N
+        jButton8.setText("Click me");
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
@@ -532,7 +578,7 @@ public class ElectionResults extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 0));
-        jPanel9.setForeground(new java.awt.Color(255, 255, 255));
+        //jPanel9.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -766,7 +812,7 @@ public class ElectionResults extends javax.swing.JFrame {
         int[] Results = new int[5];
         String[] cand_name = new String[5];
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "VOTING ONLINE";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -919,10 +965,10 @@ public class ElectionResults extends javax.swing.JFrame {
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        jPanel8.setSize(84, 10*5);
-        jPanel9.setSize(84, 10*4);
-        jPanel10.setSize(84, 10*2);
-        jPanel11.setSize(84, 10*11);
+        //jPanel8.setSize(84, 10*5);
+        //jPanel9.setSize(84, 10*4);
+        //jPanel10.setSize(84, 10*2);
+        //jPanel11.setSize(84, 10*11);
 
         //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
 
