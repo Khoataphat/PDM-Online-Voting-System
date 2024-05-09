@@ -241,12 +241,12 @@ public class ManageVoters extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
-        JScrollPane jScrollPane2 = new JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        //JScrollPane jScrollPane2 = new JScrollPane();
+        //jTextArea1 = new javax.swing.JTextArea();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        //jTextField8 = new javax.swing.JTextField();
         JScrollPane jScrollPane3 = new JScrollPane();
         jTable2 = new javax.swing.JTable();
         jComboBox1 = new javax.swing.JComboBox<>();
@@ -330,7 +330,7 @@ public class ManageVoters extends javax.swing.JFrame {
 
         jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
 
-        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
+        /*jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("FIRST TIME VOTERS ");
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 102));
@@ -339,7 +339,7 @@ public class ManageVoters extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 102));
 
         jLabel19.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel19.setText("FORM");
+        jLabel19.setText("FORM");*/
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -562,18 +562,18 @@ public class ManageVoters extends javax.swing.JFrame {
         jLabel15.setText("Gender");
 
         jLabel17.setForeground(new java.awt.Color(0, 255, 204));
-        jLabel17.setText("Aadhaar No");
+        jLabel17.setText("");
 
         jLabel18.setForeground(new java.awt.Color(0, 255, 204));
-        jLabel18.setText("Address");
+        jLabel18.setText("");
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        //jTextArea1.setColumns(20);
+        //jTextArea1.setRows(5);
+        //jScrollPane2.setViewportView(jTextArea1);
 
         jTextField6.addActionListener(this::jTextField6ActionPerformed);
 
@@ -585,7 +585,7 @@ public class ManageVoters extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "voterID", "Name", "Username", "Password", "Email", "Phone no", "Gender", "Address", "Aadhaar No"
+                "VoterID", "Name", "Gender", "Age", "Email", "Username", "Password"
             }
         ));
         jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -631,7 +631,7 @@ public class ManageVoters extends javax.swing.JFrame {
                                 /*.addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
                             .addGroup(pniCCenterLayout.createSequentialGroup()
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    //.addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(pniCCenterLayout.createSequentialGroup()
                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -650,8 +650,8 @@ public class ManageVoters extends javax.swing.JFrame {
                                                 .addComponent(jLabel17)))
                                         .addGap(18, 18, 18)
                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                            .addComponent(jTextField5)
+                                            //.addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                            .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                             .addComponent(jTextField6)
                                             .addComponent(jTextField7)))
                                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -696,11 +696,11 @@ public class ManageVoters extends javax.swing.JFrame {
                                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel17)
-                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                /*.addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/))
                         .addGap(18, 18, 18)
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            /*.addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
                         .addGap(18, 18, 18)
                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
@@ -820,8 +820,8 @@ public class ManageVoters extends javax.swing.JFrame {
         jTextField5.setText("");
         jTextField3.setText("");
         jComboBox1.setSelectedItem("Male");
-        jTextArea1.setText("");
-        jTextField8.setText("");
+        //jTextArea1.setText("");
+        //jTextField8.setText("");
     }//GEN-LAST:event_jButton16ActionPerformed
 private JFrame frame;
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -874,8 +874,8 @@ private JFrame frame;
                 jTextField5.setText("");
                 jTextField3.setText("");
                 jComboBox1.setSelectedItem("Male");
-                jTextArea1.setText("");
-                jTextField8.setText("");
+                //jTextArea1.setText("");
+                //jTextField8.setText("");
             }
         } catch (Exception e) {
             
@@ -1046,6 +1046,6 @@ private JFrame frame;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    //private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }
