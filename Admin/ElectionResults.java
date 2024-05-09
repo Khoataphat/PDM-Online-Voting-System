@@ -64,7 +64,7 @@ public class ElectionResults extends javax.swing.JFrame {
         novoters();
     }
 
-    /*
+
     public int noCand(){
         String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "VOTING ONLINE";
@@ -121,8 +121,8 @@ public class ElectionResults extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
         return 0;
-    }*/
-    public int noCand() {
+    }
+    /*public int noCand() {
         String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "VOTING ONLINE";
         String username = "sa";
@@ -171,7 +171,7 @@ public class ElectionResults extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Database connection error.");
         }
         return 0;
-    }
+    }*/
 
 
     /**
@@ -648,11 +648,11 @@ public class ElectionResults extends javax.swing.JFrame {
                             .addComponent(lb03, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(45, 45, 45)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lb04, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb05, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pniCCenterLayout.createSequentialGroup()
@@ -888,8 +888,8 @@ public class ElectionResults extends javax.swing.JFrame {
                 pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 3");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel9.setSize(84, 30*(rs.getInt("Username_Count ")));
-                    Results[2] = rs.getInt("Username_Count ");
+                    jPanel9.setSize(84, 30*(rs.getInt("Username_Count")));
+                    Results[2] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel9.setSize(84, 5);
