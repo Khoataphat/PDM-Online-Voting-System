@@ -10,8 +10,16 @@ import Voters.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Vector;
+
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -22,9 +30,52 @@ public class CreateElection extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    int q, i, id, deleteItem; // loi add
+
+    public void upDateDB(){
+        String serverName = "DESKTOP-0IKLTBG";
+        String databaseName = "OnlineVoting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try{
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select * from electionlist");
+
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = rs.getMetaData();
+
+            q = stData.getColumnCount();
+
+            String[] columnNames = {"ElectionID", "ElectionName", "Date_Start", "Date_End",};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable1.setModel(RecordTable);
+
+            while (rs.next()){
+                Vector columnData = new Vector();
+
+                for(i = 1;i <= q; i++){
+                    columnData.add(rs.getString("Election_ID"));
+                    columnData.add(rs.getString("Election_Name"));
+                    columnData.add(rs.getString("Date_Start"));
+                    columnData.add(rs.getString("Date_End"));
+                }
+                RecordTable.addRow(columnData);
+            }
+
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
     public CreateElection() {
         initComponents();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12, jButton13};
+        upDateDB();
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12, jButton13, jButton14, jButton15,jButton16,jButton17};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -100,6 +151,18 @@ public class CreateElection extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         JLabel jLabel10 = new JLabel();
         jTextField1 = new javax.swing.JTextField();
+
+        //loi add
+        jTextField3 = new javax.swing.JTextField();
+        JLabel jLabel11 = new JLabel();
+        jTable1 = new javax.swing.JTable();
+        JScrollPane jScrollPane3 = new JScrollPane();
+        JLabel jLabel12 = new JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jButton14 = new javax.swing.JButton();
+        jButton15 = new javax.swing.JButton();
+        jButton16 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -270,7 +333,7 @@ public class CreateElection extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel2.setText("Create New Election");
+        jLabel2.setText("Manage Election");
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -350,6 +413,25 @@ public class CreateElection extends javax.swing.JFrame {
                         .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(120, 120, 120))))
         );
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                    "ElectionID","ElectionName", "Date_Start","Date_End"
+            }
+        ));
+        
 
         pnCenter.add(pniCTop, java.awt.BorderLayout.NORTH);
 
@@ -357,13 +439,38 @@ public class CreateElection extends javax.swing.JFrame {
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\politics-election-voting-cartoon_1284-23116.jpg")); // NOI18N
-        jButton8.addActionListener(this::jButton8ActionPerformed);
+        jButton8.addActionListener(this::jButton8ActionPerformed); // check  dong trang
 
         jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton12.setForeground(new java.awt.Color(0, 255, 204));
-        jButton12.setText("Add Canditates");
+        jButton12.setText("Add Election");
         jButton12.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton12.addActionListener(this::jButton12ActionPerformed);
+
+        jButton14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton14.setForeground(new java.awt.Color(0, 255, 204));
+        jButton14.setText("Cadidate");
+        jButton14.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton14.addActionListener(this::jButton14ActionPerformed);
+
+        jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton15.setForeground(new java.awt.Color(0, 255, 204));
+        jButton15.setText("Status");
+        jButton15.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton15.addActionListener(this::jButton15ActionPerformed);
+
+        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton16.setForeground(new java.awt.Color(0, 255, 204));
+        jButton16.setText("Result");
+        jButton16.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton16.addActionListener(this::jButton16ActionPerformed);
+
+        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton17.setForeground(new java.awt.Color(0, 255, 204));
+        jButton17.setText("Delete Election");
+        jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButton17.addActionListener(this::jButton17ActionPerformed);
+
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
@@ -371,7 +478,11 @@ public class CreateElection extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel9.setText("Date of the Election");
+        jLabel9.setText("Date_start");
+
+        jLabel11.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel11.setText("Date_end");
 
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
@@ -379,25 +490,38 @@ public class CreateElection extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(0, 102, 102));
         jLabel10.setText("Name of the Election");
 
+        jLabel12.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel12.setText("ID");
+
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
         pniCCenterLayout.setHorizontalGroup(
             pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pniCCenterLayout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pniCCenterLayout.createSequentialGroup()
+                        //Hang button
+                        .addComponent(jButton14,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE) 
+                        .addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton16,javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton12,javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton17,javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
+
                     .addGroup(pniCCenterLayout.createSequentialGroup()
                         .addGap(116, 116, 116)
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(1888, Short.MAX_VALUE))
         );
         pniCCenterLayout.setVerticalGroup(
@@ -408,16 +532,30 @@ public class CreateElection extends javax.swing.JFrame {
                     .addGroup(pniCCenterLayout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel12)
+                        .addGap(12, 12, 12)
+                        .addComponent(jTextField4,javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66)
-                        .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108 )
+                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) //Hang button 
+
+                            .addComponent(jButton14,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton16,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton17,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))// thay jtable here
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
@@ -483,15 +621,30 @@ public class CreateElection extends javax.swing.JFrame {
         
         try {
             String NameOfTheElection = jTextField2.getText();
-            String Year = jTextField1.getText();
-            if(NameOfTheElection.isEmpty() || Year.isEmpty()){
+            String Date_St = jTextField1.getText();
+            String Date_Ed = jTextField3.getText();
+            String Num_id = jTextField4.getText();
+            String serverName = "DESKTOP-0IKLTBG";
+            String databaseName = "OnlineVoting";
+            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+            if(NameOfTheElection.isEmpty() || Date_St.isEmpty()|| Date_Ed.isEmpty()|| Num_id.isEmpty()){
                 JOptionPane.showMessageDialog(this, "Name of the Election / Year Should not be empty.");
             }
             else{
-                CreateElectionAddCanditates c = new CreateElectionAddCanditates();
-                c.show();
+                con = DriverManager.getConnection(url, "sa", "123456789");
+                pst = con.prepareStatement("insert into electionlist values(?,?,?,?)");
+                pst.setString(1, jTextField4.getText());
+                pst.setString(2, jTextField2.getText());
+                pst.setString(3, jTextField1.getText());
+                pst.setString(4, jTextField3.getText());
 
-                dispose();
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "New Election Added");
+                upDateDB();
+                
+                //CreateElectionAddCanditates c = new CreateElectionAddCanditates();
+                //c.show(); // loi check
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
@@ -527,6 +680,20 @@ public class CreateElection extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        
+        DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+        int SelectedRows = jTable1.getSelectedRow();
+
+        jTextField1.setText(RecordTable.getValueAt(SelectedRows, 2).toString());//Date_start
+        jTextField2.setText(RecordTable.getValueAt(SelectedRows, 1).toString());//ElectionName
+        jTextField3.setText(RecordTable.getValueAt(SelectedRows, 3).toString());//Date_end
+        jTextField4.setText(RecordTable.getValueAt(SelectedRows, 0).toString());//ID
+        //jComboBox1.setSelectedItem(RecordTable.getValueAt(SelectedRows, 2));
+        //jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
+        //jTextField8.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
+
+    }//GEN-LAST:event_jTable2MouseClicked
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
@@ -535,6 +702,18 @@ public class CreateElection extends javax.swing.JFrame {
         
         dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
+    }
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {}
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
+    }
 
     /**
      * @param args the command line arguments
@@ -571,7 +750,14 @@ public class CreateElection extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton15;
+    private javax.swing.JButton jButton16;
+    private javax.swing.JButton jButton17;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
