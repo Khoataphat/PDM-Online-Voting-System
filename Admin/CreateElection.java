@@ -89,8 +89,8 @@ public class CreateElection extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             //Class.forName("com.mysql.jdbc.Driver");
@@ -848,8 +848,8 @@ public class CreateElection extends javax.swing.JFrame {
     }
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         String electionId = jTextField1.getText();
@@ -898,8 +898,8 @@ public class CreateElection extends javax.swing.JFrame {
         // TODO add your handling code here:
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try {
