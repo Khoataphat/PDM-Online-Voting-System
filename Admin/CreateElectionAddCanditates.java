@@ -1002,35 +1002,10 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        AdminPage h = new AdminPage();
+        h.show();
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
-        String username = "sa";
-        String password = "123456789";
-        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-        try {
-            int deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to back",
-                    "Warning", JOptionPane.YES_NO_OPTION);
-
-            if(deleteItem == JOptionPane.YES_OPTION){
-                con = DriverManager.getConnection(url, username, password);
-                pst = con.prepareStatement("delete from Election where Election_ID = ?");
-                pst.setString(1, Election_ID);
-
-                pst.executeUpdate();
-
-                pst.close();
-                con.close();
-
-                CreateElection c = new CreateElection();
-                c.show();
-
-                dispose();
-            }
-        } catch (SQLException ex) {
-            // Handle any SQL exception
-            ex.printStackTrace();
-        }
+        dispose();
     }
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
