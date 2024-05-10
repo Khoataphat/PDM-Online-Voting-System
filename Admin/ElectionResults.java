@@ -24,9 +24,12 @@ public class ElectionResults extends javax.swing.JFrame {
      * Creates new form Home
      */
     
+   
+
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
+    private String Election_id = null;
 
     public ElectionResults() {
         initComponents();
@@ -66,14 +69,15 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int noCand(){
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "VOTING ONLINE";
+        String serverName = "DESKTOP-0IKLTBG";
+        String databaseName = "OnlineVoting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select count(Candidate_No) AS Total from candidates");
-
+            pst = con.prepareStatement("select count(Candidate_No) AS Total from candidates Where ElectionID = ? ");
+            pst.setString(1, getElection_id());
+            
             rs = pst.executeQuery();
 
             if(rs.next()){
@@ -94,8 +98,8 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int novoters(){
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "VOTING ONLINE";
+        String serverName = "DESKTOP-0IKLTBG";
+        String databaseName = "OnlineVoting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -103,7 +107,8 @@ public class ElectionResults extends javax.swing.JFrame {
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting");
+            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting Where ElectionID = ?");
+            pst.setString(1, getElection_id());
 
             rs = pst.executeQuery();
 
@@ -122,9 +127,18 @@ public class ElectionResults extends javax.swing.JFrame {
         }
         return 0;
     }
+
+    
+
+    public String getElection_id(){
+        return Election_id;
+    }
+    public void setElection_id(String Election_id){
+        this.Election_id = Election_id;
+    }
     /*public int noCand() {
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "VOTING ONLINE";
+        String serverName = "DESKTOP-0IKLTBG";
+        String databaseName = "OnlineVoting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -149,8 +163,8 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int novoters() {
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "VOTING ONLINE";
+        String serverName = "DESKTOP-0IKLTBG";
+        String databaseName = "OnlineVoting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -701,19 +715,19 @@ public class ElectionResults extends javax.swing.JFrame {
                             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)))
                     .addGroup(pniCCenterLayout.createSequentialGroup()
+                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18) 
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lb01, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb02, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb03, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb04, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb05, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lb05, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(62, 62, 62)
                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -811,20 +825,22 @@ public class ElectionResults extends javax.swing.JFrame {
 
         int[] Results = new int[5];
         String[] cand_name = new String[5];
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "VOTING ONLINE";
+        String serverName = "DESKTOP-0IKLTBG";
+        String databaseName = "OnlineVoting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1 And ElectionID = ?");
+            pst.setString(1, getElection_id());
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
                 lb01.setText(rs.getString("Candidate_Name"));
                 cand_name[0] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 1");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 1 And ElectionID = ?");
+                pst.setString(1, getElection_id());
                 rs = pst.executeQuery();
                 if(rs.next()){
                     jPanel7.setSize(84, 30*(rs.getInt("Username_Count")));
@@ -848,15 +864,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 2");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 2 And ElectionID = ?");
+            pst.setString(1, getElection_id());
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
                 lb02.setText(rs.getString("Candidate_Name"));
                 cand_name[1] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count  from votersvoting where Candidate_No = 2");
+                pst= con.prepareStatement("select count(Username) AS Username_Count  from votersvoting where Candidate_No = 2 And ElectionID = ?");
+                pst.setString(1, getElection_id());
                 rs = pst.executeQuery();
+
                 if(rs.next()){
                     jPanel8.setSize(84, 30*(rs.getInt("Username_Count")));
                     Results[1] = rs.getInt("Username_Count");
@@ -878,14 +897,16 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 3");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 3 And ElectionID = ?");
+            pst.setString(1, getElection_id());
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
                 lb03.setText(rs.getString("Candidate_Name"));
                 cand_name[2] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 3");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 3 And ElectionID = ?");
+                pst.setString(1, getElection_id());
                 rs = pst.executeQuery();
                 if(rs.next()){
                     jPanel9.setSize(84, 30*(rs.getInt("Username_Count")));
@@ -908,14 +929,16 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 4");
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 4 And ElectionID = ?");
+            pst.setString(1, getElection_id());
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
                 lb04.setText(rs.getString("Candidate_Name"));
                 cand_name[3] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 4");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 4 And ElectionID = ?");
+                pst.setString(1, getElection_id());
                 rs = pst.executeQuery();
                 if(rs.next()){
                     jPanel10.setSize(84, 30*(rs.getInt("Username_Count")));
@@ -938,15 +961,17 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 5");
-            rs = pst.executeQuery();
+            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 5 And ElectionID = ?");
+            pst.setString(1, getElection_id());
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
                 lb05.setText(rs.getString("Candidate_Name"));
                 cand_name[4] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 5");
+                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting Where Candidate_No = 5 And ElectionID = ?");
+                pst.setString(1, getElection_id());
                 rs = pst.executeQuery();
+
                 if(rs.next()){
                     jPanel11.setSize(84, 30*(rs.getInt("Username_Count")));
                     Results[4] = rs.getInt("Username_Count");
