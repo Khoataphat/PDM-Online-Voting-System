@@ -68,7 +68,7 @@ public class Canditates extends javax.swing.JFrame {
     }
     
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";

@@ -10,10 +10,7 @@ import Voters.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -65,15 +62,18 @@ public class ElectionResults extends javax.swing.JFrame {
         
         noCand();
         novoters();
+        isAdminLoggedIn();
     }
 
+    private boolean isAdminLoggedIn() {
 
+        return true;
+    }
     public int noCand(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select count(Candidate_No) AS Total from candidates");
@@ -98,16 +98,16 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int novoters(){
-
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting");
+            pst = con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting");
 
             rs = pst.executeQuery();
 
@@ -126,6 +126,57 @@ public class ElectionResults extends javax.swing.JFrame {
         }
         return 0;
     }
+    /*public int noCand() {
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "VOTING ONLINE";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try (Connection con = DriverManager.getConnection(url, username, password);
+             PreparedStatement pst = con.prepareStatement("SELECT COUNT(Candidate_No) AS Total FROM candidates");
+             ResultSet rs = pst.executeQuery()) {
+
+            if (rs.next()) {
+                int noOfCandidates = rs.getInt("Total");
+                jLabel12.setText(String.valueOf(noOfCandidates));
+                return noOfCandidates;
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database connection error.");
+        }
+        return 0;
+    }
+
+
+    public int novoters() {
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "VOTING ONLINE";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try (Connection con = DriverManager.getConnection(url, username, password);
+             PreparedStatement pst = con.prepareStatement("SELECT COUNT(Username) AS Username_Count FROM votersvoting");
+             ResultSet rs = pst.executeQuery()) {
+
+            if (rs.next()) {
+                int noOfVoters = rs.getInt("Username_Count");
+                jLabel10.setText(String.valueOf(noOfVoters));
+                return noOfVoters;
+            } else {
+                return 0;
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database connection error.");
+        }
+        return 0;
+    }*/
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -403,6 +454,7 @@ public class ElectionResults extends javax.swing.JFrame {
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png")); // NOI18N
+        jButton8.setText("Click me");
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
@@ -530,7 +582,7 @@ public class ElectionResults extends javax.swing.JFrame {
         );
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 0));
-        jPanel9.setForeground(new java.awt.Color(255, 255, 255));
+        //jPanel9.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -600,11 +652,11 @@ public class ElectionResults extends javax.swing.JFrame {
                             .addComponent(lb03, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(45, 45, 45)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lb04, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb05, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pniCCenterLayout.createSequentialGroup()
@@ -659,14 +711,14 @@ public class ElectionResults extends javax.swing.JFrame {
                             .addComponent(lb03, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb04, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lb05, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addGap(18, 18, 18)
                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(62, 62, 62)
+                        .addGap(62, 62, 62)
                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -746,13 +798,20 @@ public class ElectionResults extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton17ActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        AdminPage h = new AdminPage();
-        h.show();
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {
+        // Kiểm tra vai trò của người dùng
+        if (isAdminLoggedIn()) {
+            // Nếu admin đăng nhập, quay về trang admin
+            AdminPage adminPage = new AdminPage();
+            adminPage.show();
+        } else {
+            // Nếu voter đăng nhập, quay về trang voter
+            VotersLogin voterPage = new VotersLogin();
+            voterPage.show();
+        }
 
         dispose();
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }
 
     private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
         // TODO add your handling code here:
@@ -760,136 +819,159 @@ public class ElectionResults extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        
+
         int[] Results = new int[5];
         String[] cand_name = new String[5];
-        
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
         try{
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb01.setText(rs.getString("Candidate_Name"));
                 cand_name[0] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 1");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    
+                    jPanel7.setSize(84, -5*(rs.getInt("Username_Count")));
+                    Results[0] = rs.getInt("Username_Count");
+
                 }
                 else{
                     jPanel7.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb01.setText("No Candidate");
                 jPanel7.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 2");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb02.setText(rs.getString("Candidate_Name"));
                 cand_name[1] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Voter_ID) AS Username_Count  from votersvoting where Candidate_No = 2");
                 rs = pst.executeQuery();
                 if(rs.next()){
+                    jPanel8.setSize(84, -5*(rs.getInt("Username_Count")));
+                    Results[1] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel8.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb02.setText("No Candidate");
                 jPanel8.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 3");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb03.setText(rs.getString("Candidate_Name"));
                 cand_name[2] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 3");
                 rs = pst.executeQuery();
                 if(rs.next()){
+                    jPanel9.setSize(84, -5*(rs.getInt("Username_Count")));
+                    Results[2] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel9.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb03.setText("No Candidate");
                 jPanel9.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 4");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb04.setText(rs.getString("Candidate_Name"));
                 cand_name[3] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 4");
                 rs = pst.executeQuery();
                 if(rs.next()){
+                    jPanel10.setSize(84, -5*(rs.getInt("Username_Count")));
+                    Results[3] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel10.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb04.setText("No Candidate");
                 jPanel10.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        
+
         try{
+            con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 5");
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-                
+
                 lb05.setText(rs.getString("Candidate_Name"));
                 cand_name[4] = rs.getString("Candidate_Name");
+                pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 5");
                 rs = pst.executeQuery();
                 if(rs.next()){
+                    jPanel11.setSize(84, -5*(rs.getInt("Username_Count")));
+                    Results[4] = rs.getInt("Username_Count");
                 }
                 else{
                     jPanel11.setSize(84, 5);
                 }
             }
-            
+
             else{
                 lb05.setText("No Candidate");
                 jPanel11.setSize(84, 5);
             }
-           
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -898,10 +980,13 @@ public class ElectionResults extends javax.swing.JFrame {
         //jPanel9.setSize(84, 10*4);
         //jPanel10.setSize(84, 10*2);
         //jPanel11.setSize(84, 10*11);
-        
+
+        //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
+
         int max = Results[0];
         int maxi = 0;
         for(int i=0;i<5;i++){
+
             if(max<Results[i]){
                 max = Results[i];
                 maxi = i;

@@ -89,8 +89,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -820,8 +820,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         //File f1 = new File(path1);
         //File f2 = new File(path2);
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
 
@@ -861,8 +861,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         //File f1 = new File(path1);
         //File f2 = new File(path2);
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
@@ -917,8 +917,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         //jLabel23 = new JLabel("image");
         //jLabel25 = new JLabel("image");
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
             String id = RecordTable.getValueAt(SelectedRows, 2).toString();
@@ -1003,8 +1003,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";

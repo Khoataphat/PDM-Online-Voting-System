@@ -10,12 +10,15 @@ import General.Home;
 import General.VotersList;
 
 import javax.swing.*;
+import javax.swing.event.AncestorEvent;
 import javax.swing.plaf.basic.BasicButtonUI;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.Vector;
 
 /**
  *
@@ -69,10 +72,52 @@ public class VotersPage extends javax.swing.JFrame {
 
         this.username = username;
         this.pwd = pwd;
+        upDateDB();
     }
 
     private VotersPage() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void upDateDB(){
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+        try{
+            //Class.forName("com.mysql.jdbc.Driver");
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("select * from Election");
+
+            rs = pst.executeQuery();
+            ResultSetMetaData stData = rs.getMetaData();
+
+            q = stData.getColumnCount();
+
+            // Define custom column names
+            String[] columnNames = {"Election_ID", "Election_Name", "Start_Date", "End_Date", "Winner"};
+
+            DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
+            jTable1.setModel(RecordTable);
+
+            while (rs.next()){
+                Vector columnData = new Vector();
+
+                for(i = 1;i <= q; i++){
+                    columnData.add(rs.getString("Election_ID"));
+                    columnData.add(rs.getString("Election_Name"));
+                    columnData.add(rs.getString("Start_Date"));
+                    columnData.add(rs.getString("End_Date"));
+                    columnData.add(rs.getString("Winner"));
+                }
+                RecordTable.addRow(columnData);
+            }
+
+        }
+        catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
 
     /**
@@ -118,7 +163,12 @@ public class VotersPage extends javax.swing.JFrame {
         jButton15 = new JButton();
         jButton16 = new JButton();
         JButton jButton17 = new JButton();
+//
+        jTable1 = new JTable();
 
+        JScrollPane jScrollPane1 = new JScrollPane();
+//        
+        
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         pnRoot.setLayout(new BorderLayout());
@@ -401,14 +451,43 @@ public class VotersPage extends javax.swing.JFrame {
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new Dimension(200, 40));
         jButton17.addActionListener(this::jButton17ActionPerformed);
-
+//
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [][] {
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null},
+                        {null, null, null, null, null}
+                },
+                new String [] {
+                        "Election_ID", "Election_Name", "Start_Date", "End_Date", "Winner"
+                }
+        ));
+        jTable1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jTable1AncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTable1);
+//
         GroupLayout pniCCenterLayout = new GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
         pniCCenterLayout.setHorizontalGroup(
                 pniCCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                 .addGap(51, 51, 51)
-                                .addComponent(jButton8, GroupLayout.PREFERRED_SIZE, 626, GroupLayout.PREFERRED_SIZE)
+                                //
+                                .addComponent(jScrollPane1, GroupLayout.PREFERRED_SIZE, 626, GroupLayout.PREFERRED_SIZE)
+                                //
                                 .addGap(116, 116, 116)
                                 .addGroup(pniCCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(pniCCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
@@ -425,7 +504,7 @@ public class VotersPage extends javax.swing.JFrame {
                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addGroup(pniCCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                        .addComponent(jButton8)
+                                        .addComponent(jScrollPane1)
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
@@ -449,6 +528,15 @@ public class VotersPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTable1MouseClicked(MouseEvent evt) {
+        // TODO add your handling code here:
+
+    }
+
+    private void jTable1AncestorAdded(AncestorEvent evt) {
+
+    }
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -499,7 +587,7 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private boolean isWithinElectionPeriod() {
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -523,7 +611,7 @@ public class VotersPage extends javax.swing.JFrame {
     }
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -673,5 +761,7 @@ public class VotersPage extends javax.swing.JFrame {
     private JButton jButton4;
     private JButton jButton5;
     private JButton jButton7;
+    //
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

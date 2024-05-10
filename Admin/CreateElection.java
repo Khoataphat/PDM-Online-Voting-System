@@ -530,8 +530,8 @@ public class CreateElection extends javax.swing.JFrame {
 
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
-        String databaseName = "Online-Voting1";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         String electionId = jTextField1.getText();
