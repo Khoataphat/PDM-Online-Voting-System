@@ -70,8 +70,8 @@ public class ElectionResults extends javax.swing.JFrame {
         return true;
     }
     public int noCand(){
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting1";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -98,11 +98,13 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int novoters(){
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+
         String username = "sa";
         String password = "123456789";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting1";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
 
         try{
             //Class.forName("com.mysql.jdbc.Driver");
@@ -822,15 +824,15 @@ public class ElectionResults extends javax.swing.JFrame {
 
         int[] Results = new int[5];
         String[] cand_name = new String[5];
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting1";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1");
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
+
             if(rs.next()){
 
                 lb01.setText(rs.getString("Candidate_Name"));
@@ -976,12 +978,7 @@ public class ElectionResults extends javax.swing.JFrame {
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-        //jPanel8.setSize(84, 10*5);
-        //jPanel9.setSize(84, 10*4);
-        //jPanel10.setSize(84, 10*2);
-        //jPanel11.setSize(84, 10*11);
 
-        //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
 
         int max = Results[0];
         int maxi = 0;

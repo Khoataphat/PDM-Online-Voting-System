@@ -863,7 +863,7 @@ public class CreateElection extends javax.swing.JFrame {
                 Connection con = DriverManager.getConnection(url, "sa", "123456789");
                 System.out.println("Connected To SQL Server Database!");
 
-                String sql = "UPDATE Election SET Name = ?, StartDate = ?, EndDate = ? WHERE ID = ?";
+                String sql = "UPDATE Election SET Election_Name = ?, Start_Date = ?, End_Date = ? WHERE Election_ID = ?";
                 PreparedStatement pst = con.prepareStatement(sql);
 
                 pst.setString(1, electionName); // Name
@@ -910,7 +910,7 @@ public class CreateElection extends javax.swing.JFrame {
 
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("delete from Election where Candidate_ID = ?");
+                pst = con.prepareStatement("delete from Election where Election_ID = ?");
 
                 pst.setString(1, id);
                 pst.executeUpdate();
