@@ -840,7 +840,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 1");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel7.setSize(84, -5*(rs.getInt("Username_Count")));
+                    jPanel7.setSize(84, 5*(rs.getInt("Username_Count")));
                     Results[0] = rs.getInt("Username_Count");
 
                 }
@@ -871,7 +871,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 pst= con.prepareStatement("select count(Voter_ID) AS Username_Count  from votersvoting where Candidate_No = 2");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel8.setSize(84, -5*(rs.getInt("Username_Count")));
+                    jPanel8.setSize(84, 5*(rs.getInt("Username_Count")));
                     Results[1] = rs.getInt("Username_Count");
                 }
                 else{
@@ -901,7 +901,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 3");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel9.setSize(84, -5*(rs.getInt("Username_Count")));
+                    jPanel9.setSize(84, 5*(rs.getInt("Username_Count")));
                     Results[2] = rs.getInt("Username_Count");
                 }
                 else{
@@ -931,7 +931,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 4");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel10.setSize(84, -5*(rs.getInt("Username_Count")));
+                    jPanel10.setSize(84, 5*(rs.getInt("Username_Count")));
                     Results[3] = rs.getInt("Username_Count");
                 }
                 else{
@@ -961,7 +961,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 pst= con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting where Candidate_No = 5");
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel11.setSize(84, -5*(rs.getInt("Username_Count")));
+                    jPanel11.setSize(84, 5*(rs.getInt("Username_Count")));
                     Results[4] = rs.getInt("Username_Count");
                 }
                 else{

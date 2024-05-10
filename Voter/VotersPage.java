@@ -40,7 +40,7 @@ public class VotersPage extends javax.swing.JFrame {
 
     public VotersPage(String username, String pwd) {
         initComponents();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12, jButton13, jButton14, jButton15, jButton16};
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12, jButton13/*, jButton14*/, jButton15/*, jButton16*/};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -159,9 +159,9 @@ public class VotersPage extends javax.swing.JFrame {
         JButton jButton8 = new JButton();
         jButton12 = new JButton();
         JLabel jLabel8 = new JLabel();
-        jButton14 = new JButton();
+        //jButton14 = new JButton();
         jButton15 = new JButton();
-        jButton16 = new JButton();
+        //jButton16 = new JButton();
         JButton jButton17 = new JButton();
 //
         jTable1 = new JTable();
@@ -248,7 +248,7 @@ public class VotersPage extends javax.swing.JFrame {
         jButton13.setText("ISSUES ");
         jButton13.addActionListener(this::jButton13ActionPerformed);
 
-        jLabel5.setForeground(new Color(255, 255, 102));
+/*        jLabel5.setForeground(new Color(255, 255, 102));
         jLabel5.setText("SEE THE ISSUES");
 
         jLabel6.setForeground(new Color(255, 255, 102));
@@ -256,7 +256,7 @@ public class VotersPage extends javax.swing.JFrame {
 
         jLabel7.setForeground(new Color(255, 255, 102));
         jLabel7.setText("THE ISSUES");
-
+*/
         GroupLayout jPanel6Layout = new GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -426,26 +426,26 @@ public class VotersPage extends javax.swing.JFrame {
 
         jLabel8.setFont(new Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
         jLabel8.setForeground(new Color(0, 255, 102));
-        jLabel8.setText("Admins");
-
+        jLabel8.setText("Select election");
+/*
         jButton14.setFont(new Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton14.setForeground(new Color(0, 255, 204));
         jButton14.setText("Election Status");
         jButton14.setPreferredSize(new Dimension(200, 40));
         jButton14.addActionListener(this::jButton14ActionPerformed);
-
+*/
         jButton15.setFont(new Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton15.setForeground(new Color(0, 255, 204));
         jButton15.setText("Election Results");
         jButton15.setPreferredSize(new Dimension(200, 40));
         jButton15.addActionListener(this::jButton15ActionPerformed);
-
+/*
         jButton16.setFont(new Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton16.setForeground(new Color(0, 255, 204));
         jButton16.setText("Manage Voters");
         jButton16.setPreferredSize(new Dimension(200, 40));
         jButton16.addActionListener(this::jButton16ActionPerformed);
-
+*/
         jButton17.setBackground(new Color(255, 102, 102));
         jButton17.setFont(new Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton17.setText("Logout");
@@ -492,11 +492,11 @@ public class VotersPage extends javax.swing.JFrame {
                                 .addGroup(pniCCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                                         .addGroup(pniCCenterLayout.createParallelGroup(GroupLayout.Alignment.LEADING, false)
                                                 .addComponent(jButton12, GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                                                .addComponent(jButton14, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                //.addComponent(jButton14, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                                 .addComponent(jButton15, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                                                 .addComponent(jButton17, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                                .addComponent(jButton16, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                                        .addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 228, GroupLayout.PREFERRED_SIZE))
+                                                /*.addComponent(jButton16, GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)*/)
+                                        .addComponent(jLabel8, GroupLayout.PREFERRED_SIZE, 400, GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(1934, Short.MAX_VALUE))
         );
         pniCCenterLayout.setVerticalGroup(
@@ -510,11 +510,11 @@ public class VotersPage extends javax.swing.JFrame {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton12, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jButton14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                //.addComponent(jButton14, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton15, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jButton16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                                //.addComponent(jButton16, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton17, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(110, Short.MAX_VALUE))
@@ -654,14 +654,14 @@ public class VotersPage extends javax.swing.JFrame {
         }
     }
 
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+/*    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
         ElectionStatus e = new ElectionStatus();
         e.show();
 
         dispose();
     }//GEN-LAST:event_jButton14ActionPerformed
-
+*/
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
         ElectionResults e = new ElectionResults();
@@ -669,7 +669,7 @@ public class VotersPage extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
-
+/*
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
         ManageVoters m = new ManageVoters();
@@ -677,7 +677,7 @@ public class VotersPage extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_jButton16ActionPerformed
-
+*/
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
         JFrame frame = new JFrame("Exit");
@@ -753,9 +753,9 @@ public class VotersPage extends javax.swing.JFrame {
     private JButton jButton1;
     private JButton jButton12;
     private JButton jButton13;
-    private JButton jButton14;
+    //private JButton jButton14;
     private JButton jButton15;
-    private JButton jButton16;
+    //private JButton jButton16;
     private JButton jButton2;
     private JButton jButton3;
     private JButton jButton4;
