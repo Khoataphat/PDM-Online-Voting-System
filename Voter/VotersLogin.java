@@ -5,6 +5,7 @@
 package Voters;
 
 import Admin.*;
+import Admin.VotersPage;
 import General.*;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
