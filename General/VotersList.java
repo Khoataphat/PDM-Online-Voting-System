@@ -209,10 +209,10 @@ public class VotersList extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-*/
+
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("REGISTER NOW");
-
+*/
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -382,7 +382,7 @@ public class VotersList extends javax.swing.JFrame {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "voterID", "Name", "Gender", "Aadhar No", "Address", "Age"
+                "Voter_ID", "Name", "Gender", "Age", "Email"
             }
         ));
         jTable1.setEnabled(false);
@@ -471,7 +471,7 @@ public class VotersList extends javax.swing.JFrame {
                     "voterID", "Name", "Gender", "Age", "Email", "Username", "Password"
                      */
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select voterID, Name, Gender, Age, Email from voterslist");
+            pst = con.prepareStatement("select Voter_ID, Name, Gender, Age, Email from voterslist");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -479,7 +479,7 @@ public class VotersList extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define your custom column names
-            String[] columnNames = {"voterID", "Name", "Gender", "Age", "Email"};
+            String[] columnNames = {"Voter_ID", "Name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -488,7 +488,7 @@ public class VotersList extends javax.swing.JFrame {
                 Vector columnData = new Vector();
 
                 // Fetch column data using the correct column names
-                columnData.add(rs.getString("voterID"));
+                columnData.add(rs.getString("Voter_ID"));
                 columnData.add(rs.getString("Name"));
                 columnData.add(rs.getString("Gender"));
                 columnData.add(rs.getString("Age"));

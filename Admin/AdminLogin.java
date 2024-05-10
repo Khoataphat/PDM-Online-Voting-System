@@ -337,7 +337,7 @@ public class AdminLogin extends javax.swing.JFrame {
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\politics-election-voting-cartoon_1284-23116.jpg")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon\\5.png")); // NOI18N
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
