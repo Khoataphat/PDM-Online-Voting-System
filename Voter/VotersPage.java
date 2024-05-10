@@ -411,7 +411,7 @@ public class VotersPage extends javax.swing.JFrame {
             .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("D:Image and Icon\\")); // NOI18N
         jButton8.setText("Back");
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
@@ -596,14 +596,14 @@ public class VotersPage extends javax.swing.JFrame {
                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             //.addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                             //.addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                            .addComponent(jTextField6)
-                                            .addComponent(jTextField7)))
+                                            .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                            .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
                                     .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(200, 200, 200)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 591, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(pniCCenterLayout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         pniCCenterLayout.setVerticalGroup(
