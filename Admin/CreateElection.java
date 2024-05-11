@@ -35,7 +35,7 @@ public class CreateElection extends javax.swing.JFrame {
     // loi add
 
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -74,7 +74,7 @@ public class CreateElection extends javax.swing.JFrame {
     public CreateElection() {
         initComponents();
         upDateDB();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12, jButton13, jButton14, jButton15,jButton16,jButton17};
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12/*, jButton13*/, jButton14/*, jButton15*/,jButton16,jButton17};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -127,7 +127,7 @@ public class CreateElection extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         JPanel jPanel5 = new JPanel();
         JPanel jPanel6 = new JPanel();
-        jButton13 = new javax.swing.JButton();
+        //jButton13 = new javax.swing.JButton();
         JLabel jLabel5 = new JLabel();
         JLabel jLabel6 = new JLabel();
         JLabel jLabel7 = new JLabel();
@@ -159,7 +159,7 @@ public class CreateElection extends javax.swing.JFrame {
         JLabel jLabel12 = new JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        //jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
 
@@ -239,9 +239,9 @@ public class CreateElection extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
-        jButton13.setText("ISSUES ");
-        jButton13.addActionListener(this::jButton13ActionPerformed);
-
+        //jButton13.setText("ISSUES ");
+        //jButton13.addActionListener(this::jButton13ActionPerformed);
+/*
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("IF YOU ARE ABOVE");
 
@@ -250,7 +250,7 @@ public class CreateElection extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 102));
         jLabel7.setText("THE ISSUES");
-
+*/
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -258,8 +258,8 @@ public class CreateElection extends javax.swing.JFrame {
                         .addGroup(jPanel6Layout.createSequentialGroup()
                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                //.addGap(27, 27, 27)
+                                                /*.addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
                                         .addGroup(jPanel6Layout.createSequentialGroup()
                                                 .addGap(47, 47, 47)
                                                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -451,13 +451,13 @@ public class CreateElection extends javax.swing.JFrame {
         jButton14.setText("Cadidate");
         jButton14.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton14.addActionListener(this::jButton14ActionPerformed);
-
+/*
         jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton15.setForeground(new java.awt.Color(0, 255, 204));
         jButton15.setText("Status");
         jButton15.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton15.addActionListener(this::jButton15ActionPerformed);
-
+*/
         jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton16.setForeground(new java.awt.Color(0, 255, 204));
         jButton16.setText("Result");
@@ -506,7 +506,7 @@ public class CreateElection extends javax.swing.JFrame {
                                                 //Hang button
                                                 .addComponent(jButton14,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(10, 10, 10 )
-                                                .addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                //.addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(10, 10, 10 )
                                                 .addComponent(jButton16,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(10, 10, 10 )
@@ -554,7 +554,7 @@ public class CreateElection extends javax.swing.JFrame {
                                                 .addGap(40, 40, 40 )
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) //Hang button
                                                         .addComponent(jButton14,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        //.addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton16,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton17,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton12,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -628,7 +628,7 @@ public class CreateElection extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+            String serverName = "MSI\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -711,10 +711,10 @@ public class CreateElection extends javax.swing.JFrame {
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
-
+/*
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
     }
-
+*/
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
@@ -765,7 +765,7 @@ public class CreateElection extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
+    //private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JTextField jTextField1;

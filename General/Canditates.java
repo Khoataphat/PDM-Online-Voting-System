@@ -68,7 +68,7 @@ public class Canditates extends javax.swing.JFrame {
     }
     
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -84,7 +84,7 @@ public class Canditates extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Candidate_ID", "Full_name", "Gender", "Age", "Email", "Voter_ID"};
+            String[] columnNames = {"Candidate_ID", "Full_name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -98,7 +98,7 @@ public class Canditates extends javax.swing.JFrame {
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
                     columnData.add(rs.getString("Email"));
-                    columnData.add(rs.getString("Voter_ID"));
+                    //columnData.add(rs.getString("Voter_ID"));
 
                 }
                 RecordTable.addRow(columnData);
@@ -419,13 +419,13 @@ public class Canditates extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Candidate Name", "Party Name", "Age", "Gender"
+                    "Candidate_ID", "Full_name", "Gender", "Age", "Email",
             }
         ) {
             boolean[] canEdit = new boolean [] {
