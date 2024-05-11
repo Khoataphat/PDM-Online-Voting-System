@@ -174,9 +174,9 @@ public class Home extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 //BaoAnh
-/*        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
-        jButton13.addActionListener(this::jButton13ActionPerformed);
-
+        jButton13.setIcon(new javax.swing.ImageIcon("Image and Icon\\IU Logo.png")); // NOI18N
+        //jButton13.addActionListener(this::jButton13ActionPerformed);
+/*
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("REGISTER NOW");
 */
