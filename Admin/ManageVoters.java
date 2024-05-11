@@ -144,22 +144,21 @@ public class ManageVoters extends javax.swing.JFrame {
         }
     }*/
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
 
-
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select * from voterslist");
+            pst = con.prepareStatement("select * from Voter");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
 
-            String[] columnNames = {"Voter_ID", "Name", "Gender", "Age", "Email", "Username", "Password"};
+            String[] columnNames = {"Voter_ID", "Full_name", "Gender", "Age", "Email", "Username", "Password"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -168,11 +167,9 @@ public class ManageVoters extends javax.swing.JFrame {
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    /*voterID, Name, Gender, Age, Email, Username, Password
-                    "voterID", "Name", "Gender", "Age", "Email", "Username", "Password"
-                     */
+
                     columnData.add(rs.getString("Voter_ID"));
-                    columnData.add(rs.getString("Name"));
+                    columnData.add(rs.getString("Full_name"));
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
                     columnData.add(rs.getString("Email"));
@@ -765,7 +762,7 @@ public class ManageVoters extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
        // TODO add your handling code here:
@@ -774,20 +771,8 @@ public class ManageVoters extends javax.swing.JFrame {
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
 
-            //Statement st = con.createStatement();
-            //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
-            // PreparedStatement
+            pst = con.prepareStatement("insert into Voter values(?,?,?,?,?,?,?)");
 
-            //THỤC MINH: From 9 to 7
-            pst = con.prepareStatement("insert into voterslist values(?,?,?,?,?,?,?)");
-
-            //Class.forName("com.mysql.jdbc.Driver");
-            //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
-            //pst = sqlConn.prepareStatement("insert into 'voterlist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
-
-            //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
-            //Statement statement = connection.createStatement();
-            //ResultSet resultset = statement.executeQuery("insert into 'voterslist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
             pst.setString(1, jTextField1.getText());
             pst.setString(2, jTextField2.getText());
             pst.setString(6, jTextField7.getText());
@@ -843,7 +828,7 @@ private JFrame frame;
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -857,7 +842,7 @@ private JFrame frame;
             
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, username, password);
-                pst = con.prepareStatement("delete from voterslist where Voter_ID = ?");
+                pst = con.prepareStatement("delete from Voter where Voter_ID = ?");
                 
                 pst.setString(1, id);
                 pst.executeUpdate();

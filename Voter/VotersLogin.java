@@ -506,13 +506,13 @@ public class VotersLogin extends javax.swing.JFrame {
         if(username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username / Password should not be empty.");
         } else {
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
             try {
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                String query = "SELECT * FROM voterslist WHERE Username = ? AND Password = ?";
+                String query = "SELECT * FROM Voter WHERE Username = ? AND Password = ?";
                 pst = con.prepareStatement(query);
                 pst.setString(1, jTextField2.getText());
                 pst.setString(2, jPasswordField1.getText());

@@ -68,7 +68,7 @@ public class Canditates extends javax.swing.JFrame {
     }
     
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -76,7 +76,7 @@ public class Canditates extends javax.swing.JFrame {
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select * from candidates");
+            pst = con.prepareStatement("select * from Candidate");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -84,7 +84,7 @@ public class Canditates extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Candidate_No", "Candidate_ID", "Candidate_Name", "Gender", "Age", "Email"};
+            String[] columnNames = {"Candidate_ID", "Full_name", "Gender", "Age", "Email", "Voter_ID"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -93,12 +93,12 @@ public class Canditates extends javax.swing.JFrame {
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("Candidate_No"));
                     columnData.add(rs.getString("Candidate_ID"));
-                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Full_name"));
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
                     columnData.add(rs.getString("Email"));
+                    columnData.add(rs.getString("Voter_ID"));
 
                 }
                 RecordTable.addRow(columnData);

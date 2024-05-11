@@ -69,14 +69,14 @@ public class ElectionStatus extends javax.swing.JFrame {
 
     
     public int noCand(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select count(Candidate_No) AS Cand_Count from candidates");
+            pst = con.prepareStatement("select count(Candidate_ID) AS Cand_Count from Candidate");
 
             rs = pst.executeQuery();
             
@@ -98,14 +98,14 @@ public class ElectionStatus extends javax.swing.JFrame {
     
     
     public int novoters(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select count(Voter_ID) AS Username_Count from votersvoting");
+            pst = con.prepareStatement("select count(Voter_ID) AS Username_Count from Voter");
 
             rs = pst.executeQuery();
             

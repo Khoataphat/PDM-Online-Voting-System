@@ -37,6 +37,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     
     String username;
     String pwd;
+
     
     public VotersVotingProcess(String username, String pwd) {
         initComponents();
@@ -615,7 +616,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -627,7 +628,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
              */
 
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select Candidate_No, Candidate_ID, Candidate_Name, Gender, Age, Email  from candidates");
+            pst = con.prepareStatement("select *  from candidates");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -635,7 +636,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Candidate_No", "Candidate_ID", "Candidate_Name"};
+            String[] columnNames = {"Candidate_ID","Voter_ID", "Full_name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -644,9 +645,9 @@ public class VotersVotingProcess extends javax.swing.JFrame {
                 Vector columnData = new Vector();
 
                 for(i = 1;i <= q; i++){
-                    columnData.add(rs.getString("Candidate_No"));
                     columnData.add(rs.getString("Candidate_ID"));
-                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Voter_ID"));
+                    columnData.add(rs.getString("Full_name"));
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
                     columnData.add(rs.getString("Email"));
@@ -664,7 +665,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         int vote = 1;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -674,7 +675,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
             con = DriverManager.getConnection(url, username, password);
             System.out.println("Connected To MySql Database!");
 
-            pst = con.prepareStatement("insert into votersvoting values(?,?,?);");
+            pst = con.prepareStatement("insert into votes values(?,?,?);");
 
             pst.setString(1, username);
             pst.setString(2, pwd);
@@ -696,7 +697,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         int vote = 2;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -728,7 +729,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         int vote = 3;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -763,7 +764,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         int vote = 4;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -795,7 +796,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         int vote = 5;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
