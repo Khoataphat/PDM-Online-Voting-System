@@ -92,7 +92,7 @@ public class VotersPage extends javax.swing.JFrame {
     public void upDateDB(){
 
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "Online-Voting2";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -106,7 +106,7 @@ public class VotersPage extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Election_ID", "Election_Name", "Start_Date", "End_Date", "Winner"};
+            String[] columnNames = {"Election_ID", "Election_name", "Start_Date", "End_Date", "Winner"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -809,7 +809,7 @@ private JFrame frame;
         int SelectedRows = jTable2.getSelectedRow();
 
         String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
+        String databaseName = "Online-Voting2";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
