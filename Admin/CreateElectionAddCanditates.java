@@ -89,27 +89,22 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select * from candidates");
+            pst = con.prepareStatement("select * from Candidate");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
-            /*
-
-            DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
-            RecordTable.setRowCount(0);
-            */
 
             // Define your custom column names
-            String[] columnNames = {"Candidate_ID", "Candidate_No","Candidate_Name","Gender", "Age", "Email"};
+            String[] columnNames = {"Candidate_ID","Voter_ID", "Full_name","Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -121,8 +116,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                 for(i = 1;i <= q; i++){
                     //ID, FULLNAME, GENDER, AGE, EMAIL, USERNAME , PASSWORD
                     columnData.add(rs.getString("Candidate_ID"));
-                    columnData.add(rs.getString("Candidate_No"));
-                    columnData.add(rs.getString("Candidate_Name"));
+                    columnData.add(rs.getString("Voter_ID"));
+                    columnData.add(rs.getString("Full_name"));
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
                     columnData.add(rs.getString("Email"));
@@ -820,7 +815,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         //File f1 = new File(path1);
         //File f2 = new File(path2);
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -831,7 +826,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
 
-            pst = con.prepareStatement("insert into candidates values(?,?,?,?,?,?)");//'"+image1+"','"+image2+"')");
+            pst = con.prepareStatement("insert into Candidate values(?,?,?,?,?,?)");
 
             pst.setString(1, jTextField1.getText());
             //pst.setString(2, jTextField9.getText());
@@ -861,7 +856,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         //File f1 = new File(path1);
         //File f2 = new File(path2);
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -872,7 +867,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             //InputStream is2 = new FileInputStream(f2);
 
 
-            pst = con.prepareStatement("UPDATE candidates SET Candidate_No = ?, Candidate_ID= ?, Candidate_Name= ?, Gender= ?, Age= ?, Email= ? WHERE Candidate_ID = ?;");  //, Passport_Size_Photo = ?, Electoral_Symbol= ?
+            pst = con.prepareStatement("UPDATE Candidate SET Candidate_ID = ?, Voter_ID= ?, Full_name= ?, Gender= ?, Age= ?, Email= ? WHERE Candidate_ID = ?;");  //, Passport_Size_Photo = ?, Electoral_Symbol= ?
 
             pst.setString(1, jTextField1.getText());
             //pst.setString(2, jTextField9.getText());
@@ -917,7 +912,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         //jLabel23 = new JLabel("image");
         //jLabel25 = new JLabel("image");
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -928,7 +923,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("delete from candidates where Candidate_ID = ?");
+                pst = con.prepareStatement("delete from Candidate where Candidate_ID = ?");
 
                 pst.setString(1, id);
                 pst.executeUpdate();

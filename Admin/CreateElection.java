@@ -10,11 +10,7 @@ import Voters.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
+import java.sql.*;
 import java.util.Vector;
 
 import javax.swing.*;
@@ -39,20 +35,20 @@ public class CreateElection extends javax.swing.JFrame {
     // loi add
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select * from Election");
+            pst = con.prepareStatement("select Election_ID, Election_name, Start_date, End_date from Election");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
 
-            String[] columnNames = {"ElectionID", "ElectionName", "Date_Start", "Date_End",};
+            String[] columnNames = {"Election ID", "Election Name", "Date Start", "Date End",};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -62,9 +58,9 @@ public class CreateElection extends javax.swing.JFrame {
 
                 for(i = 1;i <= q; i++){
                     columnData.add(rs.getString("Election_ID"));
-                    columnData.add(rs.getString("Election_Name"));
-                    columnData.add(rs.getString("Date_Start"));
-                    columnData.add(rs.getString("Date_End"));
+                    columnData.add(rs.getString("Election_name"));
+                    columnData.add(rs.getString("Start_date"));
+                    columnData.add(rs.getString("End_date"));
                 }
                 RecordTable.addRow(columnData);
             }
@@ -632,20 +628,21 @@ public class CreateElection extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
             if(NameOfTheElection.isEmpty() || Date_St.isEmpty()|| Date_Ed.isEmpty()|| Num_id.isEmpty()){
-                JOptionPane.showMessageDialog(this, "Name of the Election / Year Should not be empty.");
+                JOptionPane.showMessageDialog(this, "Name of the Election / Time Should not be empty.");
             }
             else{
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("insert into electionlist values(?,?,?,?)");
-                pst.setString(1, jTextField4.getText());
-                pst.setString(2, jTextField2.getText());
-                pst.setString(3, jTextField1.getText());
-                pst.setString(4, jTextField3.getText());
+                pst = con.prepareStatement("insert into Election values(?,?,?,?)");
+
+                pst.setString(1, Num_id); // ID
+                pst.setString(2, NameOfTheElection); // Name
+                pst.setTimestamp(3, Timestamp.valueOf(Date_St)); // Start time
+                pst.setTimestamp(4, Timestamp.valueOf(Date_Ed)); // End time
 
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(this, "New Election Added");

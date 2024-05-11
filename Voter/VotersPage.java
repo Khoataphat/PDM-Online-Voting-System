@@ -91,8 +91,8 @@ public class VotersPage extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting2";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
@@ -106,7 +106,7 @@ public class VotersPage extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Election_ID", "Election_name", "Start_Date", "End_Date", "Winner"};
+            String[] columnNames = {"Election_ID", "Election_name", "Start_date", "End_date", "Winner"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -116,9 +116,9 @@ public class VotersPage extends javax.swing.JFrame {
 
                 for(i = 1;i <= q; i++){
                     columnData.add(rs.getString("Election_ID"));
-                    columnData.add(rs.getString("Election_Name"));
-                    columnData.add(rs.getString("Start_Date"));
-                    columnData.add(rs.getString("End_Date"));
+                    columnData.add(rs.getString("Election_name"));
+                    columnData.add(rs.getString("Start_date"));
+                    columnData.add(rs.getString("End_date"));
                     columnData.add(rs.getString("Winner"));
                 }
                 RecordTable.addRow(columnData);
@@ -706,17 +706,17 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 //
     private boolean isWithinElectionPeriod() {
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
-            String query = "SELECT Start_Date, End_Date FROM Election";
+            String query = "SELECT Start_date, End_date FROM Election";
             PreparedStatement pst = con.prepareStatement(query);
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                LocalDate startDate = rs.getDate("Start_Date").toLocalDate();
-                LocalDate endDate = rs.getDate("End_Date").toLocalDate();
+                LocalDate startDate = rs.getDate("Start_date").toLocalDate();
+                LocalDate endDate = rs.getDate("End_date").toLocalDate();
                 LocalDate currentDate = LocalDate.now();
 
                 return (currentDate.isEqual(startDate) || currentDate.isAfter(startDate))
@@ -732,13 +732,13 @@ public class VotersPage extends javax.swing.JFrame {
 //Banh xem lại tự sửa
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
             con = DriverManager.getConnection(url, "sa", "123456789");
             // Fix SQL query to prevent SQL injection vulnerability
-            String query = "SELECT candidates.Email FROM candidates, voterslist WHERE Candidate_ID = VoterID AND Username = ? AND Password = ?";
+            String query = "SELECT c.Email  FROM Candidate c, Voter v  WHERE v.Username = ? AND v.Password = ? AND  c.Voter_ID = v.Voter_ID;";
             PreparedStatement pst = con.prepareStatement(query);
 
             // Set the username and password values from existing variables
@@ -750,7 +750,7 @@ public class VotersPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Candidate cannot vote");
             } else {
                 if (isWithinElectionPeriod()) {
-                    query = "SELECT * FROM votersvoting WHERE Username = ? ";
+                    query = "SELECT v.Voter_ID FROM votes vs, Voter v WHERE Username = ? AND vs.Voter_ID = v.Voter_ID;";
                     pst = con.prepareStatement(query);
 
                     // Set the username value from existing variable
@@ -769,7 +769,6 @@ public class VotersPage extends javax.swing.JFrame {
                 }
             }
 
-            JOptionPane.showMessageDialog(this, "Login Failed");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -808,8 +807,8 @@ private JFrame frame;
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting2";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -822,15 +821,15 @@ private JFrame frame;
 
             if (option == JOptionPane.YES_OPTION) {
                 con = DriverManager.getConnection(url, username, password);
-                pst = con.prepareStatement("SELECT * FROM Election WHERE Election_ID = ?");
+                pst = con.prepareStatement("SELECT Election_ID, Election_name, Start_date, End_date FROM Election WHERE Election_ID = ?");
                 pst.setString(1, electionId);
                 ResultSet rs = pst.executeQuery();
 
                 if (rs.next()) {
                     String electionName = rs.getString("Election_ID");
-                    String candidateName = rs.getString("Election_Name");
-                    String startDate = rs.getString("Start_Date");
-                    String endDate = rs.getString("End_Date");
+                    String candidateName = rs.getString("Election_name");
+                    String startDate = rs.getString("Start_date");
+                    String endDate = rs.getString("End_date");
 
                     ElectionResults e = new ElectionResults(null);
                     e.setVisible(true);
