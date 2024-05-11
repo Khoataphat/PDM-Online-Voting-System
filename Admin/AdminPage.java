@@ -55,7 +55,6 @@ public class AdminPage extends javax.swing.JFrame {
         }
     }
 
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -497,7 +496,7 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        ElectionResults e = new ElectionResults();
+        ElectionResults e = new ElectionResults(null);
         e.show();
         
         dispose();

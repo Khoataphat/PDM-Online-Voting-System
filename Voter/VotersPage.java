@@ -832,7 +832,7 @@ private JFrame frame;
                     String startDate = rs.getString("Start_Date");
                     String endDate = rs.getString("End_Date");
 
-                    ElectionResults e = new ElectionResults();
+                    ElectionResults e = new ElectionResults(null);
                     e.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Election not found");
