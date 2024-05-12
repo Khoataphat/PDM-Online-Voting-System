@@ -36,14 +36,12 @@ public class VotersPage extends javax.swing.JFrame {
     PreparedStatement pst = null;
     ResultSet rs = null;
     int q, i;
-    String username;
-    String pwd;
+    String Voter_ID;
     int Election_ID;
 
-    public VotersPage(String username, String pwd) {
+    public VotersPage(String Voter_ID) {
         initComponents();
-        this.username = username;
-        this.pwd = pwd;
+        this.Voter_ID = Voter_ID;
         upDateDB();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15, jButton16, jButton18}; //jBuntton19};
         for (JButton btn : btns) {
@@ -92,14 +90,14 @@ public class VotersPage extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
 //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select * from Election");
+            pst = con.prepareStatement("select Election_ID, ELection_name, Start_date, End_date from Election");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -107,7 +105,7 @@ public class VotersPage extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Election_ID", "Election_name", "Start_date", "End_date", "Winner"};
+            String[] columnNames = {"Election_ID", "Election_name", "Start_date", "End_date"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -120,7 +118,6 @@ public class VotersPage extends javax.swing.JFrame {
                     columnData.add(rs.getString("Election_name"));
                     columnData.add(rs.getString("Start_date"));
                     columnData.add(rs.getString("End_date"));
-                    columnData.add(rs.getString("Winner"));
                 }
                 RecordTable.addRow(columnData);
             }
@@ -667,7 +664,7 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     //
     private boolean isWithinElectionPeriod(String Election_ID) {
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -697,11 +694,11 @@ public class VotersPage extends javax.swing.JFrame {
         int SelectedRows = jTable2.getSelectedRow();
         String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
-            con = DriverManager.getConnection(url, "sa", "123456789");
+            /*con = DriverManager.getConnection(url, "sa", "123456789");
             // Fix SQL query to prevent SQL injection vulnerability
             String query = "SELECT c.Email  FROM Candidate c, Voter v  WHERE v.Username = ? AND v.Password = ? AND  c.Voter_ID = v.Voter_ID;";
             PreparedStatement pst = con.prepareStatement(query);
@@ -711,31 +708,28 @@ public class VotersPage extends javax.swing.JFrame {
             pst.setString(2, pwd);
 
             rs = pst.executeQuery();
-            if (rs.next()) {
-                JOptionPane.showMessageDialog(this, "Candidate cannot vote");
-            } else {
-                if (isWithinElectionPeriod(Election_ID)) {
-                    query = "SELECT v.Voter_ID FROM votes vs, Voter v WHERE Username = ? AND ELection_ID = ? AND vs.Voter_ID = v.Voter_ID;";
+            if (rs.next()) { */
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            if (isWithinElectionPeriod(Election_ID)) {
+                    String query = "SELECT Voter_ID FROM votes  WHERE Voter_ID = ? AND ELection_ID = ?";
                     pst = con.prepareStatement(query);
 
                     // Set the username value from existing variable
-                    pst.setString(1, username);
+                    pst.setString(1, Voter_ID);
                     pst.setString(2, Election_ID);
 
                     rs = pst.executeQuery();
                     if (rs.next()) {
                         JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
                     } else {
-                        VotersVotingProcess v = new VotersVotingProcess(username, pwd, Election_ID);
+                        VotersVotingProcess v = new VotersVotingProcess(Voter_ID, Election_ID);
                         v.show();
                         dispose();
                     }
                 } else {
                     JOptionPane.showMessageDialog(this, "Voting is not allowed at the moment.");
                 }
-            }
-
-        } catch (SQLException e) {
+            } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }//GEN-LAST:event_jButton15ActionPerformed
@@ -773,7 +767,7 @@ public class VotersPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";

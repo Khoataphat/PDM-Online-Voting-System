@@ -23,7 +23,7 @@ public class ElectionResults extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    
+ /*
     private String Election_id ;
     public String getElection_id(){
         return Election_id;
@@ -31,15 +31,16 @@ public class ElectionResults extends javax.swing.JFrame {
     public void setElection_id(String Election_id){
         this.Election_id = Election_id;
     }
-
+*/
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    
+    String Election_ID;
 
-    public ElectionResults(String ClickID) {
+    public ElectionResults(String Election_ID) {
         initComponents();
-        upDateDB(ClickID);
+        upDateDB();
+        this.Election_ID = Election_ID;
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
@@ -72,15 +73,15 @@ public class ElectionResults extends javax.swing.JFrame {
     }
 
 
-    public int noCand(String ClickID){
-        String serverName = "MSI\\SQLEXPRESS";
+    public int noCand(){
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select count(Candidate_No) AS Total from candidates Where ElectionID = ? ");
-            pst.setString(1, ClickID);
+            pst = con.prepareStatement("SELECT count(DISTINCT(c.Candidate_No)) AS Total FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID =?");
+            pst.setString(1, Election_ID);
             
             rs = pst.executeQuery();
             
@@ -102,8 +103,8 @@ public class ElectionResults extends javax.swing.JFrame {
     }
 
 
-    public int novoters(String ClickID){
-        String serverName = "MSI\\SQLEXPRESS";
+    public int novoters(){
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -112,13 +113,13 @@ public class ElectionResults extends javax.swing.JFrame {
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select count(Username) AS Username_Count from votersvoting Where ElectionID = ?");
-            pst.setString(1, ClickID);
+            pst = con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v WHERE v.Election_ID = ? AND v.Voter_ID IS NOT NULL ");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             
 
             if(rs.next()){
-                String noofvoters = rs.getString("Username_Count");
+                String noofvoters = rs.getString("Voter_Count");
                 jLabel10.setText(noofvoters);
             }
 
@@ -133,25 +134,25 @@ public class ElectionResults extends javax.swing.JFrame {
         return 0;
     }
 
-    public void upDateDB(String ClickID){
-        String serverName = "MSI\\SQLEXPRESS";
+    public void upDateDB(){
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1 And ElectionID = ?");
-            pst.setString(1, ClickID);
+            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 1 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb01.setText(rs.getString("Candidate_Name"));
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 1 And ElectionID = ?");
-                pst.setString(1, ClickID);
+                lb01.setText(rs.getString("Full_name"));
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 1 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL;");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel7.setSize(84, 5*(rs.getInt("Username_Count")));
+                    jPanel7.setSize(84, 5*(rs.getInt("Voter_Count")));
 
                 }
                 else{
@@ -171,19 +172,19 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 2 And ElectionID = ?");
-            pst.setString(1, ClickID);
+            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 2 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb02.setText(rs.getString("Candidate_Name"));
-                pst= con.prepareStatement("select count(Username) AS Username_Count  from votersvoting where Candidate_No = 2 And ElectionID = ?");
-                pst.setString(1, ClickID);
+                lb02.setText(rs.getString("Full_name"));
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 2 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL;");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
 
                 if(rs.next()){
-                    jPanel8.setSize(84, 30*(rs.getInt("Username_Count")));
+                    jPanel8.setSize(84, 30*(rs.getInt("Voter_Count")));
                 }
                 else{
                     jPanel8.setSize(84, 5);
@@ -202,18 +203,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 3 And ElectionID = ?");
-            pst.setString(1, ClickID);
+            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 3 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb03.setText(rs.getString("Candidate_Name"));
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 3 And ElectionID = ?");
-                pst.setString(1, ClickID);
+                lb03.setText(rs.getString("Full_name"));
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 3 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL;");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel9.setSize(84, 30*(rs.getInt("Username_Count")));
+                    jPanel9.setSize(84, 30*(rs.getInt("Voter_Count")));
                 }
                 else{
                     jPanel9.setSize(84, 5);
@@ -232,18 +233,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 4 And ElectionID = ?");
-            pst.setString(1, ClickID);
+            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 4 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb04.setText(rs.getString("Candidate_Name"));
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 4 And ElectionID = ?");
-                pst.setString(1, ClickID);
+                lb04.setText(rs.getString("Full_name"));
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 4 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL;");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel10.setSize(84, 30*(rs.getInt("Username_Count")));
+                    jPanel10.setSize(84, 30*(rs.getInt("Voter_Count")));
                 }
                 else{
                     jPanel10.setSize(84, 5);
@@ -262,18 +263,18 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 5 And ElectionID = ?");
-            pst.setString(1, ClickID);
+            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 5 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb05.setText(rs.getString("Candidate_Name"));
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting Where Candidate_No = 5 And ElectionID = ?");
-                pst.setString(1, ClickID);
+                lb05.setText(rs.getString("Full_name"));
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 5 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL ");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel11.setSize(84, 30*(rs.getInt("Username_Count")));
+                    jPanel11.setSize(84, 30*(rs.getInt("Voter_Count")));
                 }
                 else{
                     jPanel11.setSize(84, 5);
@@ -290,10 +291,11 @@ public class ElectionResults extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
 
-        noCand(ClickID);
-        novoters(ClickID);
+        noCand();
+        novoters();
 
     }
+
 
     
     /*public int noCand() {
@@ -942,26 +944,26 @@ public class ElectionResults extends javax.swing.JFrame {
 
         int[] Results = new int[5];
         String[] cand_name = new String[5];
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 1 And ElectionID = ?");
-            pst.setString(1, getElection_id());
+            pst = con.prepareStatement("SELECT c.Full_name FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 1 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb01.setText(rs.getString("Candidate_Name"));
-                cand_name[0] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 1 And ElectionID = ?");
-                pst.setString(1, getElection_id());
+                lb01.setText(rs.getString("Full_name"));
+                cand_name[0] = rs.getString("Full_name");
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 1 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL ");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel7.setSize(84, 30*(rs.getInt("Username_Count")));
-                    Results[0] = rs.getInt("Username_Count");
+                    jPanel7.setSize(84, 30*(rs.getInt("Voter_Count")));
+                    Results[0] = rs.getInt("Voter_Count");
 
                 }
                 else{
@@ -981,21 +983,21 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 2 And ElectionID = ?");
-            pst.setString(1, getElection_id());
+            pst = con.prepareStatement("SELECT c.Full_name FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 2 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb02.setText(rs.getString("Candidate_Name"));
-                cand_name[1] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count  from votersvoting where Candidate_No = 2 And ElectionID = ?");
-                pst.setString(1, getElection_id());
+                lb02.setText(rs.getString("Full_name"));
+                cand_name[1] = rs.getString("Full_name");
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 2 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
 
                 if(rs.next()){
-                    jPanel8.setSize(84, 30*(rs.getInt("Username_Count")));
-                    Results[1] = rs.getInt("Username_Count");
+                    jPanel8.setSize(84, 30*(rs.getInt("Voter_Count")));
+                    Results[1] = rs.getInt("Voter_Count");
                 }
                 else{
                     jPanel8.setSize(84, 5);
@@ -1014,20 +1016,20 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 3 And ElectionID = ?");
-            pst.setString(1, getElection_id());
+            pst = con.prepareStatement("SELECT c.Full_name FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 3 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb03.setText(rs.getString("Candidate_Name"));
-                cand_name[2] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 3 And ElectionID = ?");
-                pst.setString(1, getElection_id());
+                lb03.setText(rs.getString("Full_name"));
+                cand_name[2] = rs.getString("Full_name");
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 3 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel9.setSize(84, 30*(rs.getInt("Username_Count")));
-                    Results[2] = rs.getInt("Username_Count");
+                    jPanel9.setSize(84, 30*(rs.getInt("Voter_Count")));
+                    Results[2] = rs.getInt("Voter_Count");
                 }
                 else{
                     jPanel9.setSize(84, 5);
@@ -1046,20 +1048,20 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 4 And ElectionID = ?");
-            pst.setString(1, getElection_id());
+            pst = con.prepareStatement("SELECT c.Full_name FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 4 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb04.setText(rs.getString("Candidate_Name"));
-                cand_name[3] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting where Candidate_No = 4 And ElectionID = ?");
-                pst.setString(1, getElection_id());
+                lb04.setText(rs.getString("Full_name"));
+                cand_name[3] = rs.getString("Full_name");
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 4 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel10.setSize(84, 30*(rs.getInt("Username_Count")));
-                    Results[3] = rs.getInt("Username_Count");
+                    jPanel10.setSize(84, 30*(rs.getInt("Voter_Count")));
+                    Results[3] = rs.getInt("Voter_Count");
                 }
                 else{
                     jPanel10.setSize(84, 5);
@@ -1078,20 +1080,20 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select Candidate_Name from candidates where Candidate_No = 5 And ElectionID = ?");
-            pst.setString(1, getElection_id());
+            pst = con.prepareStatement("SELECT c.Full_name FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 5 AND vs.Election_ID = ?;");
+            pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
 
-                lb05.setText(rs.getString("Candidate_Name"));
-                cand_name[4] = rs.getString("Candidate_Name");
-                pst= con.prepareStatement("select count(Username) AS Username_Count from votersvoting Where Candidate_No = 5 And ElectionID = ?");
-                pst.setString(1, getElection_id());
+                lb05.setText(rs.getString("Full_name"));
+                cand_name[4] = rs.getString("Full_name");
+                pst= con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 5 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
+                pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    jPanel11.setSize(84, 30*(rs.getInt("Username_Count")));
-                    Results[4] = rs.getInt("Username_Count");
+                    jPanel11.setSize(84, 30*(rs.getInt("Voter_Count")));
+                    Results[4] = rs.getInt("Voter_Count");
                 }
                 else{
                     jPanel11.setSize(84, 5);
@@ -1114,18 +1116,24 @@ public class ElectionResults extends javax.swing.JFrame {
 
         //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
 
-        int max = Results[0];
-        int maxi = 0;
-        for(int i=0;i<5;i++){
+        try {
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            String sql = "SELECT TOP 1 Full_name, Voter_count FROM ( SELECT cd.Full_name, COUNT(v.Voter_ID) AS Voter_count FROM Candidate cd, votes v WHERE cd.Candidate_ID = v.Candidate_ID AND v.Election_ID = ? AND cd.Candidate_No IN (1, 2, 3, 4, 5) AND v.Voter_ID IS NOT NULL GROUP BY cd.Full_name) AS T";
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
 
-            if(max<Results[i]){
-                max = Results[i];
-                maxi = i;
+            if (rs.next()) {
+                jLabel15.setText(rs.getString("Full_name"));
+                jLabel18.setText(Integer.toString(rs.getInt("Voter_count")));
+            } else {
+                jLabel15.setText("No Candidate");
+                jLabel18.setText("0");
             }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
         }
-        String m = Integer.toString(max);
-        jLabel18.setText(m);
-        jLabel15.setText(cand_name[maxi]);
+
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

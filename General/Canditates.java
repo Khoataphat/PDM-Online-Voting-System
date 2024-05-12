@@ -28,12 +28,12 @@ public class Canditates extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
-    
+
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
     int q, i, id, deleteItem;
-    
+
     public Canditates() {
         initComponents();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
@@ -62,16 +62,14 @@ public class Canditates extends javax.swing.JFrame {
                 public void mouseExited(MouseEvent e) {
                     btn.setBackground(new Color(21,25,28));
                 }
-                
+
             });
         }
     }
-    
+
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             //Class.forName("com.mysql.jdbc.Driver");
@@ -84,7 +82,7 @@ public class Canditates extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Candidate_ID", "Full_name", "Gender", "Age", "Email"};
+            String[] columnNames = {"Candidate_ID", "Candidate_No", "Full_name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -94,6 +92,7 @@ public class Canditates extends javax.swing.JFrame {
 
                 for(i = 1;i <= q; i++){
                     columnData.add(rs.getString("Candidate_ID"));
+                    columnData.add(rs.getString("Candidate_No"));
                     columnData.add(rs.getString("Full_name"));
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
@@ -488,7 +487,7 @@ public class Canditates extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -503,7 +502,7 @@ public class Canditates extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
