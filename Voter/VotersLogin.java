@@ -469,27 +469,27 @@ public class VotersLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = jTextField2.getText();
         String password = new String(jPasswordField1.getPassword()); // Convert password to string correctly
-        String email = jTextField2.getText();
         System.out.println("pwd: " + password);
 
         if(username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username / Password should not be empty.");
         } else {
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
             try {
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                String query = "SELECT * FROM Voter WHERE Username = ? AND Password = ?";
+                String query = "SELECT Voter_ID FROM Voter WHERE Username = ? AND Password = ?";
                 pst = con.prepareStatement(query);
                 pst.setString(1, jTextField2.getText());
                 pst.setString(2, jPasswordField1.getText());
                 rs = pst.executeQuery();
 
                 if(rs.next()) {
+                    String Voter_ID = rs.getString("Voter_ID");
                     JOptionPane.showMessageDialog(this, "Login Successful");
-                    VotersPage v = new VotersPage(jTextField2.getText(), jPasswordField1.getText());
+                    VotersPage v = new VotersPage(Voter_ID);
                     v.setVisible(true);
 
                     dispose();

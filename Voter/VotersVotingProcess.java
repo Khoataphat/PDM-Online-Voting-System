@@ -4,6 +4,7 @@
  */
 package Voters;
 
+import Admin.VotersPage;
 import General.*;
 import Voters.*;
 import Admin.*;
@@ -35,12 +36,11 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     ResultSet rs = null;
     int q, i, id, deleteItem;
 
-    String username;
-    String pwd;
+    String Voter_ID;
     String Election_ID;
 
 
-    public VotersVotingProcess(String username, String pwd, String Election_ID) {
+    public VotersVotingProcess(String Voter_ID, String Election_ID) {
         initComponents();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
         for (JButton btn : btns) {
@@ -73,8 +73,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         }
 
 
-        this.username = username;
-        this.pwd = pwd;
+        this.Voter_ID =Voter_ID;
         this.Election_ID = Election_ID;
 
     }
@@ -105,9 +104,9 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        //jLabel5 = new javax.swing.JLabel();
+        //jLabel6 = new javax.swing.JLabel();
+        //jLabel7 = new javax.swing.JLabel();
         pnCenter = new javax.swing.JPanel();
         pnCBottom = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -222,9 +221,9 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
         pnSide.add(jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(34, 40, 44));
-        jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
-        jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
+        //jPanel6.setBackground(new java.awt.Color(34, 40, 44));
+        //jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
+        //jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 //BaoAnh
 /*        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -232,10 +231,10 @@ public class VotersVotingProcess extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-*/
+
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("REGISTER NOW");
-
+*/
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -379,14 +378,14 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null}
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null}
                 },
                 new String [] {
-                        "CANDIDATE NO", "CANDIDATE NAME", "PARTY NAME"
+                        "Candidate_No","Candidate_ID", "Full_name", "Gender", "Age", "Email"
                 }
         ));
         jTable1.setEnabled(false);
@@ -586,7 +585,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -602,7 +601,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define custom column names
-            String[] columnNames = {"Candidate_ID","Voter_ID", "Full_name", "Gender", "Age", "Email"};
+            String[] columnNames = {"Candidate_ID","Candidate_No", "Full_name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -612,7 +611,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
                 for(i = 1;i <= q; i++){
                     columnData.add(rs.getString("Candidate_ID"));
-                    columnData.add(rs.getString("Voter_ID"));
+                    columnData.add(rs.getString("Candidate_No"));
                     columnData.add(rs.getString("Full_name"));
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
@@ -630,27 +629,28 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        int vote = 1;
-        String serverName = "MSI\\SQLEXPRESS";
+        // int vote = 1;
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
+            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 1");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
+            String Candidate_ID = rs.getString("Candidate_ID");
 
             pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.setString(1, username);
-            pst.setString(2, pwd);
-            pst.setInt(3, vote);
+            pst.setString(1, Candidate_ID);
+            pst.setString(2, Voter_ID);
+            pst.setString(3, Election_ID);
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            Home h = new Home();
+            VotersPage h = new VotersPage(Voter_ID);
             h.show();
 
             dispose();
@@ -662,27 +662,28 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        int vote = 2;
-        String serverName = "MSI\\SQLEXPRESS";
+        // int vote = 2;
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
+            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 2");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
+            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
+            pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.setString(1, username);
-            pst.setString(2, pwd);
-            pst.setInt(3, vote);
+            pst.setString(1, Candidate_ID);
+            pst.setString(2, Voter_ID);
+            pst.setString(3, Election_ID);
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            Home h = new Home();
+            VotersPage h = new VotersPage(Voter_ID);
             h.show();
 
             dispose();
@@ -694,30 +695,28 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        int vote = 3;
-        String serverName = "MSI\\SQLEXPRESS";
+        // int vote = 3;
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url,username, password);
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
+            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 3");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
+            String Candidate_ID = rs.getString("Candidate_ID");
 
-            //System.out.println(username);
-            //System.out.println(pwd);
+            pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
-
-            pst.setString(1, username);
-            pst.setString(2, pwd);
-            pst.setInt(3, vote);
+            pst.setString(1, Candidate_ID);
+            pst.setString(2, Voter_ID);
+            pst.setString(3, Election_ID);
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            Home h = new Home();
+            VotersPage h = new VotersPage(Voter_ID);
             h.show();
 
             dispose();
@@ -729,27 +728,28 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        int vote = 4;
-        String serverName = "MSI\\SQLEXPRESS";
+        // int vote = 4;
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection(url,username, password);
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
+            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 4");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
+            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
+            pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.setString(1, username);
-            pst.setString(2, pwd);
-            pst.setInt(3, vote);
+            pst.setString(1, Candidate_ID);
+            pst.setString(2, Voter_ID);
+            pst.setString(3, Election_ID);
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            Home h = new Home();
+            VotersPage h = new VotersPage(Voter_ID);
             h.show();
 
             dispose();
@@ -761,26 +761,28 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        int vote = 5;
-        String serverName = "MSI\\SQLEXPRESS";
+        // int vote = 5;
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
+            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 5");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
+            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votersvoting values(?,?,?)");
+            pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.setString(1, username);
-            pst.setString(2, pwd);
-            pst.setInt(3, vote);
+            pst.setString(1, Candidate_ID);
+            pst.setString(2, Voter_ID);
+            pst.setString(3, Election_ID);
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            Home h = new Home();
+            VotersPage h = new VotersPage(Voter_ID);
             h.show();
 
             dispose();

@@ -35,7 +35,7 @@ public class CreateElection extends javax.swing.JFrame {
     // loi add
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -48,7 +48,7 @@ public class CreateElection extends javax.swing.JFrame {
 
             q = stData.getColumnCount();
 
-            String[] columnNames = {"Election_ID", "Election_name", "Date_start", "Date_end",};
+            String[] columnNames = {"Election_ID", "Election_name", "Date_start", "Date_end"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable1.setModel(RecordTable);
@@ -597,7 +597,7 @@ public class CreateElection extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -707,14 +707,52 @@ public class CreateElection extends javax.swing.JFrame {
         int SelectedRows = jTable1.getSelectedRow();
 
         ElectionResults e = new ElectionResults(RecordTable.getValueAt(SelectedRows,0).toString());
-        e.setElection_id(RecordTable.getValueAt(SelectedRows,0).toString());
         e.show();
 
         dispose();
     }
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
+
+        // TODO add your handling code here:
+        DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+        int SelectedRows = jTable1.getSelectedRow();
+
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String username = "sa";
+        String password = "123456789";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try {
+            String election_id = RecordTable.getValueAt(SelectedRows, 0).toString();
+
+            deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to delete election",
+                    "Warning", JOptionPane.YES_NO_OPTION);
+
+            if(deleteItem == JOptionPane.YES_NO_OPTION){
+                con = DriverManager.getConnection(url, username, password);
+                pst = con.prepareStatement("delete from Election where Election_ID = ?");
+
+                pst.setString(1, election_id);
+                pst.executeUpdate();
+
+                JOptionPane.showMessageDialog(this, "Election Detals Updated");
+
+                upDateDB();
+
+                jTextField4.setText("");
+                jTextField2.requestFocus();
+                jTextField1.setText("");
+                jTextField3.setText("");
+
+            }
+        } catch (Exception e) {
+
+            JOptionPane.showMessageDialog(null, e);
+        }
     }
+
 
     /**
      * @param args the command line arguments
