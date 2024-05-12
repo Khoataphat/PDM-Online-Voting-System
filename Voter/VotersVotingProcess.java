@@ -105,9 +105,9 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        //jLabel5 = new javax.swing.JLabel();
+        //jLabel6 = new javax.swing.JLabel();
+        //jLabel7 = new javax.swing.JLabel();
         pnCenter = new javax.swing.JPanel();
         pnCBottom = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -222,9 +222,9 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
         pnSide.add(jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(34, 40, 44));
-        jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
-        jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
+        //jPanel6.setBackground(new java.awt.Color(34, 40, 44));
+        //jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
+        //jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 //BaoAnh
 /*        jButton13.setIcon(new javax.swing.ImageIcon("D:\\File Code Java\\Voting-System-Application\\Image and Icon\\register.png")); // NOI18N
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -232,10 +232,10 @@ public class VotersVotingProcess extends javax.swing.JFrame {
                 jButton13ActionPerformed(evt);
             }
         });
-*/
+
         jLabel5.setForeground(new java.awt.Color(255, 255, 102));
         jLabel5.setText("REGISTER NOW");
-
+*/
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -379,14 +379,14 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null}
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null}
                 },
                 new String [] {
-                        "CANDIDATE NO", "CANDIDATE NAME", "PARTY NAME"
+                        "Candidate_No","Candidate_ID", "Full_name", "Gender", "Age", "Email"
                 }
         ));
         jTable1.setEnabled(false);

@@ -267,9 +267,6 @@ public class VotersPage extends javax.swing.JFrame {
 
         pnSide.add(jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(34, 40, 44));
-        jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
-        jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
         jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
 
@@ -284,44 +281,7 @@ public class VotersPage extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(255, 255, 102));
         jLabel19.setText("FORM");*/
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(47, 47, 47)
-                                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel6)
-                                                        .addComponent(jLabel5)
-                                                        .addComponent(jLabel7)
-                                                        .addComponent(jLabel16)
-                                                        .addComponent(jLabel19))))
-                                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel16)
-                                .addContainerGap(19, Short.MAX_VALUE))
-        );
 
-        pnSide.add(jPanel6);
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
