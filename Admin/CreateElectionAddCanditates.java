@@ -43,9 +43,11 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     int q, i, id, deleteItem, deleteElection;
     static String Election_ID;
 
+
     public CreateElectionAddCanditates(String Election_ID) {
+        this.Election_ID = Election_ID;
         initComponents();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15, jButton16, jButton18};
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15/*, jButton16*/, jButton18};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -74,7 +76,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
             });
         }
-        upDateDB();
+        upDateDB(Election_ID);
 
     }
 
@@ -88,7 +90,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     //======================================================================Function=========================================
 
 
-    public void upDateDB(){
+    public void upDateDB(String Election_ID){
         String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
@@ -96,7 +98,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select * from Candidate");
+            pst = con.prepareStatement("select * from Election where Election_ID = ?");
+            pst.setString(1, Election_ID);
+            pst = con.prepareStatement("select Candidate_ID, Candidate_No, Full_name, Gender, Age, Email from Candidate");
 
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -104,7 +108,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             q = stData.getColumnCount();
 
             // Define your custom column names
-            String[] columnNames = {"Candidate_ID","Voter_ID", "Full_name","Gender", "Age", "Email"};
+            String[] columnNames = {"Candidate_ID","Candidate_No", "Full_name","Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
             jTable2.setModel(RecordTable);
@@ -116,7 +120,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                 for(i = 1;i <= q; i++){
                     //ID, FULLNAME, GENDER, AGE, EMAIL, USERNAME , PASSWORD
                     columnData.add(rs.getString("Candidate_ID"));
-                    columnData.add(rs.getString("Voter_ID"));
+                    columnData.add(rs.getString("Candidate_No"));
                     columnData.add(rs.getString("Full_name"));
                     columnData.add(rs.getString("Gender"));
                     columnData.add(rs.getString("Age"));
@@ -162,7 +166,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         JButton jButton10 = new JButton();
         JPanel pniCCenter = new JPanel();
         jButton15 = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
+        //jButton16 = new javax.swing.JButton();
         JButton jButton17 = new JButton();
         jButton18 = new javax.swing.JButton();
         JLabel jLabel9 = new JLabel();
@@ -281,7 +285,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-
+/*
         jButton13.setText("CANDITATES ISSUES");
         jButton13.addActionListener(this::jButton13ActionPerformed);
 
@@ -293,39 +297,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         jLabel7.setForeground(new java.awt.Color(255, 255, 102));
         jLabel7.setText("ISSUES");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(27, 27, 27)
-                                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(47, 47, 47)
-                                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel6)
-                                                        .addComponent(jLabel5)
-                                                        .addComponent(jLabel7))))
-                                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        pnSide.add(jPanel6);
+*/
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -439,13 +411,13 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         jButton15.setText("Add Canditate");
         jButton15.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton15.addActionListener(this::jButton15ActionPerformed);
-
+/*
         jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton16.setForeground(new java.awt.Color(0, 255, 204));
         jButton16.setText("Update Canditate Details");
         jButton16.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton16.addActionListener(this::jButton16ActionPerformed);
-
+*/
         jButton17.setBackground(new java.awt.Color(255, 102, 102));
         jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton17.setText("Logout");
@@ -492,7 +464,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                         {null, null, null, null, null, null, null, null, null, null, null, null, null}
                 },
                 new String [] {
-                        "Candidate_No", "Candidate_ID","Candidate_Name","Gender", "Age", "Email"
+                        "Candidate_ID","Candidate_No", "Full_name","Gender", "Age", "Email"
                 }
         ));
         jTable2.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -532,9 +504,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         /*jButton9.setText("Upload");
         jButton9.addActionListener(this::jButton9ActionPerformed);
-
+*/
         pnCBottom.setBackground(new java.awt.Color(30, 44, 40));
-        pnCBottom.setPreferredSize(new java.awt.Dimension(734, 100));*/
+        pnCBottom.setPreferredSize(new java.awt.Dimension(734, 100));
 
         javax.swing.GroupLayout pnCBottomLayout = new javax.swing.GroupLayout(pnCBottom);
         pnCBottom.setLayout(pnCBottomLayout);
@@ -667,7 +639,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                                                                 .addGap(18, 18, 18)
                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jLabel3)
-                                                                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                                                        /*.addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)*/)))
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addContainerGap(3268, Short.MAX_VALUE)
@@ -730,7 +702,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                                                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        /*.addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/))
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addContainerGap()
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -825,8 +797,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-
-            pst = con.prepareStatement("insert into Candidate values(?,?,?,?,?,?)");
+            pst = con.prepareStatement("select * from Election where Election_ID = ?");
+            pst.setString(1, Election_ID);
+            pst = con.prepareStatement("insert into Candidate values(?,?,null,?,?,?,?)");
 
             pst.setString(1, jTextField1.getText());
             //pst.setString(2, jTextField9.getText());
@@ -844,13 +817,13 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
             pst.executeUpdate();
             JOptionPane.showMessageDialog(this, "New Candidate Added");
-            upDateDB();
+            upDateDB(Election_ID);
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButton15ActionPerformed
-
+/*
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         // TODO add your handling code here:
 
@@ -892,7 +865,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex);
         }
     }//GEN-LAST:event_jButton16ActionPerformed
-
+*/
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
         JFrame frame = new JFrame("Exit");
@@ -923,6 +896,8 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, "sa", "123456789");
+                pst = con.prepareStatement("select * from Election where Election_ID = ?");
+                pst.setString(1, Election_ID);
                 pst = con.prepareStatement("delete from Candidate where Candidate_ID = ?");
 
                 pst.setString(1, id);
@@ -930,7 +905,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(this, "Candidates Detals Updated");
 
-                upDateDB();
+                upDateDB(Election_ID);
 
                 jTextField1.setText("");
                 jTextField1.requestFocus();
@@ -997,7 +972,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        AdminPage h = new AdminPage();
+        CreateElection h = new CreateElection();
         h.show();
 
         dispose();
@@ -1061,7 +1036,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
-    private javax.swing.JButton jButton16;
+    //private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

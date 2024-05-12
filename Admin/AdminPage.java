@@ -77,9 +77,9 @@ public class AdminPage extends javax.swing.JFrame {
         JPanel jPanel5 = new JPanel();
         JPanel jPanel6 = new JPanel();
         jButton13 = new javax.swing.JButton();
-        JLabel jLabel5 = new JLabel();
-        JLabel jLabel6 = new JLabel();
-        JLabel jLabel7 = new JLabel();
+        //JLabel jLabel5 = new JLabel();
+        //JLabel jLabel6 = new JLabel();
+        //JLabel jLabel7 = new JLabel();
         JPanel pnCenter = new JPanel();
         JPanel pnCBottom = new JPanel();
         JLabel jLabel1 = new JLabel();
@@ -171,54 +171,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         pnSide.add(jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(34, 40, 44));
-        jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
-        jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
-        jButton13.setText("ISSUES ");
-        jButton13.addActionListener(this::jButton13ActionPerformed);
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel5.setText("SEE THE ISSUES");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel6.setText("AND SORT OUT");
-
-        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel7.setText("THE ISSUES");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        pnSide.add(jPanel6);
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -345,7 +298,7 @@ public class AdminPage extends javax.swing.JFrame {
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\politics-election-voting-cartoon_1284-23116.jpg")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon\\4.png")); // NOI18N
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
@@ -473,11 +426,11 @@ public class AdminPage extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
-
+/*
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
-
+*/
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         CreateElection c = new CreateElection();

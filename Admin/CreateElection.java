@@ -251,38 +251,7 @@ public class CreateElection extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 102));
         jLabel7.setText("THE ISSUES");
 */
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                                //.addGap(27, 27, 27)
-                                                /*.addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
-                                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                                .addGap(47, 47, 47)
-                                                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(jLabel6)
-                                                        .addComponent(jLabel5)
-                                                        .addComponent(jLabel7))))
-                                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        jPanel6Layout.setVerticalGroup(
-                jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel7)
-                                .addContainerGap(31, Short.MAX_VALUE))
-        );
 
-        pnSide.add(jPanel6);
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -448,7 +417,7 @@ public class CreateElection extends javax.swing.JFrame {
 
         jButton14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton14.setForeground(new java.awt.Color(0, 255, 204));
-        jButton14.setText("Cadidate");
+        jButton14.setText("Add Cadidate");
         jButton14.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton14.addActionListener(this::jButton14ActionPerformed);
 /*
@@ -710,7 +679,25 @@ public class CreateElection extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-    }
+        DefaultTableModel RecordTable = (DefaultTableModel) jTable1.getModel();
+        int SelectedRows = jTable1.getSelectedRow();
+        if (SelectedRows != -1) {
+            String electionID = RecordTable.getValueAt(SelectedRows, 0).toString();
+
+            // Hiển thị cảnh báo với election ID
+            int confirmation = JOptionPane.showConfirmDialog(this, "Bạn có muốn chuyển tới trang Election có ID: " + electionID + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+
+            if (confirmation == JOptionPane.YES_OPTION) {
+                // Chuyển đến trang chứa Election ID
+                CreateElectionAddCanditates v = new CreateElectionAddCanditates(electionID);
+                v.setVisible(true);
+                dispose();
+            }
+        } else {
+            // Xử lý khi không có hàng nào được chọn
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trong bảng.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+        }
 /*
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
     }
