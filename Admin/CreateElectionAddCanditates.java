@@ -76,7 +76,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
             });
         }
-        upDateDB(Election_ID);
+        upDateDB();
 
     }
 
@@ -90,19 +90,18 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     //======================================================================Function=========================================
 
 
-    public void upDateDB(String Election_ID){
-        String serverName = "MSI\\SQLEXPRESS";
+    public void upDateDB(){
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select * from Election where Election_ID = ?");
+            pst = con.prepareStatement("select Candidate_ID, Candidate_No, Full_name, Gender, Age, Email from Candidate c, votes v where c.Candidate_ID = v.Candidate_ID and v.Election_ID = ?  ");
             pst.setString(1, Election_ID);
-            pst = con.prepareStatement("select Candidate_ID, Candidate_No, Full_name, Gender, Age, Email from Candidate");
-
             rs = pst.executeQuery();
+
             ResultSetMetaData stData = rs.getMetaData();
 
             q = stData.getColumnCount();
@@ -787,7 +786,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         //File f1 = new File(path1);
         //File f2 = new File(path2);
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "DESKTOP-RLS9R6C\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -816,8 +815,12 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             //pst.setBlob(13, is2);
 
             pst.executeUpdate();
+            pst = con.prepareStatement("insert into votes values(?,null,?)");
+            pst.setString(1, Election_ID);
+            pst.setString(2, jTextField1.getText());
             JOptionPane.showMessageDialog(this, "New Candidate Added");
-            upDateDB(Election_ID);
+            upDateDB();
+
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -885,7 +888,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         //jLabel23 = new JLabel("image");
         //jLabel25 = new JLabel("image");
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -905,7 +908,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
                 JOptionPane.showMessageDialog(this, "Candidates Detals Updated");
 
-                upDateDB(Election_ID);
+                upDateDB();
 
                 jTextField1.setText("");
                 jTextField1.requestFocus();
