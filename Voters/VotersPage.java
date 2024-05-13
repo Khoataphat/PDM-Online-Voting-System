@@ -651,25 +651,25 @@ public class VotersPage extends javax.swing.JFrame {
         try {
             con = DriverManager.getConnection(url, "sa", "123456789");
             if (isWithinElectionPeriod(Election_ID)) {
-                    String query = "SELECT Voter_ID FROM votes  WHERE Voter_ID = ? AND ELection_ID = ?";
-                    pst = con.prepareStatement(query);
+                String query = "SELECT Voter_ID FROM votes  WHERE Voter_ID = ? AND ELection_ID = ?";
+                pst = con.prepareStatement(query);
 
-                    // Set the username value from existing variable
-                    pst.setString(1, Voter_ID);
-                    pst.setString(2, Election_ID);
+                // Set the username value from existing variable
+                pst.setString(1, Voter_ID);
+                pst.setString(2, Election_ID);
 
-                    rs = pst.executeQuery();
-                    if (rs.next()) {
-                        JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
-                    } else {
-                        VotersVotingProcess v = new VotersVotingProcess(Voter_ID, Election_ID);
-                        v.show();
-                        dispose();
-                    }
+                rs = pst.executeQuery();
+                if (rs.next()) {
+                    JOptionPane.showMessageDialog(this, "You Have Contributed Your Vote Already");
                 } else {
-                    JOptionPane.showMessageDialog(this, "Voting is not allowed at the moment.");
+                    VotersVotingProcess v = new VotersVotingProcess(Voter_ID, Election_ID);
+                    v.show();
+                    dispose();
                 }
-            } catch (SQLException e) {
+            } else {
+                JOptionPane.showMessageDialog(this, "Voting is not allowed at the moment.");
+            }
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }//GEN-LAST:event_jButton15ActionPerformed
