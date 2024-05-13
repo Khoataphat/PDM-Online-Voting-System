@@ -29,7 +29,9 @@ public class ElectionPage extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    int q, i, id, deleteItem;
+    int q;
+    int i;
+    int deleteItem;
 
 
     // loi add
@@ -127,10 +129,6 @@ public class ElectionPage extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         JPanel jPanel5 = new JPanel();
         JPanel jPanel6 = new JPanel();
-        //jButton13 = new javax.swing.JButton();
-        JLabel jLabel5 = new JLabel();
-        JLabel jLabel6 = new JLabel();
-        JLabel jLabel7 = new JLabel();
         JPanel pnCenter = new JPanel();
         JPanel pnCBottom = new JPanel();
         JLabel jLabel1 = new JLabel();
@@ -159,7 +157,6 @@ public class ElectionPage extends javax.swing.JFrame {
         JLabel jLabel12 = new JLabel();
         jTextField4 = new javax.swing.JTextField();
         jButton14 = new javax.swing.JButton();
-        //jButton15 = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
 
@@ -238,20 +235,6 @@ public class ElectionPage extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-
-        //jButton13.setText("ISSUES ");
-        //jButton13.addActionListener(this::jButton13ActionPerformed);
-/*
-        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel5.setText("IF YOU ARE ABOVE");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel6.setText("APPLY HERE FOR");
-
-        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel7.setText("THE ISSUES");
-*/
-
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -420,13 +403,7 @@ public class ElectionPage extends javax.swing.JFrame {
         jButton14.setText("Add Cadidate");
         jButton14.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton14.addActionListener(this::jButton14ActionPerformed);
-/*
-        jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
-        jButton15.setForeground(new java.awt.Color(0, 255, 204));
-        jButton15.setText("Status");
-        jButton15.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton15.addActionListener(this::jButton15ActionPerformed);
-*/
+
         jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton16.setForeground(new java.awt.Color(0, 255, 204));
         jButton16.setText("Result");
@@ -585,10 +562,6 @@ public class ElectionPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
-
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
 
@@ -663,9 +636,6 @@ public class ElectionPage extends javax.swing.JFrame {
         jTextField2.setText(RecordTable.getValueAt(SelectedRows, 1).toString());//ElectionName
         jTextField3.setText(RecordTable.getValueAt(SelectedRows, 3).toString());//Date_end
         jTextField4.setText(RecordTable.getValueAt(SelectedRows, 0).toString());//ID
-        //jComboBox1.setSelectedItem(RecordTable.getValueAt(SelectedRows, 2));
-        //jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 7).toString());
-        //jTextField8.setText(RecordTable.getValueAt(SelectedRows, 8).toString());
 
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -698,10 +668,7 @@ public class ElectionPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-/*
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
-    }
-*/
+
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
@@ -783,14 +750,12 @@ public class ElectionPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton14;
-    //private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JTextField jTextField1;

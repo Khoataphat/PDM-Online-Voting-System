@@ -74,7 +74,7 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int noCand(){
-        String serverName = "DESKTOP-0IKLTBG";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -104,7 +104,7 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int novoters(){
-        String serverName = "DESKTOP-0IKLTBG";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -135,7 +135,7 @@ public class ElectionResults extends javax.swing.JFrame {
     }
 
     public void upDateDB(){
-        String serverName = "DESKTOP-0IKLTBG";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -929,7 +929,7 @@ public class ElectionResults extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
 
-        String serverName = "DESKTOP-0IKLTBG";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -972,7 +972,7 @@ public class ElectionResults extends javax.swing.JFrame {
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
                     "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
-            Canditates h = new Canditates();
+            Candidates h = new Candidates();
             h.show();
             
             dispose();
