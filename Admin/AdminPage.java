@@ -433,7 +433,7 @@ public class AdminPage extends javax.swing.JFrame {
 */
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        CreateElection c = new CreateElection();
+        ElectionPage c = new ElectionPage();
         c.show();
         
         dispose();
@@ -492,7 +492,7 @@ public class AdminPage extends javax.swing.JFrame {
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
                     "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
-            Canditates h = new Canditates();
+            Candidates h = new Candidates();
             h.show();
             
             dispose();

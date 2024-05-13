@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author welcome
  */
-public class CreateElection extends javax.swing.JFrame {
+public class ElectionPage extends javax.swing.JFrame {
 
     /**
      * Creates new form Home
@@ -35,7 +35,7 @@ public class CreateElection extends javax.swing.JFrame {
     // loi add
 
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -71,7 +71,7 @@ public class CreateElection extends javax.swing.JFrame {
         }
     }
 
-    public CreateElection() {
+    public ElectionPage() {
         initComponents();
         upDateDB();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12/*, jButton13*/, jButton14/*, jButton15*/,jButton16,jButton17};
@@ -390,10 +390,10 @@ public class CreateElection extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null},
+                        {null, null, null, null}
                 },
                 new String [] {
                         "Election_ID","Election_name", "Start_date","End_date"
@@ -597,7 +597,7 @@ public class CreateElection extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+            String serverName = "MSI\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -648,7 +648,7 @@ public class CreateElection extends javax.swing.JFrame {
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
                 "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
-            Canditates h = new Canditates();
+            Candidates h = new Candidates();
             h.show();
 
             dispose();
@@ -685,19 +685,19 @@ public class CreateElection extends javax.swing.JFrame {
             String electionID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
             // Hiển thị cảnh báo với election ID
-            int confirmation = JOptionPane.showConfirmDialog(this, "Bạn có muốn chuyển tới trang Election có ID: " + electionID + "?", "Xác nhận", JOptionPane.YES_NO_OPTION);
+            int confirmation = JOptionPane.showConfirmDialog(this, "Go to Election page with ID: " + electionID + "?", "Confirm", JOptionPane.YES_NO_OPTION);
 
             if (confirmation == JOptionPane.YES_OPTION) {
                 // Chuyển đến trang chứa Election ID
-                CreateElectionAddCanditates v = new CreateElectionAddCanditates(electionID);
+                ElectionPageAddCandidates v = new ElectionPageAddCandidates(electionID);
                 v.setVisible(true);
                 dispose();
             }
         } else {
             // Xử lý khi không có hàng nào được chọn
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng trong bảng.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        }
+    }
 /*
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {
     }
@@ -718,7 +718,7 @@ public class CreateElection extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -772,12 +772,12 @@ public class CreateElection extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateElection.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ElectionPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new CreateElection().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ElectionPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

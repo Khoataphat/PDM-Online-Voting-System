@@ -26,7 +26,7 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7/*, jButton9, jButton10, jButton11, jButton12*/, jButton13};
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -78,10 +78,6 @@ public class Home extends javax.swing.JFrame {
         jButton7 = new javax.swing.JButton();
         JPanel jPanel5 = new JPanel();
         JPanel jPanel6 = new JPanel();
-        jButton13 = new javax.swing.JButton();
-        JLabel jLabel5 = new JLabel();
-        JLabel jLabel6 = new JLabel();
-        JLabel jLabel7 = new JLabel();
         JPanel pnCenter = new JPanel();
         JPanel pnCBottom = new JPanel();
         JLabel jLabel1 = new JLabel();
@@ -94,10 +90,6 @@ public class Home extends javax.swing.JFrame {
         JPanel jPanel4 = new JPanel();
         JPanel pniCCenter = new JPanel();
         JLabel jLabel8 = new JLabel();
-        //jButton9 = new javax.swing.JButton();
-        //jButton10 = new javax.swing.JButton();
-        //jButton11 = new javax.swing.JButton();
-        //jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -173,13 +165,6 @@ public class Home extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-//BaoAnh
-        jButton13.setIcon(new javax.swing.ImageIcon("Image and Icon\\IU Logo.png")); // NOI18N
-        //jButton13.addActionListener(this::jButton13ActionPerformed);
-/*
-        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel5.setText("REGISTER NOW");
-*/
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -307,28 +292,6 @@ public class Home extends javax.swing.JFrame {
 
         jLabel8.setIcon(new javax.swing.ImageIcon("Image and Icon\\5.jpg")); // NOI18N
 
-/*
-        jButton9.setForeground(new java.awt.Color(51, 255, 204));
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-news-25.png")); // NOI18N
-        jButton9.setText("NEWS UPDATES");
-        jButton9.setPreferredSize(new java.awt.Dimension(150, 40));
-        jButton9.addActionListener(this::jButton9ActionPerformed);
-
-        jButton10.setForeground(new java.awt.Color(0, 255, 204));
-        jButton10.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-shouting-25.png")); // NOI18N
-        jButton10.setText("ANNOUNCEMENTS");
-        jButton10.setPreferredSize(new java.awt.Dimension(250, 40));
-
-        jButton11.setForeground(new java.awt.Color(0, 255, 204));
-        jButton11.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-previous-25.png")); // NOI18N
-        jButton11.setText("PREVIOUS ELECTION");
-        jButton11.setPreferredSize(new java.awt.Dimension(200, 40));
-
-        jButton12.setForeground(new java.awt.Color(0, 255, 204));
-        jButton12.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-next-25.png")); // NOI18N
-        jButton12.setText("NEXT ELECTION");
-        jButton12.setPreferredSize(new java.awt.Dimension(200, 40));
-*/
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
         pniCCenterLayout.setHorizontalGroup(
@@ -396,20 +359,6 @@ public class Home extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-
-
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton9ActionPerformed
-// BaoAnh xóa button13
-/*    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-        NewVoterApplication n = new NewVoterApplication();
-        n.show();
-
-        dispose();
-    }//GEN-LAST:event_jButton13ActionPerformed
-*/
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         AdminLogin a = new AdminLogin();
@@ -420,7 +369,7 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        Canditates c = new Canditates();
+        Candidates c = new Candidates();
         c.show();
         
         dispose();
@@ -450,15 +399,10 @@ public class Home extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    //private javax.swing.JButton jButton10;
-    //private javax.swing.JButton jButton11;
-    //private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
-    //private javax.swing.JButton jButton9;
     // End of variables declaration//GEN-END:variables
 }

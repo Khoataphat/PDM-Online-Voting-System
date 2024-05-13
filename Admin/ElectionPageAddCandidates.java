@@ -10,43 +10,30 @@ import Voters.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
 import java.util.Objects;
 import java.util.Vector;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author welcome
  */
-public class CreateElectionAddCanditates extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Home
-     */
-
-    File f1 = null;
-    String path1 = null;
-
-    File f2 = null;
-    String path2 = null;
+public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    int q, i, id, deleteItem, deleteElection;
-    static String Election_ID;
+    int q, i, deleteItem, deleteElection;
+    private final String Election_ID;
 
 
-    public CreateElectionAddCanditates(String Election_ID) {
-        this.Election_ID = Election_ID;
+    public ElectionPageAddCandidates(String Election_ID) {
         initComponents();
+        this.Election_ID = Election_ID;
+        upDateDB();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15/*, jButton16*/, jButton18};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
@@ -76,10 +63,11 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
             });
         }
-        upDateDB();
-
+        System.out.println(Election_ID);
     }
-
+    private ElectionPageAddCandidates() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,15 +79,16 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
         try{
             //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("select DISTINCT(c.Candidate_ID), c.Candidate_No, c.Full_name, c.Gender, c.Age, c.Email from Candidate c, votes v where c.Candidate_ID = v.Candidate_ID and v.Election_ID = ?");
+
+            pst = con.prepareStatement("select DISTINCT(c.Candidate_ID), c.Candidate_No, c.Full_name, c.Gender, c.Age, c.Email from Candidate c, votes v where c.Candidate_ID = v.Candidate_ID and v.Election_ID = ?" );
             pst.setString(1, Election_ID);
+            System.out.println(Election_ID);
             rs = pst.executeQuery();
 
             ResultSetMetaData stData = rs.getMetaData();
@@ -351,13 +340,11 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         jButton10.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
         jButton10.setText("Back");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    jButton10ActionPerformed(evt);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
-                }
+        jButton10.addActionListener(evt -> {
+            try {
+                jButton10ActionPerformed(evt);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
             }
         });
 
@@ -429,9 +416,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         jButton18.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton18.addActionListener(this::jButton18ActionPerformed);
 
-        jLabel9.setText("Candidate_No");
+        jLabel9.setText("Candidate_ID");
 
-        jLabel10.setText("Candidate_ID");
+        jLabel10.setText("Candidate_No");
 
         //jLabel11.setText("Phone no");
 
@@ -457,10 +444,10 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                        {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null},
+                        {null, null, null, null, null, null}
                 },
                 new String [] {
                         "Candidate_ID","Candidate_No", "Full_name","Gender", "Age", "Email"
@@ -637,7 +624,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                                                                                 .addComponent(jLabel4)))
                                                                 .addGap(18, 18, 18)
                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                .addComponent(jLabel3)
+                                                                        .addComponent(jLabel3)
                                                                         /*.addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)*/)))
                                                 .addGap(0, 0, Short.MAX_VALUE))
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
@@ -698,9 +685,9 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                                                         /*.addComponent(jLabel19)*/)
                                                 .addGap(150, 150, 150)
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         /*.addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/))
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addContainerGap()
@@ -786,89 +773,91 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         //File f1 = new File(path1);
         //File f2 = new File(path2);
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+        try {
+            Connection con = DriverManager.getConnection(url, "sa", "123456789");
+            System.out.println("Connected To MySql Database!");
+
+            PreparedStatement pst = con.prepareStatement("select * from Election where Election_ID = ?");
+            pst.setString(1, Election_ID);
+            ResultSet rs = pst.executeQuery();
+
+            if (rs.next()) {
+
+                pst = con.prepareStatement("insert into Candidate values(?,?,?,?,?,?)");
+                pst.setString(1, jTextField1.getText());
+                pst.setString(2, jTextField2.getText());
+                pst.setString(3, jTextField3.getText());
+                pst.setString(4, Objects.requireNonNull(jComboBox1.getSelectedItem()).toString());
+                pst.setString(5, jTextField4.getText());
+                pst.setString(6, jTextArea1.getText());
+                pst.executeUpdate();
+
+                pst = con.prepareStatement("insert into votes values(?,null,?)");
+                pst.setString(2, Election_ID);
+                pst.setString(1, jTextField1.getText());
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "New Candidate Added");
+                upDateDB();
+
+                pst.close();
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Election not found");
+            }
+
+            rs.close();
+            con.close();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+/*
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // TODO add your handling code here:
+
+        //File f1 = new File(path1);
+        //File f2 = new File(path2);
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            System.out.println("Connected To MySql Database!");
 
             //InputStream is1 = new FileInputStream(f1);
             //InputStream is2 = new FileInputStream(f2);
 
-            con = DriverManager.getConnection(url, "sa", "123456789");
-            System.out.println("Connected To MySql Database!");
-            pst = con.prepareStatement("select * from Election where Election_ID = ?");
-            pst.setString(1, Election_ID);
-            pst = con.prepareStatement("insert into Candidate values(?,?,?,?,?,?)");
 
-            pst.setString(2, jTextField1.getText());
+            pst = con.prepareStatement("UPDATE Candidate SET Candidate_ID = ?, Voter_ID= ?, Full_name= ?, Gender= ?, Age= ?, Email= ? WHERE Candidate_ID = ?;");  //, Passport_Size_Photo = ?, Electoral_Symbol= ?
+
+            pst.setString(1, jTextField1.getText());
             //pst.setString(2, jTextField9.getText());
             //pst.setString(3, jTextField7.getText());
             pst.setString(4, Objects.requireNonNull(jComboBox1.getSelectedItem()).toString());
             //pst.setString(5, Objects.requireNonNull(jComboBox2.getSelectedItem()).toString());
             pst.setString(5, jTextField4.getText());
-            pst.setString(1, jTextField2.getText());
+            pst.setString(2, jTextField2.getText());
             pst.setString(3, jTextField3.getText());
             //pst.setString(9, jTextField5.getText());
             pst.setString(6, jTextArea1.getText());
             //pst.setString(11, jTextField8.getText());
             //pst.setBlob(12, is1);
             //pst.setBlob(13, is2);
+            //pst.setString(14, jTextField1.getText());
 
             pst.executeUpdate();
-            pst = con.prepareStatement("insert into votes values(?,null,?)");
-            pst.setString(1, Election_ID);
-            pst.setString(2, jTextField1.getText());
-            JOptionPane.showMessageDialog(this, "New Candidate Added");
+            JOptionPane.showMessageDialog(this, "New Candidates Were Updated");
             upDateDB();
-
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
-    }//GEN-LAST:event_jButton15ActionPerformed
-    /*
-        private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-            // TODO add your handling code here:
-
-            //File f1 = new File(path1);
-            //File f2 = new File(path2);
-            String serverName = "MSI\\SQLEXPRESS";
-            String databaseName = "Online-Voting";
-            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-            try{
-                con = DriverManager.getConnection(url, "sa", "123456789");
-                System.out.println("Connected To MySql Database!");
-
-                //InputStream is1 = new FileInputStream(f1);
-                //InputStream is2 = new FileInputStream(f2);
-
-
-                pst = con.prepareStatement("UPDATE Candidate SET Candidate_ID = ?, Voter_ID= ?, Full_name= ?, Gender= ?, Age= ?, Email= ? WHERE Candidate_ID = ?;");  //, Passport_Size_Photo = ?, Electoral_Symbol= ?
-
-                pst.setString(1, jTextField1.getText());
-                //pst.setString(2, jTextField9.getText());
-                //pst.setString(3, jTextField7.getText());
-                pst.setString(4, Objects.requireNonNull(jComboBox1.getSelectedItem()).toString());
-                //pst.setString(5, Objects.requireNonNull(jComboBox2.getSelectedItem()).toString());
-                pst.setString(5, jTextField4.getText());
-                pst.setString(2, jTextField2.getText());
-                pst.setString(3, jTextField3.getText());
-                //pst.setString(9, jTextField5.getText());
-                pst.setString(6, jTextArea1.getText());
-                //pst.setString(11, jTextField8.getText());
-                //pst.setBlob(12, is1);
-                //pst.setBlob(13, is2);
-                //pst.setString(14, jTextField1.getText());
-
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(this, "New Candidates Were Updated");
-                upDateDB();
-            }
-            catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        }//GEN-LAST:event_jButton16ActionPerformed
-    */
+    }//GEN-LAST:event_jButton16ActionPerformed
+*/
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:
         JFrame frame = new JFrame("Exit");
@@ -888,21 +877,21 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
         //jLabel23 = new JLabel("image");
         //jLabel25 = new JLabel("image");
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
-            String id = RecordTable.getValueAt(SelectedRows, 2).toString();
+            String id = RecordTable.getValueAt(SelectedRows, 0).toString();
 
             deleteItem = JOptionPane.showConfirmDialog(null, "Confirm if you want to delete item",
                     "Warning", JOptionPane.YES_NO_OPTION);
 
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("select * from Election where Election_ID = ?");
-                pst.setString(1, Election_ID);
+                pst = con.prepareStatement("delete from votes where Candidate_ID = ?");
+                pst.setString(1, id);
+                pst.executeUpdate();
                 pst = con.prepareStatement("delete from Candidate where Candidate_ID = ?");
-
                 pst.setString(1, id);
                 pst.executeUpdate();
 
@@ -921,7 +910,11 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
                 jTextField3.setText("");
                 //jTextField5.setText("");
                 jTextArea1.setText("");
-
+                //jTextField8.setText("");
+                //jTextField6.setText("");
+                //jTextField10.setText("");
+                //jLabel23.setIcon(new ImageIcon(getClass().getResource("C:\\icons hub\\icons8-people-25.png")));
+                //jLabel25.setIcon(new ImageIcon(getClass().getResource("C:\\icons hub\\icons8-elections-25.png")));
             }
         } catch (Exception e) {
 
@@ -971,7 +964,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) throws SQLException {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        CreateElection h = new CreateElection();
+        ElectionPage h = new ElectionPage();
         h.show();
 
         dispose();
@@ -994,7 +987,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
                 "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
-            Canditates h = new Canditates();
+            Candidates h = new Candidates();
             h.show();
 
             dispose();
@@ -1008,7 +1001,7 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://d...content-available-to-author-only...e.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1019,16 +1012,12 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
                  UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CreateElectionAddCanditates.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ElectionPageAddCandidates.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CreateElectionAddCanditates(Election_ID).setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new ElectionPageAddCandidates().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1053,5 +1042,10 @@ public class CreateElectionAddCanditates extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-
+    //private javax.swing.JTextField jTextField5;
+    //private javax.swing.JTextField jTextField6;
+    //private javax.swing.JTextField jTextField7;
+    //private javax.swing.JTextField jTextField8;
+    //private javax.swing.JTextField jTextField9;
+    // End of variables declaration//GEN-END:variables
 }
