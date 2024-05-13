@@ -2,10 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Admin;
+package Voters;
 
 import General.*;
 import Voters.*;
+import Admin.*;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -43,7 +44,7 @@ public class VotersPage extends javax.swing.JFrame {
         initComponents();
         this.Voter_ID = Voter_ID;
         upDateDB();
-        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15, jButton16, jButton18}; //jBuntton19};
+        JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton15, jButton16, jButton18};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
             btn.setUI(new BasicButtonUI());
@@ -90,12 +91,11 @@ public class VotersPage extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
-//Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, "sa", "123456789");
             pst = con.prepareStatement("select Election_ID, ELection_name, Start_date, End_date from Election");
 
@@ -145,13 +145,6 @@ public class VotersPage extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         JPanel jPanel5 = new JPanel();
-        JPanel jPanel6 = new JPanel();
-        jButton13 = new javax.swing.JButton();
-        JLabel jLabel5 = new JLabel();
-        JLabel jLabel6 = new JLabel();
-        JLabel jLabel7 = new JLabel();
-        JLabel jLabel16 = new JLabel();
-        JLabel jLabel19 = new JLabel();
         JPanel pnCenter = new JPanel();
         JPanel pnCBottom = new JPanel();
         JLabel jLabel1 = new JLabel();
@@ -180,17 +173,10 @@ public class VotersPage extends javax.swing.JFrame {
         JLabel jLabel18 = new JLabel();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
-        //jTextField3 = new javax.swing.JTextField();
-        //JScrollPane jScrollPane2 = new JScrollPane();
-        //jTextArea1 = new javax.swing.JTextArea();
-        //jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        //jTextField8 = new javax.swing.JTextField();
         JScrollPane jScrollPane3 = new JScrollPane();
         jTable2 = new javax.swing.JTable();
-        //jComboBox1 = new javax.swing.JComboBox<>();
-        //jButton19 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -263,22 +249,6 @@ public class VotersPage extends javax.swing.JFrame {
         );
 
         pnSide.add(jPanel5);
-
-
-        jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
-
-        /*jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel5.setText("FIRST TIME VOTERS ");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel6.setText("APPLIED THEIR");
-
-        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
-
-        jLabel19.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel19.setText("FORM");*/
-
-
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -471,13 +441,8 @@ public class VotersPage extends javax.swing.JFrame {
 
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
-        //jTextArea1.setColumns(20);
-        //jTextArea1.setRows(5);
-        //jScrollPane2.setViewportView(jTextArea1);
-
         jTextField6.addActionListener(this::jTextField6ActionPerformed);
 
-//
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
                 new Object [][] {
                         {null, null, null, null, null},
@@ -495,17 +460,6 @@ public class VotersPage extends javax.swing.JFrame {
             }
         });
         jScrollPane3.setViewportView(jTable2);
-//
-
-        //jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
-        //jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
-
-        /*
-        jButton19.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
-        jButton19.setForeground(new java.awt.Color(0, 255, 204));
-        jButton19.setText("Update Voters");
-        jButton19.setPreferredSize(new java.awt.Dimension(200, 40));
-        jButton19.addActionListener(this::jButton19ActionPerformed);*/
 
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
@@ -664,7 +618,7 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     //
     private boolean isWithinElectionPeriod(String Election_ID) {
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -686,29 +640,16 @@ public class VotersPage extends javax.swing.JFrame {
 
         return false;
     }
-    //
-//Banh xem lại tự sửa
-//Fix-Voting
+
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
         String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
-            /*con = DriverManager.getConnection(url, "sa", "123456789");
-            // Fix SQL query to prevent SQL injection vulnerability
-            String query = "SELECT c.Email  FROM Candidate c, Voter v  WHERE v.Username = ? AND v.Password = ? AND  c.Voter_ID = v.Voter_ID;";
-            PreparedStatement pst = con.prepareStatement(query);
-
-            // Set the username and password values from existing variables
-            pst.setString(1, username);
-            pst.setString(2, pwd);
-
-            rs = pst.executeQuery();
-            if (rs.next()) { */
             con = DriverManager.getConnection(url, "sa", "123456789");
             if (isWithinElectionPeriod(Election_ID)) {
                     String query = "SELECT Voter_ID FROM votes  WHERE Voter_ID = ? AND ELection_ID = ?";
@@ -741,11 +682,6 @@ public class VotersPage extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField7.setText("");
         jTextField6.setText("");
-        //jTextField5.setText("");
-        //jTextField3.setText("");
-        //jComboBox1.setSelectedItem("Male");
-        //jTextArea1.setText("");
-        //jTextField8.setText("");
     }//GEN-LAST:event_jButton16ActionPerformed
     private JFrame frame;
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -767,7 +703,7 @@ public class VotersPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -816,10 +752,6 @@ public class VotersPage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
 
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
@@ -831,54 +763,6 @@ public class VotersPage extends javax.swing.JFrame {
         jTextField6.setText(RecordTable.getValueAt(SelectedRows, 3).toString());//end
 
     }//GEN-LAST:event_jTable2MouseClicked
-
-    /*
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
-        // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
-        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-        try{
-
-            // Connection con;
-            con = DriverManager.getConnection(url, username, password);
-            System.out.println("Connected To MySql Database!");
-
-            //Statement st = con.createStatement();
-            //st.executeUpdate("create table Books (  Name varchar(50),Book_Id varchar(50),Book_Title varchar(50), Author varchar(50),Edition varchar(50))");
-            // PreparedStatement
-            pst = con.prepareStatement("UPDATE voterslist SET voterID = ?, Name= ?, Gender= ?, Age= ?, Email= ?, Username= ?, Password= ?  WHERE voterID = ?;");
-
-            //Class.forName("com.mysql.jdbc.Driver");
-            //sqlConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
-            //pst = sqlConn.prepareStatement("insert into 'voterslist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
-
-            //Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jdbc", "root", "ashwin");
-            //Statement statement = connection.createStatement();
-            //ResultSet resultset = statement.executeQuery("insert into 'voterslist'('voterID', 'Name', 'Username', 'Password', 'Email', 'Phone no', 'Gender', 'Address', 'Aadhaar No')value(?,?,?,?,?,?,?,?,?)");
-            pst.setString(1, jTextField1.getText());
-            pst.setString(2, jTextField2.getText());
-            pst.setString(6, jTextField7.getText());
-            pst.setString(7, jTextField6.getText());
-            pst.setString(5, jTextField5.getText());
-            pst.setString(4, jTextField3.getText());
-            pst.setString(3, jComboBox1.getSelectedItem().toString());
-            pst.setString(8, jTextArea1.getText());
-            //pst.setString(9, jTextField8.getText());
-            //pst.setString(10, jTextField1.getText());
-
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "New Voters Were Updated");
-            upDateDB();
-        }
-        catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
-
-    }//GEN-LAST:event_jButton19ActionPerformed*/
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
@@ -906,7 +790,7 @@ public class VotersPage extends javax.swing.JFrame {
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
                 "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
-            Canditates h = new Canditates();
+            Candidates h = new Candidates();
             h.show();
 
             dispose();
@@ -936,34 +820,23 @@ public class VotersPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VotersPage().setVisible(true);
-            }
-        });
+        java.awt.EventQueue.invokeLater(() -> new VotersPage().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton18;
-    //private javax.swing.JButton jButton19;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
-    //private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    //private javax.swing.JTextField jTextField3;
-    //private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    //private javax.swing.JTextField jTextField8;
     // End of variables declaration//GEN-END:variables
 }

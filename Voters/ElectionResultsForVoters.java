@@ -5,8 +5,7 @@
 package Voters;
 
 import Admin.AdminLogin;
-import Admin.AdminPage;
-import General.Canditates;
+import General.Candidates;
 import General.Home;
 import General.VotersList;
 
@@ -79,7 +78,7 @@ public class ElectionResultsForVoters extends JFrame {
 
 
     public int noCand(String ClickID){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -109,7 +108,7 @@ public class ElectionResultsForVoters extends JFrame {
 
 
     public int novoters(String ClickID){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -140,7 +139,7 @@ public class ElectionResultsForVoters extends JFrame {
     }
 
     public void upDateDB(String ClickID){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -918,7 +917,7 @@ public class ElectionResultsForVoters extends JFrame {
 
         int[] Results = new int[5];
         String[] cand_name = new String[5];
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -1121,7 +1120,7 @@ public class ElectionResultsForVoters extends JFrame {
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
                     "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
-            Canditates h = new Canditates();
+            Candidates h = new Candidates();
             h.show();
             
             dispose();
