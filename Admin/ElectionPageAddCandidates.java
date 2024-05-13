@@ -14,6 +14,9 @@ import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Objects;
 import java.util.Vector;
 
@@ -81,7 +84,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -661,49 +664,112 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private boolean isBeforeElectionPeriod(String Election_ID) {
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+        try {
+            PreparedStatement pst = con.prepareStatement("SELECT Start_date FROM Election WHERE Election_ID =?");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                LocalDateTime startDate = rs.getTimestamp("Start_date").toLocalDateTime();
+                LocalDateTime currentDate = LocalDateTime.now();
+
+                return (currentDate.isBefore(startDate));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
-        try {
-            Connection con = DriverManager.getConnection(url, "sa", "123456789");
-            System.out.println("Connected To MySql Database!");
+        if (isBeforeElectionPeriod(Election_ID)) {
+            try {
+                Connection con = DriverManager.getConnection(url, "sa", "123456789");
+                System.out.println("Connected To MySql Database!");
 
-            PreparedStatement pst = con.prepareStatement("select * from Election where Election_ID = ?");
-            pst.setString(1, Election_ID);
-            ResultSet rs = pst.executeQuery();
+                PreparedStatement countPst = con.prepareStatement("SELECT distinct COUNT(*) FROM votes where  Election_ID = ? and Voter_ID is null");
+                countPst.setString(1, Election_ID);
+                ResultSet countRs = countPst.executeQuery();
 
-            if (rs.next()) {
+                if (countRs.next()) {
+                    int candidateCount = countRs.getInt(1);
+                    System.out.println(candidateCount);
 
-                pst = con.prepareStatement("insert into Candidate values(?,?,?,?,?,?)");
-                pst.setString(1, jTextField1.getText());
-                pst.setString(2, jTextField2.getText());
-                pst.setString(3, jTextField3.getText());
-                pst.setString(4, Objects.requireNonNull(jComboBox1.getSelectedItem()).toString());
-                pst.setString(5, jTextField4.getText());
-                pst.setString(6, jTextArea1.getText());
-                pst.executeUpdate();
+                    if (candidateCount < 5) {
+                        PreparedStatement pst = con.prepareStatement("select * from Election where Election_ID = ?");
+                        pst.setString(1, Election_ID);
+                        ResultSet rs = pst.executeQuery();
 
-                pst = con.prepareStatement("insert into votes values(?,null,?)");
-                pst.setString(2, Election_ID);
-                pst.setString(1, jTextField1.getText());
-                pst.executeUpdate();
-                JOptionPane.showMessageDialog(this, "New Candidate Added");
-                upDateDB();
+                        if (rs.next()) {
+                            String candidateValue = jTextField2.getText();
+                            int candidateValueInt = Integer.parseInt(candidateValue);
 
-                pst.close();
+                            if (candidateValueInt >= 1 && candidateValueInt <= 5) {
+                                PreparedStatement hasPst = con.prepareStatement("select distinct c.Candidate_No from Candidate c, votes vs where c.Candidate_ID = vs.Candidate_ID and Election_ID = ?");
+                                hasPst.setString(1, Election_ID);
+                                ResultSet hasRs = hasPst.executeQuery();
+                                boolean candidateExists = false;
+
+                                while (hasRs.next()) {
+                                    int candidateNo = hasRs.getInt("Candidate_No");
+                                    if (candidateNo == candidateValueInt) {
+                                        candidateExists = true;
+                                        break;
+                                    }
+                                }
+
+                                if (candidateExists) {
+                                    JOptionPane.showMessageDialog(this, "Candidate_No value has exist");
+                                } else {
+
+                                    pst = con.prepareStatement("insert into Candidate values(?,?,?,?,?,?)");
+                                    pst.setString(1, jTextField1.getText());
+                                    pst.setString(2, jTextField2.getText());
+                                    pst.setString(3, jTextField3.getText());
+                                    pst.setString(4, Objects.requireNonNull(jComboBox1.getSelectedItem()).toString());
+                                    pst.setString(5, jTextField4.getText());
+                                    pst.setString(6, jTextArea1.getText());
+                                    pst.executeUpdate();
+
+                                    pst = con.prepareStatement("insert into votes values(?,null,?)");
+                                    pst.setString(2, Election_ID);
+                                    pst.setString(1, jTextField1.getText());
+                                    pst.executeUpdate();
+
+                                    JOptionPane.showMessageDialog(this, "New Candidate Added");
+                                    upDateDB();
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(this, "Candidate_No value must be between 1 and 5");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Election not found");
+                        }
+                        rs.close();
+                        pst.close();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Maximum number of candidates reached");
+                    }
+                }
+
+                countRs.close();
+                countPst.close();
+                con.close();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
             }
-            else {
-                JOptionPane.showMessageDialog(this, "Election not found");
-            }
-
-            rs.close();
-            con.close();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
+        } else {
+            JOptionPane.showMessageDialog(this, "Candidates information cannot be changed because of over time");
         }
     }//GEN-LAST:event_jButton15ActionPerformed
 
@@ -724,7 +790,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -738,6 +804,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                 pst = con.prepareStatement("delete from votes where Candidate_ID = ?");
                 pst.setString(1, id);
                 pst.executeUpdate();
+
                 pst = con.prepareStatement("delete from Candidate where Candidate_ID = ?");
                 pst.setString(1, id);
                 pst.executeUpdate();

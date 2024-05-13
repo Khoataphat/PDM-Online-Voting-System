@@ -37,7 +37,7 @@ public class ElectionPage extends javax.swing.JFrame {
     // loi add
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -570,7 +570,7 @@ public class ElectionPage extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -685,7 +685,7 @@ public class ElectionPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -699,8 +699,15 @@ public class ElectionPage extends javax.swing.JFrame {
 
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, username, password);
-                pst = con.prepareStatement("delete from Election where Election_ID = ?");
 
+                pst = con.prepareStatement("delete from votes where Election_ID = ?");
+                pst.setString(1, election_id);
+                pst.executeUpdate();
+
+                pst = con.prepareStatement("delete from Candidate WHERE Candidate_ID NOT IN (SELECT Candidate_ID FROM votes);");
+                pst.executeUpdate();
+
+                pst = con.prepareStatement("delete from Election where Election_ID = ?");
                 pst.setString(1, election_id);
                 pst.executeUpdate();
 

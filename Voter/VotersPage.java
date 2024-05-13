@@ -19,7 +19,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.table.DefaultTableModel;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Vector;
 
 /**
@@ -90,7 +90,7 @@ public class VotersPage extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -617,7 +617,7 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     //
     private boolean isWithinElectionPeriod(String Election_ID) {
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -626,9 +626,9 @@ public class VotersPage extends javax.swing.JFrame {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                LocalDate startDate = rs.getDate("Start_date").toLocalDate();
-                LocalDate endDate = rs.getDate("End_date").toLocalDate();
-                LocalDate currentDate = LocalDate.now();
+                LocalDateTime startDate = rs.getTimestamp("Start_date").toLocalDateTime();
+                LocalDateTime endDate = rs.getTimestamp("End_date").toLocalDateTime();
+                LocalDateTime currentDate = LocalDateTime.now();
 
                 return (currentDate.isEqual(startDate) || currentDate.isAfter(startDate))
                         && (currentDate.isEqual(endDate) || currentDate.isBefore(endDate));
@@ -645,7 +645,7 @@ public class VotersPage extends javax.swing.JFrame {
         int SelectedRows = jTable2.getSelectedRow();
         String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -702,7 +702,7 @@ public class VotersPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";

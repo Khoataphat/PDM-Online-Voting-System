@@ -7,6 +7,10 @@ package Admin;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 import Voters.*;
@@ -21,6 +25,12 @@ public class AdminLogin extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
+
+    Connection con = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    ResultSet rs1 = null;
+
     public AdminLogin() {
         initComponents();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12, jButton13};
@@ -49,7 +59,7 @@ public class AdminLogin extends javax.swing.JFrame {
                 public void mouseExited(MouseEvent e) {
                     btn.setBackground(new Color(21,25,28));
                 }
-                
+
             });
         }
     }
@@ -91,7 +101,7 @@ public class AdminLogin extends javax.swing.JFrame {
         jButton12 = new javax.swing.JButton();
         JLabel jLabel8 = new JLabel();
         JLabel jLabel9 = new JLabel();
-        JTextField jTextField2 = new JTextField();
+        jTextField2 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -312,8 +322,8 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
         jLabel9.setText("Enter Credentials");
 
-        jTextField2.setText("Admin");
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
+
 
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
@@ -366,7 +376,7 @@ public class AdminLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         VotersList h = new VotersList();
         h.setVisible(true);
-        
+
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -379,14 +389,14 @@ public class AdminLogin extends javax.swing.JFrame {
         Home h = new Home();
         h.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         VotersLogin h = new VotersLogin();
         h.setVisible(true);
-        
+
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -396,18 +406,39 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        String pwd = "jojo";
-        String pwdentered = jPasswordField1.getText();
-        if(pwd.equals(pwdentered)){
-            JOptionPane.showMessageDialog(this, "Login Successful");
-            
-            AdminPage h = new AdminPage();
-            h.setVisible(true);
-        
-            dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Login Failed");
+        String username = jTextField2.getText();
+        String password = new String(jPasswordField1.getPassword()); // Convert password to string correctly
+        System.out.println("pwd: " + password);
+
+        if(username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username / Password should not be empty.");
+        } else {
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+            String databaseName = "Online-Voting";
+            String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+
+            try {
+                con = DriverManager.getConnection(url, "sa", "123456789");
+                String query = "SELECT * FROM Admin WHERE Username = ? AND Password = ?";
+                pst = con.prepareStatement(query);
+                pst.setString(1, jTextField2.getText());
+                pst.setString(2, jPasswordField1.getText());
+                rs = pst.executeQuery();
+
+                if(rs.next()) {
+                    JOptionPane.showMessageDialog(this, "Login Successful");
+                    AdminPage v = new AdminPage();
+                    v.setVisible(true);
+
+                    dispose();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Login Failed");
+                }
+
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
         }
     }//GEN-LAST:event_jButton12ActionPerformed
 
@@ -417,14 +448,14 @@ public class AdminLogin extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Candidates h = new Candidates();
         h.setVisible(true);
-        
+
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -435,7 +466,7 @@ public class AdminLogin extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -464,5 +495,6 @@ public class AdminLogin extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton7;
     private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }

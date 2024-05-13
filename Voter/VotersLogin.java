@@ -425,7 +425,7 @@ public class VotersLogin extends javax.swing.JFrame {
         if(username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username / Password should not be empty.");
         } else {
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
