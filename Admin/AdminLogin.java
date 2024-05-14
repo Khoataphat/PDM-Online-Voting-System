@@ -192,8 +192,8 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -203,13 +203,14 @@ public class AdminLogin extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
             pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnCBottomLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1)
-                .addGap(105, 105, 105)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(176, 176, 176))
+                    .addGap(80, 80, 172)
+                    .addComponent(jLabel1)
+                    .addGap(105, 105, 187)
+                    .addComponent(jLabel4)
+                    // .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1184, Short.MAX_VALUE)
+                    .addGap(105, 105, 187)
+                    .addComponent(jLabel3)
+                    .addGap(80, 80, 100))
         );
         pnCBottomLayout.setVerticalGroup(
             pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
