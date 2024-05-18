@@ -673,14 +673,27 @@ public class ElectionPage extends javax.swing.JFrame {
     }
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {
-        DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
-        String Election_ID = String.valueOf(jTable1.getSelectedRow());
 
-        ElectionResults e = new ElectionResults(Election_ID,Admin_ID);
-        e.show();
+        DefaultTableModel RecordTable = (DefaultTableModel) jTable1.getModel();
+        int SelectedRows = jTable1.getSelectedRow();
+        if (SelectedRows != -1) {
+            String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        dispose();
+            // Hiển thị cảnh báo với election ID
+            int confirmation = JOptionPane.showConfirmDialog(this, "Go to Election page with ID: " + Election_ID + "?", "Confirm", JOptionPane.YES_NO_OPTION);
+
+            if (confirmation == JOptionPane.YES_OPTION) {
+                // Chuyển đến trang chứa Election ID
+                ElectionResults e = new ElectionResults(Election_ID,Admin_ID);
+                e.show();
+                dispose();
+            }
+        } else {
+            // Xử lý khi không có hàng nào được chọn
+            JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
 

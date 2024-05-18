@@ -87,8 +87,6 @@ public class ElectionResults extends javax.swing.JFrame {
             pst.setString(1, Election_ID);
 
             rs = pst.executeQuery();
-
-
             if(rs.next()){
                 String noofcandidates = rs.getString("Total");
                 jLabel12.setText(noofcandidates);
@@ -164,32 +162,42 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 1 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                    Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))  PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 1\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-
                 lb01.setText(rs.getString("Full_name"));
-            }
-            else{
-                lb01.setText("No Candidate");
-            }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 1 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
                 jPanel7Layout.setHorizontalGroup(
                         jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGap(0, 0, Short.MAX_VALUE)
                 );
                 jPanel7Layout.setVerticalGroup(
                         jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
                 );
+            }
+            else{
+                lb01.setText("No Candidate");
             }
 
         }
@@ -199,32 +207,43 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 2 AND vs.Election_ID = ?");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                    Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))  PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 2\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb02.setText(rs.getString("Full_name"));
-            }
-            else{
-                lb02.setText("No Candidate");
-            }
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 2 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
 
-            rs = pst.executeQuery();
-            if(rs.next()){
                 jPanel8Layout.setHorizontalGroup(
                         jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGap(0, 0, Short.MAX_VALUE)
                 );
                 jPanel8Layout.setVerticalGroup(
                         jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
                 );
             }
-
+            else{
+                lb02.setText("No Candidate");
+            }
 
         }
         catch (Exception ex) {
@@ -233,35 +252,44 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 3 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                   Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2)) PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 3\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-
                 lb03.setText(rs.getString("Full_name"));
-            }
-            else{
-                lb03.setText("No Candidate");
-            }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 3 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
                 jPanel9Layout.setHorizontalGroup(
                         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGap(0, 0, Short.MAX_VALUE)
                 );
                 jPanel9Layout.setVerticalGroup(
                         jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
                 );
             }
-
-
+            else{
+                lb03.setText("No Candidate");
+            }
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -269,31 +297,43 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 4 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))   PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 4\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb04.setText(rs.getString("Full_name"));
-            }
-            else{
-                lb04.setText("No Candidate");
-            }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 4 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
                 jPanel10Layout.setHorizontalGroup(
                         jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGap(0, 0, Short.MAX_VALUE)
                 );
                 jPanel10Layout.setVerticalGroup(
                         jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
                 );
+            }
+            else{
+                lb04.setText("No Candidate");
             }
 
         }
@@ -303,31 +343,43 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 5 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                    Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))  PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 5\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb05.setText(rs.getString("Full_name"));
-            }
-            else{
-                lb05.setText("No Candidate");
-            }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 5 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
                 jPanel11Layout.setHorizontalGroup(
                         jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGap(0, 0, Short.MAX_VALUE)
                 );
                 jPanel11Layout.setVerticalGroup(
                         jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
                 );
+            }
+            else{
+                lb05.setText("No Candidate");
             }
         }
         catch (Exception ex) {
@@ -810,22 +862,22 @@ public class ElectionResults extends javax.swing.JFrame {
                                                 .addGap(234, 234, 234)
                                                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jLabel17))
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addGap(86, 86, 86)
                                                 .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel19,javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
                                 .addContainerGap(2783, Short.MAX_VALUE))
         );
         pniCCenterLayout.setVerticalGroup(
@@ -988,53 +1040,44 @@ public class ElectionResults extends javax.swing.JFrame {
         if(isAfterElectionPeriod(Election_ID)) {
             try {
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("WITH VoteCounts AS ( SELECT cd.Full_name, COUNT(v.Voter_ID) AS Voter_count FROM Candidate cd INNER JOIN votes v ON cd.Candidate_ID = v.Candidate_ID WHERE v.Election_ID = ? AND cd.Candidate_No IN (1, 2, 3, 4, 5) GROUP BY cd.Full_name)SELECT count(Full_name) AS CountNo1 FROM VoteCounts WHERE Voter_count = (SELECT MAX(Voter_count) FROM VoteCounts);");
+                pst = con.prepareStatement("with counter_votes as (\n" +
+                        "select Candidate_ID, Election_ID,  Count(Voter_ID) 'count'\n" +
+                        "from votes\n" +
+                        "where Candidate_ID is not null and \n" +
+                        "Election_ID is not null and Voter_ID is not null\n" +
+                        "group by votes.Candidate_ID, Election_ID), \n" +
+                        "max_votes as (\n" +
+                        "select max(count) 'Max'\n" +
+                        "from counter_votes\n" +
+                        "group by Election_ID)\n" +
+                        "\n" +
+                        "select counter_votes.*, Candidate.Full_name\n" +
+                        "from max_votes, counter_votes, Candidate\n" +
+                        "where max_votes.[Max] = counter_votes.[count]\n" +
+                        "and counter_votes.Candidate_ID = Candidate.Candidate_ID\n" +
+                        "and Election_ID = ?");
                 pst.setString(1, Election_ID);
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
-                    if (rs.getInt("CountNo1") == 1) {
-
-                        jLabel14.setText("The Winner Of The Election is");
-                        jLabel16.setText("BY");
-                        jLabel17.setText("Votes");
-
-                        pst = con.prepareStatement("SELECT TOP 1 Full_name, Voter_Count FROM (SELECT cd.Full_name, COUNT(v.Voter_ID) AS Voter_count FROM Candidate cd INNER JOIN votes v ON cd.Candidate_ID = v.Candidate_ID WHERE v.Election_ID = ? AND cd.Candidate_No IN (1, 2, 3, 4, 5) GROUP BY cd.Full_name) AS Subquery ORDER BY Voter_count DESC;");
-                        pst.setString(1, Election_ID);
-                        rs = pst.executeQuery();
-                        if (rs.next()) {
-                            jLabel15.setText(rs.getString("Full_name"));
-                            jLabel18.setText(Integer.toString(rs.getInt("Voter_count")));
-                        } else {
-                            jLabel15.setText("No Candidate");
-                            jLabel18.setText("0");
-                        }
-                    } else {
-
                         jLabel14.setText("The Winner Of The Election are");
                         jLabel16.setText("BY");
                         jLabel17.setText("Votes");
 
-                        pst = con.prepareStatement("WITH VoteCounts AS ( SELECT cd.Full_name, COUNT(v.Voter_ID) AS Voter_count FROM Candidate cd INNER JOIN votes v ON cd.Candidate_ID = v.Candidate_ID WHERE v.Election_ID = ? AND cd.Candidate_No IN (1, 2, 3, 4, 5) GROUP BY cd.Full_name)SELECT Full_name, Voter_count FROM VoteCounts WHERE Voter_count = (SELECT MAX(Voter_count) FROM VoteCounts);");
-                        pst.setString(1, Election_ID);
-                        rs = pst.executeQuery();
+                        jLabel15.setText(rs.getString("Full_name"));
+                        jLabel18.setText(Integer.toString(rs.getInt("count")));
                         if (rs.next()) {
-                            jLabel15.setText(rs.getString("Full_name"));
-                            jLabel18.setText(Integer.toString(rs.getInt("Voter_count")));
+                            jLabel19.setText(", " +rs.getString("Full_name"));
                             if (rs.next()) {
-                                jLabel19.setText(rs.getString("Full_name"));
+                                jLabel20.setText(", " +rs.getString("Full_name"));
                                 if (rs.next()) {
-                                    jLabel20.setText(rs.getString("Full_name"));
+                                    jLabel21.setText(", " +rs.getString("Full_name"));
                                     if (rs.next()) {
-                                        jLabel21.setText(rs.getString("Full_name"));
-                                        if (rs.next()) {
-                                            jLabel22.setText(rs.getString("Full_name"));
-                                        }
+                                        jLabel22.setText(", " +rs.getString("Full_name"));
                                     }
                                 }
                             }
                         }
-                    }
                 }
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex);
