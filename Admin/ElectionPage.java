@@ -32,12 +32,13 @@ public class ElectionPage extends javax.swing.JFrame {
     int q;
     int i;
     int deleteItem;
+    static String Admin_ID;
 
 
     // loi add
 
     public void upDateDB(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -73,9 +74,10 @@ public class ElectionPage extends javax.swing.JFrame {
         }
     }
 
-    public ElectionPage() {
+    public ElectionPage(String Admin_ID) {
         initComponents();
         upDateDB();
+        this.Admin_ID = Admin_ID;
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12/*, jButton13*/, jButton14/*, jButton15*/,jButton16,jButton17};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
@@ -247,8 +249,8 @@ public class ElectionPage extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel3.setText("Group 5");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Group 6 - PDM");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -258,14 +260,13 @@ public class ElectionPage extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnCBottomLayout.createSequentialGroup()
-                                .addGap(80, 80, 172)
+                                .addGap(44, 44, 44)
                                 .addComponent(jLabel1)
-                                .addGap(105, 105, 187)
+                                .addGap(105, 105, 105)
                                 .addComponent(jLabel4)
-                                // .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1184, Short.MAX_VALUE)
-                                .addGap(105, 105, 187)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addGap(80, 80, 100))
+                                .addGap(176, 176, 176))
         );
         pnCBottomLayout.setVerticalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -571,7 +572,7 @@ public class ElectionPage extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -580,12 +581,13 @@ public class ElectionPage extends javax.swing.JFrame {
             }
             else{
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("insert into Election values(?,?,?,?,null)");
+                pst = con.prepareStatement("insert into Election values(?,?,?,?,?)");
 
                 pst.setString(1, jTextField4.getText()); // ID
                 pst.setString(2, jTextField2.getText()); // Name
                 pst.setString(3, jTextField1.getText()); // Start time
                 pst.setString(4, jTextField3.getText()); // End time
+                pst.setString(5, Admin_ID);
 
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(this, "New Election Added");
@@ -642,7 +644,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        AdminPage h = new AdminPage();
+        AdminPage h = new AdminPage(Admin_ID);
         h.show();
 
         dispose();
@@ -660,7 +662,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
             if (confirmation == JOptionPane.YES_OPTION) {
                 // Chuyển đến trang chứa Election ID
-                ElectionPageAddCandidates v = new ElectionPageAddCandidates(electionID);
+                ElectionPageAddCandidates v = new ElectionPageAddCandidates(Admin_ID, electionID);
                 v.setVisible(true);
                 dispose();
             }
@@ -672,9 +674,9 @@ public class ElectionPage extends javax.swing.JFrame {
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
-        int SelectedRows = jTable1.getSelectedRow();
+        String Election_ID = String.valueOf(jTable1.getSelectedRow());
 
-        ElectionResults e = new ElectionResults(RecordTable.getValueAt(SelectedRows,0).toString());
+        ElectionResults e = new ElectionResults(Election_ID,Admin_ID);
         e.show();
 
         dispose();
@@ -686,7 +688,7 @@ public class ElectionPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -752,7 +754,7 @@ public class ElectionPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ElectionPage().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ElectionPage(Admin_ID).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -90,7 +90,7 @@ public class VotersPage extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -260,8 +260,8 @@ public class VotersPage extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel3.setText("Group 5");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Group 6 - PDM");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -271,14 +271,13 @@ public class VotersPage extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnCBottomLayout.createSequentialGroup()
-                                .addGap(80, 80, 172)
+                                .addGap(44, 44, 44)
                                 .addComponent(jLabel1)
-                                .addGap(105, 105, 187)
+                                .addGap(105, 105, 105)
                                 .addComponent(jLabel4)
-                                // .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1184, Short.MAX_VALUE)
-                                .addGap(105, 105, 187)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3126, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addGap(80, 80, 100))
+                                .addGap(176, 176, 176))
         );
         pnCBottomLayout.setVerticalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -618,7 +617,7 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     //
     private boolean isWithinElectionPeriod(String Election_ID) {
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -646,7 +645,7 @@ public class VotersPage extends javax.swing.JFrame {
         int SelectedRows = jTable2.getSelectedRow();
         String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -703,7 +702,7 @@ public class VotersPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -727,8 +726,8 @@ public class VotersPage extends javax.swing.JFrame {
                     String startDate = rs.getString("Start_date");
                     String endDate = rs.getString("End_date");
 
-                    ElectionResults e = new ElectionResults(null);
-                    e.setVisible(true);
+                    //ElectionResults e = new ElectionResults(null);
+                    //e.setVisible(true);
                 } else {
                     JOptionPane.showMessageDialog(null, "Election not found");
                 }
