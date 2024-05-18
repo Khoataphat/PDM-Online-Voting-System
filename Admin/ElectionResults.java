@@ -37,11 +37,12 @@ public class ElectionResults extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    String Election_ID;
+    static String Election_ID, Admin_ID;
 
-    public ElectionResults(String Election_ID) {
+    public ElectionResults(String Election_ID, String Admin_ID) {
         initComponents();
         this.Election_ID = Election_ID;
+        this.Admin_ID = Admin_ID;
         upDateDB();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
         for (JButton btn : btns) {
@@ -947,7 +948,7 @@ public class ElectionResults extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        ElectionPage h = new ElectionPage();
+        ElectionPage h = new ElectionPage(Admin_ID);
         h.show();
 
         dispose();
@@ -1090,7 +1091,7 @@ public class ElectionResults extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ElectionResults(null).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ElectionResults(Election_ID, Admin_ID).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
