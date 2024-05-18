@@ -37,12 +37,12 @@ public class ElectionResults extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    static String Election_ID, Admin_ID;
-
+    private static String  Admin_ID;
+    private static String Election_ID;
     public ElectionResults(String Election_ID, String Admin_ID) {
         initComponents();
-        this.Election_ID = Election_ID;
-        this.Admin_ID = Admin_ID;
+        ElectionResults.Election_ID = Election_ID;
+        ElectionResults.Admin_ID = Admin_ID;
         upDateDB();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
         for (JButton btn : btns) {
@@ -83,7 +83,7 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT count(DISTINCT(c.Candidate_No)) AS Total FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID =?");
+            pst = con.prepareStatement("SELECT count(DISTINCT(Candidate_ID)) AS Total FROM votes vs WHERE Election_ID =?");
             pst.setString(1, Election_ID);
 
             rs = pst.executeQuery();
@@ -176,7 +176,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 lb01.setText("No Candidate");
             }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 1 AND v.Election_ID = ?");
+            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 1 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
             pst.setString(1, Election_ID);
             pst.setString(2, Election_ID);
 
@@ -209,7 +209,7 @@ public class ElectionResults extends javax.swing.JFrame {
             else{
                 lb02.setText("No Candidate");
             }
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 2 AND v.Election_ID = ?");
+            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 2 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
             pst.setString(1, Election_ID);
             pst.setString(2, Election_ID);
 
@@ -245,7 +245,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 lb03.setText("No Candidate");
             }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 3 AND v.Election_ID = ?");
+            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 3 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
             pst.setString(1, Election_ID);
             pst.setString(2, Election_ID);
 
@@ -280,7 +280,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 lb04.setText("No Candidate");
             }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 4 AND v.Election_ID = ?");
+            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 4 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
             pst.setString(1, Election_ID);
             pst.setString(2, Election_ID);
 
@@ -314,7 +314,7 @@ public class ElectionResults extends javax.swing.JFrame {
                 lb05.setText("No Candidate");
             }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 5 AND v.Election_ID = ?");
+            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ? AND Voter_ID IS NOT NULL) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 5 AND v.Election_ID = ? AND v.Voter_ID IS NOT NULL");
             pst.setString(1, Election_ID);
             pst.setString(2, Election_ID);
 
