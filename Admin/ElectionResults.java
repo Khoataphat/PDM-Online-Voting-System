@@ -25,15 +25,7 @@ public class ElectionResults extends javax.swing.JFrame {
     /**
      * Creates new form Home
      */
- /*
-    private String Election_id ;
-    public String getElection_id(){
-        return Election_id;
-    }
-    public void setElection_id(String Election_id){
-        this.Election_id = Election_id;
-    }
-*/
+
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
@@ -274,7 +266,6 @@ public class ElectionResults extends javax.swing.JFrame {
                     "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb03.setText(rs.getString("Full_name"));
 
@@ -319,7 +310,6 @@ public class ElectionResults extends javax.swing.JFrame {
                     "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb04.setText(rs.getString("Full_name"));
 
@@ -365,7 +355,6 @@ public class ElectionResults extends javax.swing.JFrame {
                     "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb05.setText(rs.getString("Full_name"));
 
@@ -391,60 +380,6 @@ public class ElectionResults extends javax.swing.JFrame {
 
     }
 
-
-
-    /*public int noCand() {
-        String serverName = "DESKTOP-0IKLTBG";
-        String databaseName = "OnlineVoting";
-        String username = "sa";
-        String password = "123456789";
-        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
-        try (Connection con = DriverManager.getConnection(url, username, password);
-             PreparedStatement pst = con.prepareStatement("SELECT COUNT(Candidate_No) AS Total FROM candidates");
-             ResultSet rs = pst.executeQuery()) {
-
-            if (rs.next()) {
-                int noOfCandidates = rs.getInt("Total");
-                jLabel12.setText(String.valueOf(noOfCandidates));
-                return noOfCandidates;
-            } else {
-                return 0;
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Database connection error.");
-        }
-        return 0;
-    }
-
-
-    public int novoters() {
-        String serverName = "DESKTOP-0IKLTBG";
-        String databaseName = "OnlineVoting";
-        String username = "sa";
-        String password = "123456789";
-        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
-        try (Connection con = DriverManager.getConnection(url, username, password);
-             PreparedStatement pst = con.prepareStatement("SELECT COUNT(Username) AS Username_Count FROM votersvoting");
-             ResultSet rs = pst.executeQuery()) {
-
-            if (rs.next()) {
-                int noOfVoters = rs.getInt("Username_Count");
-                jLabel10.setText(String.valueOf(noOfVoters));
-                return noOfVoters;
-            } else {
-                return 0;
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Database connection error.");
-        }
-        return 0;
-    }*/
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -467,9 +402,6 @@ public class ElectionResults extends javax.swing.JFrame {
         JPanel jPanel5 = new JPanel();
         JPanel jPanel6 = new JPanel();
         jButton13 = new javax.swing.JButton();
-        JLabel jLabel5 = new JLabel();
-        JLabel jLabel6 = new JLabel();
-        JLabel jLabel7 = new JLabel();
         JPanel pnCenter = new JPanel();
         JPanel pnCBottom = new JPanel();
         JLabel jLabel1 = new JLabel();
@@ -531,7 +463,7 @@ public class ElectionResults extends javax.swing.JFrame {
         pnSide.add(jPanel1);
 
         jButton1.setForeground(new java.awt.Color(0, 255, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png"));
         jButton1.setText(" HOME");
         jButton1.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -543,28 +475,28 @@ public class ElectionResults extends javax.swing.JFrame {
         pnSide.add(jButton1);
 
         jButton2.setForeground(new java.awt.Color(0, 255, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png"));
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new java.awt.Color(0, 255, 204));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png"));
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new java.awt.Color(0, 255, 204));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png"));
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new java.awt.Color(0, 255, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png"));
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton5.addActionListener(this::jButton5ActionPerformed);
@@ -586,20 +518,6 @@ public class ElectionResults extends javax.swing.JFrame {
         jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
-
-//        jButton13.setText("VOTING PERCENTAGE");
-//        jButton13.addActionListener(this::jButton13ActionPerformed);
-//
-//        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-//        jLabel5.setText("CLICK HERE TO");
-//
-//        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-//        jLabel6.setText("KNOW THE");
-//
-//        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
-//        jLabel7.setText("VOTING PERCENTAGE");
-
-
 
         pnRoot.add(pnSide, java.awt.BorderLayout.WEST);
 
@@ -648,7 +566,7 @@ public class ElectionResults extends javax.swing.JFrame {
         pniCTop.setBackground(new java.awt.Color(34, 40, 44));
         pniCTop.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48));
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Election Results");
 
@@ -691,11 +609,11 @@ public class ElectionResults extends javax.swing.JFrame {
                         .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png"));
         jButton9.setText("Back");
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png"));
         jButton8.setText("Click");
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
@@ -744,31 +662,28 @@ public class ElectionResults extends javax.swing.JFrame {
 
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Admins");
 
         jButton17.setBackground(new java.awt.Color(232, 10, 10));
-        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton17.addActionListener(this::jButton17ActionPerformed);
 
-        jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14));
         jLabel9.setForeground(new java.awt.Color(255, 255, 0));
         jLabel9.setText("No of People Contributed Upto ");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14));
         jLabel10.setForeground(new java.awt.Color(0, 255, 0));
 
-        jLabel11.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14));
         jLabel11.setForeground(new java.awt.Color(255, 255, 0));
         jLabel11.setText("No of Canditates Partcipating");
 
-        //jLabel12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14)); // NOI18N
-        //jLabel12.setForeground(new java.awt.Color(28, 42, 80));
-
-        jLabel13.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14));
         jLabel13.setForeground(new java.awt.Color(255, 255, 0));
         jLabel13.setText("this time");
 
@@ -790,31 +705,28 @@ public class ElectionResults extends javax.swing.JFrame {
         lb05.setForeground(new java.awt.Color(0, 255, 204));
         lb05.setText("05");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel15.setForeground(new java.awt.Color(248, 255, 0));
 
-        jLabel19.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel19.setForeground(new java.awt.Color(248, 255, 0));
 
-        jLabel20.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel20.setForeground(new java.awt.Color(102, 255, 102));
 
-        //jLabel21.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        //jLabel21.setForeground(new java.awt.Color(255, 30, 0));
-
-        jLabel22.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel22.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel22.setForeground(new java.awt.Color(102, 133, 255));
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel18.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30));
         jLabel18.setForeground(new java.awt.Color(255, 255, 0));
 
 
@@ -924,18 +836,13 @@ public class ElectionResults extends javax.swing.JFrame {
                                                 .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(20, 20, 20)
 
-//                                                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-//                                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        ))
+                                                .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                     //   .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false))
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,false)
                                                 .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, -1, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -991,10 +898,6 @@ public class ElectionResults extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
         // TODO add your handling code here:

@@ -35,8 +35,6 @@ public class ElectionPage extends javax.swing.JFrame {
     static String Admin_ID;
 
 
-    // loi add
-
     public void upDateDB(){
         String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
@@ -182,7 +180,7 @@ public class ElectionPage extends javax.swing.JFrame {
         pnSide.add(jPanel1);
 
         jButton1.setForeground(new java.awt.Color(0, 255, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png"));
         jButton1.setText(" HOME");
         jButton1.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -194,28 +192,28 @@ public class ElectionPage extends javax.swing.JFrame {
         pnSide.add(jButton1);
 
         jButton2.setForeground(new java.awt.Color(0, 255, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png"));
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new java.awt.Color(0, 255, 204));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png"));
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new java.awt.Color(0, 255, 204));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png"));
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new java.awt.Color(0, 255, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png"));
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton5.addActionListener(this::jButton5ActionPerformed);
@@ -284,7 +282,7 @@ public class ElectionPage extends javax.swing.JFrame {
         pniCTop.setBackground(new java.awt.Color(34, 40, 44));
         pniCTop.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48));
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Manage Election");
 
@@ -327,7 +325,7 @@ public class ElectionPage extends javax.swing.JFrame {
                         .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        jButton9.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png"));
         jButton9.setText("Back");
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
@@ -391,53 +389,53 @@ public class ElectionPage extends javax.swing.JFrame {
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\politics-election-voting-cartoon_1284-23116.jpg")); // NOI18N
-        jButton8.addActionListener(this::jButton8ActionPerformed); // check  dong trang
+        jButton8.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\politics-election-voting-cartoon_1284-23116.jpg"));
+        jButton8.addActionListener(this::jButton8ActionPerformed);
 
-        jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton12.setForeground(new java.awt.Color(0, 255, 204));
         jButton12.setText("Add Election");
         jButton12.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton12.addActionListener(this::jButton12ActionPerformed);
 
-        jButton14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton14.setForeground(new java.awt.Color(0, 255, 204));
         jButton14.setText("Add Cadidate");
         jButton14.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton14.addActionListener(this::jButton14ActionPerformed);
 
-        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton16.setForeground(new java.awt.Color(0, 255, 204));
         jButton16.setText("Result");
         jButton16.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton16.addActionListener(this::jButton16ActionPerformed);
 
-        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton17.setForeground(new java.awt.Color(0, 255, 204));
         jButton17.setText("Delete Election");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton17.addActionListener(this::jButton17ActionPerformed);
 
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Admins");
 
-        jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24));
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
         jLabel9.setText("Date_start");
 
-        jLabel11.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24));
         jLabel11.setForeground(new java.awt.Color(0, 102, 102));
         jLabel11.setText("Date_end");
 
         jTextField2.addActionListener(this::jTextField2ActionPerformed);
 
-        jLabel10.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24));
         jLabel10.setForeground(new java.awt.Color(0, 102, 102));
         jLabel10.setText("Name of the Election");
 
-        jLabel12.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24));
         jLabel12.setForeground(new java.awt.Color(0, 102, 102));
         jLabel12.setText("ID");
 
@@ -451,10 +449,8 @@ public class ElectionPage extends javax.swing.JFrame {
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
 
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                //Hang button
                                                 .addComponent(jButton14,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(10, 10, 10 )
-                                                //.addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(10, 10, 10 )
                                                 .addComponent(jButton16,javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(10, 10, 10 )
@@ -502,7 +498,6 @@ public class ElectionPage extends javax.swing.JFrame {
                                                 .addGap(40, 40, 40 )
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE) //Hang button
                                                         .addComponent(jButton14,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        //.addComponent(jButton15,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton16,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton17,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jButton12,javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -593,8 +588,6 @@ public class ElectionPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "New Election Added");
                 upDateDB();
 
-                //CreateElectionAddCanditates c = new CreateElectionAddCanditates();
-                //c.show(); // loi check
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e);
@@ -657,17 +650,14 @@ public class ElectionPage extends javax.swing.JFrame {
         if (SelectedRows != -1) {
             String electionID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-            // Hiển thị cảnh báo với election ID
             int confirmation = JOptionPane.showConfirmDialog(this, "Go to Election page with ID: " + electionID + "?", "Confirm", JOptionPane.YES_NO_OPTION);
 
             if (confirmation == JOptionPane.YES_OPTION) {
-                // Chuyển đến trang chứa Election ID
                 ElectionPageAddCandidates v = new ElectionPageAddCandidates(Admin_ID, electionID);
                 v.setVisible(true);
                 dispose();
             }
         } else {
-            // Xử lý khi không có hàng nào được chọn
             JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -679,17 +669,14 @@ public class ElectionPage extends javax.swing.JFrame {
         if (SelectedRows != -1) {
             String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-            // Hiển thị cảnh báo với election ID
             int confirmation = JOptionPane.showConfirmDialog(this, "Go to Election page with ID: " + Election_ID + "?", "Confirm", JOptionPane.YES_NO_OPTION);
 
             if (confirmation == JOptionPane.YES_OPTION) {
-                // Chuyển đến trang chứa Election ID
                 ElectionResults e = new ElectionResults(Election_ID,Admin_ID);
                 e.show();
                 dispose();
             }
         } else {
-            // Xử lý khi không có hàng nào được chọn
             JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }

@@ -125,7 +125,7 @@ public class VotersList extends javax.swing.JFrame {
         pnSide.add(jPanel1);
 
         jButton1.setForeground(new java.awt.Color(0, 255, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png"));
         jButton1.setText(" HOME");
         jButton1.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -137,28 +137,28 @@ public class VotersList extends javax.swing.JFrame {
         pnSide.add(jButton1);
 
         jButton2.setForeground(new java.awt.Color(0, 255, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png"));
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new java.awt.Color(0, 255, 204));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png"));
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new java.awt.Color(0, 255, 204));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png"));
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new java.awt.Color(0, 255, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png"));
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton5.addActionListener(this::jButton5ActionPerformed);
@@ -228,7 +228,7 @@ public class VotersList extends javax.swing.JFrame {
         pniCTop.setBackground(new java.awt.Color(34, 40, 44));
         pniCTop.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48));
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("VOTER LIST");
 
@@ -306,7 +306,7 @@ public class VotersList extends javax.swing.JFrame {
 
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Any Issues or Changes Contact Admin");
 
@@ -403,7 +403,6 @@ public class VotersList extends javax.swing.JFrame {
 
             q = stData.getColumnCount();
 
-            // Define your custom column names
             String[] columnNames = {"Voter_ID", "Full_name", "Gender", "Age", "Email"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
@@ -412,7 +411,6 @@ public class VotersList extends javax.swing.JFrame {
             while (rs.next()){
                 Vector columnData = new Vector();
 
-                // Fetch column data using the correct column names
                 columnData.add(rs.getString("Voter_ID"));
                 columnData.add(rs.getString("Full_name"));
                 columnData.add(rs.getString("Gender"));

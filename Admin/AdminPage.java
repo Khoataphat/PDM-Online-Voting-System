@@ -116,7 +116,7 @@ public class AdminPage extends javax.swing.JFrame {
         pnSide.add(jPanel1);
 
         jButton1.setForeground(new java.awt.Color(0, 255, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png"));
         jButton1.setText(" HOME");
         jButton1.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,28 +128,28 @@ public class AdminPage extends javax.swing.JFrame {
         pnSide.add(jButton1);
 
         jButton2.setForeground(new java.awt.Color(0, 255, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png"));
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new java.awt.Color(0, 255, 204));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png"));
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new java.awt.Color(0, 255, 204));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png"));
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new java.awt.Color(0, 255, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png"));
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton5.addActionListener(this::jButton5ActionPerformed);
@@ -195,7 +195,6 @@ public class AdminPage extends javax.swing.JFrame {
                                 .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
                                 .addGap(105, 105, 150)
-                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(80, 80, 100))
         );
@@ -215,7 +214,7 @@ public class AdminPage extends javax.swing.JFrame {
         pniCTop.setBackground(new java.awt.Color(34, 40, 44));
         pniCTop.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48));
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Admins Page");
 
@@ -294,28 +293,28 @@ public class AdminPage extends javax.swing.JFrame {
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon/Admin.jpg")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon/Admin.jpg"));
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
-        jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton12.setForeground(new java.awt.Color(0, 255, 204));
         jButton12.setText("Create Election");
         jButton12.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton12.addActionListener(this::jButton12ActionPerformed);
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
 
         jLabel8.setText("Admins");
 
-        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton16.setForeground(new java.awt.Color(0, 255, 204));
         jButton16.setText("Manage Voters");
         jButton16.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton16.addActionListener(this::jButton16ActionPerformed);
 
         jButton17.setBackground(new java.awt.Color(255, 102, 102));
-        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton17.addActionListener(this::jButton17ActionPerformed);

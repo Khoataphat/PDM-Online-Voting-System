@@ -103,7 +103,6 @@ public class VotersPage extends javax.swing.JFrame {
 
             q = stData.getColumnCount();
 
-            // Define custom column names
             String[] columnNames = {"Election_ID", "Election_name", "Start_date", "End_date"};
 
             DefaultTableModel RecordTable = new DefaultTableModel(columnNames, 0);
@@ -197,7 +196,7 @@ public class VotersPage extends javax.swing.JFrame {
         pnSide.add(jPanel1);
 
         jButton1.setForeground(new java.awt.Color(0, 255, 204));
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png")); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-home-25.png"));
         jButton1.setText(" HOME");
         jButton1.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -209,28 +208,28 @@ public class VotersPage extends javax.swing.JFrame {
         pnSide.add(jButton1);
 
         jButton2.setForeground(new java.awt.Color(0, 255, 204));
-        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-elections-25.png"));
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new java.awt.Color(0, 255, 204));
-        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-people-25.png"));
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new java.awt.Color(0, 255, 204));
-        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-leader-25.png"));
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new java.awt.Color(0, 255, 204));
-        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-list-25.png"));
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton5.addActionListener(this::jButton5ActionPerformed);
@@ -297,7 +296,7 @@ public class VotersPage extends javax.swing.JFrame {
         pniCTop.setBackground(new java.awt.Color(34, 40, 44));
         pniCTop.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48));
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
         jLabel2.setText("Voter Page");
 
@@ -340,7 +339,7 @@ public class VotersPage extends javax.swing.JFrame {
                         .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        jButton8.setIcon(new javax.swing.ImageIcon("D:Image and Icon\\")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("D:Image and Icon\\"));
         jButton8.setText("Back");
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
@@ -383,29 +382,29 @@ public class VotersPage extends javax.swing.JFrame {
 
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
-        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Select Election");
 
-        jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton15.setForeground(new java.awt.Color(0, 255, 204));
         jButton15.setText("Go to Vote");
         jButton15.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton15.addActionListener(this::jButton15ActionPerformed);
 
-        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton16.setForeground(new java.awt.Color(0, 255, 204));
         jButton16.setText("Reset");
         jButton16.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton16.addActionListener(this::jButton16ActionPerformed);
 
         jButton17.setBackground(new java.awt.Color(255, 102, 102));
-        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton17.addActionListener(this::jButton17ActionPerformed);
 
-        jButton18.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton18.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton18.setForeground(new java.awt.Color(0, 255, 204));
         jButton18.setText("Election Results");
         jButton18.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -482,19 +481,14 @@ public class VotersPage extends javax.swing.JFrame {
                                                                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGap(98, 98, 98)
                                                                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                         .addGap(98, 98, 98) //dts21115, pGcH4okj
                                                                         .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(105, 105, 105)
-                                                                /*.addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
+                                                                        .addGap(105, 105, 105))
                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        //.addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                                        //.addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                         .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                                                                                        //.addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                                                                                         .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))
                                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
@@ -508,8 +502,6 @@ public class VotersPage extends javax.swing.JFrame {
                                                                                                 .addComponent(jLabel17)))
                                                                                 .addGap(18, 18,18 )
                                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                                                        //.addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                                                                        //.addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                                                                         .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                                                                         .addComponent(jTextField7, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
                                                                         .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -543,30 +535,24 @@ public class VotersPage extends javax.swing.JFrame {
                                                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                        //.addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel11)
-                                                        //.addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jLabel14))
                                                 .addGap(19, 19, 19)
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                        .addComponent(jLabel15)
-                                                                /*.addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
+                                                                        .addComponent(jLabel15))
                                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                                        .addComponent(jLabel17)
-                                                                /*.addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/))
+                                                                        .addComponent(jLabel17)))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                .addComponent(jLabel18)
-                                                        /*.addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
+                                                                .addComponent(jLabel18))
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(33, 33, 33)
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                 .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        /*.addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
+                                                .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(177, Short.MAX_VALUE))
         );
 

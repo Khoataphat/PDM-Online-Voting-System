@@ -434,7 +434,7 @@ public class ElectionResultsForVoters extends JFrame {
         pnSide.add(jPanel1);
 
         jButton1.setForeground(new Color(0, 255, 204));
-        jButton1.setIcon(new ImageIcon("C:\\icons hub\\icons8-home-25.png")); // NOI18N
+        jButton1.setIcon(new ImageIcon("C:\\icons hub\\icons8-home-25.png"));
         jButton1.setText(" HOME");
         jButton1.setPreferredSize(new Dimension(200, 40));
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -446,28 +446,28 @@ public class ElectionResultsForVoters extends JFrame {
         pnSide.add(jButton1);
 
         jButton2.setForeground(new Color(0, 255, 204));
-        jButton2.setIcon(new ImageIcon("C:\\icons hub\\icons8-elections-25.png")); // NOI18N
+        jButton2.setIcon(new ImageIcon("C:\\icons hub\\icons8-elections-25.png"));
         jButton2.setText("VOTERS");
         jButton2.setPreferredSize(new Dimension(200, 40));
         jButton2.addActionListener(this::jButton2ActionPerformed);
         pnSide.add(jButton2);
 
         jButton3.setForeground(new Color(0, 255, 204));
-        jButton3.setIcon(new ImageIcon("C:\\icons hub\\icons8-people-25.png")); // NOI18N
+        jButton3.setIcon(new ImageIcon("C:\\icons hub\\icons8-people-25.png"));
         jButton3.setText("ADMINISTRATOR");
         jButton3.setPreferredSize(new Dimension(200, 40));
         jButton3.addActionListener(this::jButton3ActionPerformed);
         pnSide.add(jButton3);
 
         jButton4.setForeground(new Color(0, 255, 204));
-        jButton4.setIcon(new ImageIcon("C:\\icons hub\\icons8-leader-25.png")); // NOI18N
+        jButton4.setIcon(new ImageIcon("C:\\icons hub\\icons8-leader-25.png"));
         jButton4.setText("CANDIDATES");
         jButton4.setPreferredSize(new Dimension(200, 40));
         jButton4.addActionListener(this::jButton4ActionPerformed);
         pnSide.add(jButton4);
 
         jButton5.setForeground(new Color(0, 255, 204));
-        jButton5.setIcon(new ImageIcon("C:\\icons hub\\icons8-list-25.png")); // NOI18N
+        jButton5.setIcon(new ImageIcon("C:\\icons hub\\icons8-list-25.png"));
         jButton5.setText("VOTER LIST");
         jButton5.setPreferredSize(new Dimension(200, 40));
         jButton5.addActionListener(this::jButton5ActionPerformed);
@@ -501,7 +501,6 @@ public class ElectionResultsForVoters extends JFrame {
                     .addGap(105, 105, 150)
                     .addComponent(jLabel4)
                     .addGap(105, 105, 150)
-                    //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2819, Short.MAX_VALUE)
                     .addComponent(jLabel3)
                     .addGap(80, 80, 100))
         );
@@ -564,7 +563,7 @@ public class ElectionResultsForVoters extends JFrame {
             .addGap(0, 39, Short.MAX_VALUE)
         );
 
-        jButton9.setIcon(new ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
+        jButton9.setIcon(new ImageIcon("C:\\icons hub\\icons8-back-25.png"));
         jButton9.setText("Back");
         //jButton9.addActionListener(this::jButton9ActionPerformed);
 /*
@@ -615,31 +614,31 @@ public class ElectionResultsForVoters extends JFrame {
 
         pniCCenter.setBackground(new Color(30, 40, 44));
 
-        jLabel8.setFont(new Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
+        jLabel8.setFont(new Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new Color(0, 255, 102));
         jLabel8.setText("Voter");
 
         jButton17.setBackground(new Color(255, 102, 102));
-        jButton17.setFont(new Font("Tahoma", Font.PLAIN, 18)); // NOI18N
+        jButton17.setFont(new Font("Tahoma", Font.PLAIN, 18));
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new Dimension(200, 40));
         jButton17.addActionListener(this::jButton17ActionPerformed);
 
-        jLabel9.setFont(new Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
+        jLabel9.setFont(new Font("Adobe Caslon Pro", Font.ITALIC, 14));
         jLabel9.setForeground(new Color(255, 255, 0));
         jLabel9.setText("No of People Contributed Upto ");
 
-        jLabel10.setFont(new Font("Tahoma", Font.PLAIN, 14)); // NOI18N
+        jLabel10.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jLabel10.setForeground(new Color(0, 255, 0));
 
-        jLabel11.setFont(new Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
+        jLabel11.setFont(new Font("Adobe Caslon Pro", Font.ITALIC, 14));
         jLabel11.setForeground(new Color(255, 255, 0));
         jLabel11.setText("No of Canditates Partcipating");
 
-        jLabel12.setFont(new Font("Tahoma", Font.PLAIN, 14)); // NOI18N
+        jLabel12.setFont(new Font("Tahoma", Font.PLAIN, 14));
         jLabel12.setForeground(new Color(51, 255, 0));
 
-        jLabel13.setFont(new Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
+        jLabel13.setFont(new Font("Adobe Caslon Pro", Font.ITALIC, 14));
         jLabel13.setForeground(new Color(255, 255, 0));
         jLabel13.setText("this time");
 
@@ -661,11 +660,11 @@ public class ElectionResultsForVoters extends JFrame {
         lb05.setForeground(new Color(0, 255, 204));
         lb05.setText("05");
 
-        jLabel14.setFont(new Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel14.setFont(new Font("Tahoma", Font.PLAIN, 30));
         jLabel14.setForeground(new Color(0, 255, 204));
         jLabel14.setText("The Winner Of The Election is");
 
-        jLabel15.setFont(new Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel15.setFont(new Font("Tahoma", Font.PLAIN, 30));
         jLabel15.setForeground(new Color(102, 255, 102));
 
         jPanel8.setBackground(new Color(102, 255, 204));
@@ -721,15 +720,15 @@ public class ElectionResultsForVoters extends JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
-        jLabel16.setFont(new Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel16.setFont(new Font("Tahoma", Font.PLAIN, 30));
         jLabel16.setForeground(new Color(0, 255, 204));
         jLabel16.setText("BY");
 
-        jLabel17.setFont(new Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel17.setFont(new Font("Tahoma", Font.PLAIN, 30));
         jLabel17.setForeground(new Color(0, 255, 204));
         jLabel17.setText("Votes");
 
-        jLabel18.setFont(new Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel18.setFont(new Font("Tahoma", Font.PLAIN, 30));
         jLabel18.setForeground(new Color(255, 255, 0));
 
         GroupLayout pniCCenterLayout = new GroupLayout(pniCCenter);
