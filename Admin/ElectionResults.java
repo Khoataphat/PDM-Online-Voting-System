@@ -11,6 +11,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.swing.*;
 import javax.swing.plaf.basic.BasicButtonUI;
 
@@ -35,11 +37,12 @@ public class ElectionResults extends javax.swing.JFrame {
     Connection con = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    String Election_ID;
-
-    public ElectionResults(String Election_ID) {
+    private static String  Admin_ID;
+    private static String Election_ID;
+    public ElectionResults(String Election_ID, String Admin_ID) {
         initComponents();
-        this.Election_ID = Election_ID;
+        ElectionResults.Election_ID = Election_ID;
+        ElectionResults.Admin_ID = Admin_ID;
         upDateDB();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13};
         for (JButton btn : btns) {
@@ -67,25 +70,23 @@ public class ElectionResults extends javax.swing.JFrame {
                 public void mouseExited(MouseEvent e) {
                     btn.setBackground(new Color(21,25,28));
                 }
-                
+
             });
         }
     }
 
 
     public int noCand(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT count(DISTINCT(c.Candidate_No)) AS Total FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID =?");
+            pst = con.prepareStatement("SELECT count(DISTINCT(Candidate_ID)) AS Total FROM votes vs WHERE Election_ID =?");
             pst.setString(1, Election_ID);
-            
-            rs = pst.executeQuery();
-            
 
+            rs = pst.executeQuery();
             if(rs.next()){
                 String noofcandidates = rs.getString("Total");
                 jLabel12.setText(noofcandidates);
@@ -104,7 +105,7 @@ public class ElectionResults extends javax.swing.JFrame {
 
 
     public int novoters(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -116,7 +117,7 @@ public class ElectionResults extends javax.swing.JFrame {
             pst = con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v WHERE v.Election_ID = ? AND v.Voter_ID IS NOT NULL ");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            
+
 
             if(rs.next()){
                 String noofvoters = rs.getString("Voter_Count");
@@ -135,60 +136,70 @@ public class ElectionResults extends javax.swing.JFrame {
     }
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
-        jPanel7.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel7.setBackground(new java.awt.Color(255, 141, 202, 255));
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
-       
-        jPanel8.setBackground(new java.awt.Color(102, 255, 204));
+
+        jPanel8.setBackground(new java.awt.Color(152, 170, 248));
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 0));
+        jPanel9.setBackground(new java.awt.Color(16, 246, 121));
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
 
-        jPanel10.setBackground(new java.awt.Color(0, 255, 0));
+        jPanel10.setBackground(new java.awt.Color(208, 84, 255));
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
 
-        jPanel11.setBackground(new java.awt.Color(102, 255, 102));
+        jPanel11.setBackground(new java.awt.Color(253, 143, 79));
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
-        
+
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 1 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                    Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))  PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 1\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
+                lb01.setText(rs.getString("Full_name"));
 
-                lb01.setText(rs.getString("Full_name"));        
+                jPanel7Layout.setHorizontalGroup(
+                        jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                );
+                jPanel7Layout.setVerticalGroup(
+                        jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
+                );
             }
             else{
                 lb01.setText("No Candidate");
             }
 
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 1 AND v.Election_ID = ?");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
-                jPanel7Layout.setHorizontalGroup(
-                    jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 0, Short.MAX_VALUE)
-                );
-                jPanel7Layout.setVerticalGroup(
-                    jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
-                );
-            }
-
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -196,32 +207,43 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 2 AND vs.Election_ID = ?");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                    Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))  PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 2\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb02.setText(rs.getString("Full_name"));
+
+                jPanel8Layout.setHorizontalGroup(
+                        jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                );
+                jPanel8Layout.setVerticalGroup(
+                        jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
+                );
             }
             else{
                 lb02.setText("No Candidate");
             }
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 2 AND v.Election_ID = ?");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
-                jPanel8Layout.setHorizontalGroup(
-                    jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 0, Short.MAX_VALUE)
-                );
-                jPanel8Layout.setVerticalGroup(
-                    jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
-                );
-            }
-
 
         }
         catch (Exception ex) {
@@ -230,35 +252,44 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 3 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                   Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2)) PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 3\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
-
                 lb03.setText(rs.getString("Full_name"));
+
+                jPanel9Layout.setHorizontalGroup(
+                        jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                );
+                jPanel9Layout.setVerticalGroup(
+                        jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
+                );
             }
             else{
                 lb03.setText("No Candidate");
             }
-
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 3 AND v.Election_ID = ?");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
-                jPanel9Layout.setHorizontalGroup(
-                    jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 0, Short.MAX_VALUE)
-                );
-                jPanel9Layout.setVerticalGroup(
-                    jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
-                );
-            }
-
-
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -266,31 +297,43 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 4 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))   PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 4\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb04.setText(rs.getString("Full_name"));
+
+                jPanel10Layout.setHorizontalGroup(
+                        jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                );
+                jPanel10Layout.setVerticalGroup(
+                        jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
+                );
             }
             else{
                 lb04.setText("No Candidate");
-            }
-
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 4 AND v.Election_ID = ?");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
-                jPanel10Layout.setHorizontalGroup(
-                    jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 0, Short.MAX_VALUE)
-                );
-                jPanel10Layout.setVerticalGroup(
-                    jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
-                );
             }
 
         }
@@ -300,31 +343,43 @@ public class ElectionResults extends javax.swing.JFrame {
 
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT DISTINCT(c.Full_name) FROM Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND Candidate_No = 5 AND vs.Election_ID = ?;");
+            pst = con.prepareStatement("with total_votes_base_candidate as (\n" +
+                    "select Candidate_ID, Election_ID, COUNT(Voter_ID) 'total based on candidate'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by Candidate_ID, Election_ID\n" +
+                    "),\n" +
+                    "total_based_on_election as (\n" +
+                    "select Election_ID, count(Voter_ID)  'total based on Voter'\n" +
+                    "from votes \n" +
+                    "where Election_ID is not null\n" +
+                    "group by Election_ID \n" +
+                    ")\n" +
+                    "select Candidate.Candidate_ID, Candidate.Candidate_No, Candidate.Full_name, total_based_on_election.Election_ID, \n" +
+                    "                                                    Cast(([total based on candidate]*100.0 / [total based on Voter]) as decimal(18,2))  PERCENTAGE\n" +
+                    "from total_based_on_election, total_votes_base_candidate, Candidate\n" +
+                    "where total_based_on_election.Election_ID = total_votes_base_candidate.Election_ID\n" +
+                    "and Candidate.Candidate_ID = [total_votes_base_candidate].Candidate_ID\n" +
+                    "and Candidate_No = 5\n" +
+                    "and total_based_on_election.Election_ID = ?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             // String noofcandidates = rs.getString("count(Candidate_No)");
             if(rs.next()){
                 lb05.setText(rs.getString("Full_name"));
+
+                jPanel11Layout.setHorizontalGroup(
+                        jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 0, Short.MAX_VALUE)
+                );
+                jPanel11Layout.setVerticalGroup(
+                        jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGap(0, 4 * rs.getInt("PERCENTAGE"), Short.MAX_VALUE)
+                );
             }
             else{
                 lb05.setText("No Candidate");
-            }
-            
-            pst= con.prepareStatement("SELECT CAST(COUNT(v.Voter_ID) * 100.0 / (SELECT COUNT(*) FROM votes WHERE Election_ID = ?) AS INT) AS Voter_Percentage FROM votes v JOIN Candidate c ON v.Candidate_ID = c.Candidate_ID WHERE c.Candidate_No = 5 AND v.Election_ID = ?");
-            pst.setString(1, Election_ID);
-            pst.setString(2, Election_ID);
-
-            rs = pst.executeQuery();
-            if(rs.next()){
-                jPanel11Layout.setHorizontalGroup(
-                    jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 0, Short.MAX_VALUE)
-                );
-                jPanel11Layout.setVerticalGroup(
-                    jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGap(0, 4 * rs.getInt("Voter_Percentage"), Short.MAX_VALUE)
-                );
             }
         }
         catch (Exception ex) {
@@ -337,7 +392,7 @@ public class ElectionResults extends javax.swing.JFrame {
     }
 
 
-    
+
     /*public int noCand() {
         String serverName = "DESKTOP-0IKLTBG";
         String databaseName = "OnlineVoting";
@@ -441,15 +496,20 @@ public class ElectionResults extends javax.swing.JFrame {
         lb04 = new javax.swing.JLabel();
         lb01 = new javax.swing.JLabel();
         lb05 = new javax.swing.JLabel();
-        JLabel jLabel14 = new JLabel();
+
         jLabel15 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        JLabel jLabel16 = new JLabel();
-        JLabel jLabel17 = new JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -513,12 +573,12 @@ public class ElectionResults extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 250, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
         );
 
         pnSide.add(jPanel5);
@@ -527,17 +587,17 @@ public class ElectionResults extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
-        jButton13.setText("VOTING PERCENTAGE");
-        jButton13.addActionListener(this::jButton13ActionPerformed);
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel5.setText("CLICK HERE TO");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel6.setText("KNOW THE");
-
-        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel7.setText("VOTING PERCENTAGE");
+//        jButton13.setText("VOTING PERCENTAGE");
+//        jButton13.addActionListener(this::jButton13ActionPerformed);
+//
+//        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
+//        jLabel5.setText("CLICK HERE TO");
+//
+//        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
+//        jLabel6.setText("KNOW THE");
+//
+//        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
+//        jLabel7.setText("VOTING PERCENTAGE");
 
 
 
@@ -552,8 +612,8 @@ public class ElectionResults extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6 - PDM");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -561,25 +621,26 @@ public class ElectionResults extends javax.swing.JFrame {
         javax.swing.GroupLayout pnCBottomLayout = new javax.swing.GroupLayout(pnCBottom);
         pnCBottom.setLayout(pnCBottomLayout);
         pnCBottomLayout.setHorizontalGroup(
-            pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCBottomLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1)
-                .addGap(105, 105, 105)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2999, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(176, 176, 176))
+                pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnCBottomLayout.createSequentialGroup()
+                                .addGap(80, 80, 120)
+                                .addComponent(jLabel1)
+                                .addGap(105, 105, 150)
+                                .addComponent(jLabel4)
+                                .addGap(105, 105, 150)
+                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2819, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(80, 80, 100))
         );
         pnCBottomLayout.setVerticalGroup(
-            pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnCBottomLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
-                .addGroup(pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(23, 23, 23))
+                pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnCBottomLayout.createSequentialGroup()
+                                .addContainerGap(37, Short.MAX_VALUE)
+                                .addGroup(pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel4))
+                                .addGap(23, 23, 23))
         );
 
         pnCenter.add(pnCBottom, java.awt.BorderLayout.SOUTH);
@@ -596,25 +657,25 @@ public class ElectionResults extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 415, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 415, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 38, Short.MAX_VALUE)
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 38, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(153, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(0, 255, 204));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 313, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 41, Short.MAX_VALUE)
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 41, Short.MAX_VALUE)
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 102));
@@ -622,12 +683,12 @@ public class ElectionResults extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 175, Short.MAX_VALUE)
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 175, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 39, Short.MAX_VALUE)
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 39, Short.MAX_VALUE)
         );
 
         jButton9.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-back-25.png")); // NOI18N
@@ -635,46 +696,48 @@ public class ElectionResults extends javax.swing.JFrame {
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png")); // NOI18N
-        jButton8.setText("Click me");
+        jButton8.setText("Click");
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
         pniCTop.setLayout(pniCTopLayout);
         pniCTopLayout.setHorizontalGroup(
-            pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pniCTopLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(pniCTopLayout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jButton9)
-                .addGap(81, 81, 81)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2747, Short.MAX_VALUE)
-                .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pniCTopLayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pniCTopLayout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(jButton9)
+                                .addGap(105, 105, 105)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2747, Short.MAX_VALUE)
+                                .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         pniCTopLayout.setVerticalGroup(
-            pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pniCTopLayout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pniCTopLayout.createSequentialGroup()
-                        .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72))
-                    .addGroup(pniCTopLayout.createSequentialGroup()
-                        .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pniCTopLayout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pniCTopLayout.createSequentialGroup()
+                                                .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
+                                                )
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(72, 72, 72))
+                                        .addGroup(pniCTopLayout.createSequentialGroup()
+                                                .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel2)
+                                                        .addComponent(jButton8)
+                                                        .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         pnCenter.add(pniCTop, java.awt.BorderLayout.NORTH);
@@ -685,7 +748,7 @@ public class ElectionResults extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Admins");
 
-        jButton17.setBackground(new java.awt.Color(255, 102, 102));
+        jButton17.setBackground(new java.awt.Color(232, 10, 10));
         jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -702,8 +765,8 @@ public class ElectionResults extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 0));
         jLabel11.setText("No of Canditates Partcipating");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(51, 255, 0));
+        //jLabel12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14)); // NOI18N
+        //jLabel12.setForeground(new java.awt.Color(28, 42, 80));
 
         jLabel13.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 0));
@@ -728,125 +791,156 @@ public class ElectionResults extends javax.swing.JFrame {
         lb05.setText("05");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 255, 204));
-        jLabel14.setText("The Winner Of The Election is");
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(102, 255, 102));
+        jLabel15.setForeground(new java.awt.Color(248, 255, 0));
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(248, 255, 0));
+
+        jLabel20.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(102, 255, 102));
+
+        //jLabel21.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        //jLabel21.setForeground(new java.awt.Color(255, 30, 0));
+
+        jLabel22.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(102, 133, 255));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 255, 204));
-        jLabel16.setText("BY");
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 255, 204));
-        jLabel17.setText("Votes");
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 0));
 
+
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
         pniCCenterLayout.setHorizontalGroup(
-            pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pniCCenterLayout.createSequentialGroup()
-                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lb01, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addComponent(jPanel7,javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(47, 47, 47)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lb02, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(44, 44, 44)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lb03, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(45, 45, 45)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lb04, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(47, 47, 47)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,false)
-                            .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lb05, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)))
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel17))
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(177, 177, 177)
-                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(2783, Short.MAX_VALUE))
+                pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                        .addGap(74, 74, 74)
+                                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(lb01, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                                                .addComponent(jPanel7,javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGap(47, 47, 47)
+                                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(lb02, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                                                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGap(44, 44, 44)
+                                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(lb03, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                                                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGap(45, 45, 45)
+                                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                .addComponent(lb04, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                                                                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                        .addGap(47, 47, 47)
+                                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING,false)
+                                                                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                .addComponent(lb05, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)))
+                                                .addGap(50,50,50)
+                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                                .addComponent(jLabel13)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                        .addComponent(jLabel9)
+                                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+
+                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                .addGap(234, 234, 234)
+                                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel17))
+                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                .addGap(86, 86, 86)
+                                                .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel19,javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)))
+                                .addContainerGap(2783, Short.MAX_VALUE))
         );
         pniCCenterLayout.setVerticalGroup(
-            pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pniCCenterLayout.createSequentialGroup()
-                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13))
-                        .addGap(82, 82, 82)
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
-                            .addGap(100)
-                        .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            
-                    .addGroup(pniCCenterLayout.createSequentialGroup()
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGap (400)
-                                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18) 
-                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lb01, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb02, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb03, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb04, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lb05, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                .addGap(23, 23, 23)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(29, 29, 29)
+                                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(2, 2, 2)
+                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jLabel13))
+                                                .addGap(82, 82, 82)
+                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE))
+                                                .addGap(100)
+                                                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
 
-                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(182, Short.MAX_VALUE))
+                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                        .addGap (245)
+                                                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(lb01, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lb02, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lb03, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lb04, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(lb05, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+
+                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(20, 20, 20)
+
+//                                                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        ))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                     //   .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false))
+                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,false)
+                                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, -1, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, -1, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(182, Short.MAX_VALUE))
         );
 
         pnCenter.add(pniCCenter, java.awt.BorderLayout.CENTER);
@@ -861,11 +955,11 @@ public class ElectionResults extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to VoterList Page",
-                    "Warning", JOptionPane.YES_NO_OPTION);
+                "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
             VotersList h = new VotersList();
             h.show();
-            
+
             dispose();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -877,11 +971,11 @@ public class ElectionResults extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Home Page",
-                    "Warning", JOptionPane.YES_NO_OPTION);
+                "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
             Home h = new Home();
             h.show();
-            
+
             dispose();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -889,11 +983,11 @@ public class ElectionResults extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want Go to Voters Login Page",
-                    "Warning", JOptionPane.YES_NO_OPTION);
+                "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
             VotersLogin v = new VotersLogin();
             v.show();
-            
+
             dispose();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -909,14 +1003,14 @@ public class ElectionResults extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
             AdminLogin c = new AdminLogin();
             c.show();
-            
+
             dispose();
         }
     }//GEN-LAST:event_jButton17ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        AdminPage h = new AdminPage();
+        ElectionPage h = new ElectionPage(Admin_ID);
         h.show();
 
         dispose();
@@ -926,43 +1020,91 @@ public class ElectionResults extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel7MouseClicked
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-
-        String serverName = "MSI\\SQLEXPRESS";
+    private boolean isAfterElectionPeriod(String Election_ID) {
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
-        //Thục Minh coi lại chuyển đoạn code đó sang sử dụng sql ha
-
         try {
-            con = DriverManager.getConnection(url, "sa", "123456789");
-            pst = con.prepareStatement("SELECT TOP 1 Full_name, Voter_count FROM ( SELECT cd.Full_name, COUNT(v.Voter_ID) AS Voter_count FROM Candidate cd, votes v WHERE cd.Candidate_ID = v.Candidate_ID AND v.Election_ID = ? AND cd.Candidate_No IN (1, 2, 3, 4, 5) AND v.Voter_ID IS NOT NULL GROUP BY cd.Full_name) AS T");
+            PreparedStatement pst = con.prepareStatement("SELECT End_date FROM Election WHERE Election_ID =?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                jLabel15.setText(rs.getString("Full_name"));
-                jLabel18.setText(Integer.toString(rs.getInt("Voter_count")));
-            } else {
-                jLabel15.setText("No Candidate");
-                jLabel18.setText("0");
+                LocalDateTime endDate = rs.getTimestamp("End_date").toLocalDateTime();
+                LocalDateTime currentDate = LocalDateTime.now();
+
+                return (currentDate.isAfter(endDate) || (currentDate.isEqual(endDate) ));
             }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
+        return false;
+    }
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
+        if(isAfterElectionPeriod(Election_ID)) {
+            try {
+                con = DriverManager.getConnection(url, "sa", "123456789");
+                pst = con.prepareStatement("with counter_votes as (\n" +
+                        "select Candidate_ID, Election_ID,  Count(Voter_ID) 'count'\n" +
+                        "from votes\n" +
+                        "where Candidate_ID is not null and \n" +
+                        "Election_ID is not null and Voter_ID is not null\n" +
+                        "group by votes.Candidate_ID, Election_ID), \n" +
+                        "max_votes as (\n" +
+                        "select max(count) 'Max'\n" +
+                        "from counter_votes\n" +
+                        "group by Election_ID)\n" +
+                        "\n" +
+                        "select counter_votes.*, Candidate.Full_name\n" +
+                        "from max_votes, counter_votes, Candidate\n" +
+                        "where max_votes.[Max] = counter_votes.[count]\n" +
+                        "and counter_votes.Candidate_ID = Candidate.Candidate_ID\n" +
+                        "and Election_ID = ?");
+                pst.setString(1, Election_ID);
+                rs = pst.executeQuery();
+
+                if (rs.next()) {
+                        jLabel14.setText("The Winner of the Election are");
+                        jLabel16.setText("by");
+                        jLabel17.setText("votes");
+
+                        jLabel15.setText(rs.getString("Full_name"));
+                        jLabel18.setText(Integer.toString(rs.getInt("count")));
+                        if (rs.next()) {
+                            jLabel19.setText(", " +rs.getString("Full_name"));
+                            if (rs.next()) {
+                                jLabel20.setText(", " +rs.getString("Full_name"));
+                                if (rs.next()) {
+                                    jLabel21.setText(", " +rs.getString("Full_name"));
+                                    if (rs.next()) {
+                                        jLabel22.setText(", " +rs.getString("Full_name"));
+                                    }
+                                }
+                            }
+                        }
+                }
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "During the election period.");
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to LogOut",
-                    "Warning", JOptionPane.YES_NO_OPTION);
+                "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
             AdminLogin h = new AdminLogin();
             h.show();
-            
+
             dispose();
         }
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -970,11 +1112,11 @@ public class ElectionResults extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         int movetohome = JOptionPane.showConfirmDialog(null, "Do You Want to Go to Canditates Page",
-                    "Warning", JOptionPane.YES_NO_OPTION);
+                "Warning", JOptionPane.YES_NO_OPTION);
         if(movetohome == JOptionPane.YES_NO_OPTION){
             Candidates h = new Candidates();
             h.show();
-            
+
             dispose();
         }
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -986,7 +1128,7 @@ public class ElectionResults extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://d...content-available-to-author-only...e.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -1002,7 +1144,7 @@ public class ElectionResults extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ElectionResults(null).setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ElectionResults(Election_ID, Admin_ID).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1017,6 +1159,13 @@ public class ElectionResults extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel7;

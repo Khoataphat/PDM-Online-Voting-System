@@ -32,12 +32,13 @@ public class ElectionPage extends javax.swing.JFrame {
     int q;
     int i;
     int deleteItem;
+    static String Admin_ID;
 
 
     // loi add
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -73,9 +74,10 @@ public class ElectionPage extends javax.swing.JFrame {
         }
     }
 
-    public ElectionPage() {
+    public ElectionPage(String Admin_ID) {
         initComponents();
         upDateDB();
+        this.Admin_ID = Admin_ID;
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton12/*, jButton13*/, jButton14/*, jButton15*/,jButton16,jButton17};
         for (JButton btn : btns) {
             btn.setBackground(new Color(21,25,28));
@@ -570,7 +572,7 @@ public class ElectionPage extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -579,12 +581,13 @@ public class ElectionPage extends javax.swing.JFrame {
             }
             else{
                 con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("insert into Election values(?,?,?,?,null)");
+                pst = con.prepareStatement("insert into Election values(?,?,?,?,?)");
 
                 pst.setString(1, jTextField4.getText()); // ID
                 pst.setString(2, jTextField2.getText()); // Name
                 pst.setString(3, jTextField1.getText()); // Start time
                 pst.setString(4, jTextField3.getText()); // End time
+                pst.setString(5, Admin_ID);
 
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(this, "New Election Added");
@@ -641,7 +644,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        AdminPage h = new AdminPage();
+        AdminPage h = new AdminPage(Admin_ID);
         h.show();
 
         dispose();
@@ -659,7 +662,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
             if (confirmation == JOptionPane.YES_OPTION) {
                 // Chuyển đến trang chứa Election ID
-                ElectionPageAddCandidates v = new ElectionPageAddCandidates(electionID);
+                ElectionPageAddCandidates v = new ElectionPageAddCandidates(Admin_ID, electionID);
                 v.setVisible(true);
                 dispose();
             }
@@ -670,14 +673,27 @@ public class ElectionPage extends javax.swing.JFrame {
     }
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {
-        DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
+
+        DefaultTableModel RecordTable = (DefaultTableModel) jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
+        if (SelectedRows != -1) {
+            String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        ElectionResults e = new ElectionResults(RecordTable.getValueAt(SelectedRows,0).toString());
-        e.show();
+            // Hiển thị cảnh báo với election ID
+            int confirmation = JOptionPane.showConfirmDialog(this, "Go to Election page with ID: " + Election_ID + "?", "Confirm", JOptionPane.YES_NO_OPTION);
 
-        dispose();
+            if (confirmation == JOptionPane.YES_OPTION) {
+                // Chuyển đến trang chứa Election ID
+                ElectionResults e = new ElectionResults(Election_ID,Admin_ID);
+                e.show();
+                dispose();
+            }
+        } else {
+            // Xử lý khi không có hàng nào được chọn
+            JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {
 
@@ -685,7 +701,7 @@ public class ElectionPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -699,8 +715,15 @@ public class ElectionPage extends javax.swing.JFrame {
 
             if(deleteItem == JOptionPane.YES_NO_OPTION){
                 con = DriverManager.getConnection(url, username, password);
-                pst = con.prepareStatement("delete from Election where Election_ID = ?");
 
+                pst = con.prepareStatement("delete from votes where Election_ID = ?");
+                pst.setString(1, election_id);
+                pst.executeUpdate();
+
+                pst = con.prepareStatement("delete from Candidate WHERE Candidate_ID NOT IN (SELECT Candidate_ID FROM votes);");
+                pst.executeUpdate();
+
+                pst = con.prepareStatement("delete from Election where Election_ID = ?");
                 pst.setString(1, election_id);
                 pst.executeUpdate();
 
@@ -744,7 +767,7 @@ public class ElectionPage extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ElectionPage().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ElectionPage(Admin_ID).setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

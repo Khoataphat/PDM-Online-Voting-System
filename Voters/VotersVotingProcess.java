@@ -207,8 +207,8 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6 - PDM");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -218,13 +218,14 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnCBottomLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGap(80, 80, 120)
                                 .addComponent(jLabel1)
-                                .addGap(105, 105, 105)
+                                .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1282, Short.MAX_VALUE)
+                                .addGap(105, 105, 150)
+                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1282, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addGap(176, 176, 176))
+                                .addGap(80, 80 , 100))
         );
         pnCBottomLayout.setVerticalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -371,7 +372,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         jButton12.addActionListener(this::jButton12ActionPerformed);
 
         jButton14.setIcon(new javax.swing.ImageIcon("Image and Icon\\")); // NOI18N
-        jButton14.setText("  Refresh");
+        jButton14.setText("Refresh");
         jButton14.addActionListener(this::jButton14ActionPerformed);
 
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
@@ -506,7 +507,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -514,7 +515,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         try{
 
             con = DriverManager.getConnection(url, username, password);
-            pst = con.prepareStatement("select * from Candidate c, votes v where c.Candidate_ID = v.Candidate_ID AND v.Election_ID =?");
+            pst = con.prepareStatement("select distinct c.* from Candidate c, votes v where c.Candidate_ID = v.Candidate_ID AND v.Election_ID =?");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
             ResultSetMetaData stData = rs.getMetaData();
@@ -541,7 +542,6 @@ public class VotersVotingProcess extends javax.swing.JFrame {
                 }
                 RecordTable.addRow(columnData);
             }
-
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -551,30 +551,34 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         // int vote = 1;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 1");
+            pst = con.prepareStatement("SELECT Distinct c.Candidate_ID From Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID = ?  AND Candidate_No = 1");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votes values(?,?,?);");
+            if (rs.next()) {
+                String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst.setString(1, Candidate_ID);
-            pst.setString(2, Voter_ID);
-            pst.setString(3, Election_ID);
+                pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+                pst.setString(1, Candidate_ID);
+                pst.setString(2, Voter_ID);
+                pst.setString(3, Election_ID);
 
-            VotersPage h = new VotersPage(Voter_ID);
-            h.show();
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            dispose();
+                VotersPage h = new VotersPage(Voter_ID);
+                h.show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No candidate found for the given criteria.");
+            }
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -584,30 +588,34 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         // int vote = 2;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 2");
+            pst = con.prepareStatement("SELECT Distinct c.Candidate_ID From Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID = ?  AND Candidate_No = 2");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votes values(?,?,?);");
+            if (rs.next()) {
+                String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst.setString(1, Candidate_ID);
-            pst.setString(2, Voter_ID);
-            pst.setString(3, Election_ID);
+                pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+                pst.setString(1, Candidate_ID);
+                pst.setString(2, Voter_ID);
+                pst.setString(3, Election_ID);
 
-            VotersPage h = new VotersPage(Voter_ID);
-            h.show();
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            dispose();
+                VotersPage h = new VotersPage(Voter_ID);
+                h.show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No candidate found for the given criteria.");
+            }
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -617,30 +625,34 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
         // int vote = 3;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 3");
+            pst = con.prepareStatement("SELECT Distinct c.Candidate_ID From Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID = ?  AND Candidate_No = 3");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votes values(?,?,?);");
+            if (rs.next()) {
+                String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst.setString(1, Candidate_ID);
-            pst.setString(2, Voter_ID);
-            pst.setString(3, Election_ID);
+                pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+                pst.setString(1, Candidate_ID);
+                pst.setString(2, Voter_ID);
+                pst.setString(3, Election_ID);
 
-            VotersPage h = new VotersPage(Voter_ID);
-            h.show();
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            dispose();
+                VotersPage h = new VotersPage(Voter_ID);
+                h.show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No candidate found for the given criteria.");
+            }
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -650,30 +662,34 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         // int vote = 4;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 4");
+            pst = con.prepareStatement("SELECT Distinct c.Candidate_ID From Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID = ?  AND Candidate_No = 4");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votes values(?,?,?);");
+            if (rs.next()) {
+                String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst.setString(1, Candidate_ID);
-            pst.setString(2, Voter_ID);
-            pst.setString(3, Election_ID);
+                pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+                pst.setString(1, Candidate_ID);
+                pst.setString(2, Voter_ID);
+                pst.setString(3, Election_ID);
 
-            VotersPage h = new VotersPage(Voter_ID);
-            h.show();
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            dispose();
+                VotersPage h = new VotersPage(Voter_ID);
+                h.show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No candidate found for the given criteria.");
+            }
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -683,30 +699,34 @@ public class VotersVotingProcess extends javax.swing.JFrame {
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
         // int vote = 5;
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
             con = DriverManager.getConnection(url, "sa", "123456789");
             System.out.println("Connected To MySql Database!");
-            pst = con.prepareStatement("SELECT Candidate_ID From Candidate WHERE Election = ? AND Candidate_No = 5");
+            pst = con.prepareStatement("SELECT Distinct c.Candidate_ID From Candidate c, votes vs WHERE c.Candidate_ID = vs.Candidate_ID AND vs.Election_ID = ?  AND Candidate_No = 5");
             pst.setString(1, Election_ID);
             rs = pst.executeQuery();
-            String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst = con.prepareStatement("insert into votes values(?,?,?);");
+            if (rs.next()) {
+                String Candidate_ID = rs.getString("Candidate_ID");
 
-            pst.setString(1, Candidate_ID);
-            pst.setString(2, Voter_ID);
-            pst.setString(3, Election_ID);
+                pst = con.prepareStatement("insert into votes values(?,?,?);");
 
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
+                pst.setString(1, Candidate_ID);
+                pst.setString(2, Voter_ID);
+                pst.setString(3, Election_ID);
 
-            VotersPage h = new VotersPage(Voter_ID);
-            h.show();
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(this, "Your Vote Is Casted");
 
-            dispose();
+                VotersPage h = new VotersPage(Voter_ID);
+                h.show();
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "No candidate found for the given criteria.");
+            }
         }
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
