@@ -140,23 +140,23 @@ public class ElectionResults extends javax.swing.JFrame {
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
-        jPanel7.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel7.setBackground(new java.awt.Color(255, 141, 202, 255));
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
 
-        jPanel8.setBackground(new java.awt.Color(102, 255, 204));
+        jPanel8.setBackground(new java.awt.Color(152, 170, 248));
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
 
-        jPanel9.setBackground(new java.awt.Color(255, 255, 0));
+        jPanel9.setBackground(new java.awt.Color(16, 246, 121));
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
 
-        jPanel10.setBackground(new java.awt.Color(0, 255, 0));
+        jPanel10.setBackground(new java.awt.Color(208, 84, 255));
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
 
-        jPanel11.setBackground(new java.awt.Color(102, 255, 102));
+        jPanel11.setBackground(new java.awt.Color(253, 143, 79));
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
 
@@ -587,17 +587,17 @@ public class ElectionResults extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
-        jButton13.setText("VOTING PERCENTAGE");
-        jButton13.addActionListener(this::jButton13ActionPerformed);
-
-        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel5.setText("CLICK HERE TO");
-
-        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel6.setText("KNOW THE");
-
-        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel7.setText("VOTING PERCENTAGE");
+//        jButton13.setText("VOTING PERCENTAGE");
+//        jButton13.addActionListener(this::jButton13ActionPerformed);
+//
+//        jLabel5.setForeground(new java.awt.Color(255, 255, 102));
+//        jLabel5.setText("CLICK HERE TO");
+//
+//        jLabel6.setForeground(new java.awt.Color(255, 255, 102));
+//        jLabel6.setText("KNOW THE");
+//
+//        jLabel7.setForeground(new java.awt.Color(255, 255, 102));
+//        jLabel7.setText("VOTING PERCENTAGE");
 
 
 
@@ -665,7 +665,7 @@ public class ElectionResults extends javax.swing.JFrame {
                         .addGap(0, 38, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(153, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(0, 255, 204));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -696,7 +696,7 @@ public class ElectionResults extends javax.swing.JFrame {
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
         jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png")); // NOI18N
-        jButton8.setText("Click me");
+        jButton8.setText("Click");
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
@@ -709,10 +709,10 @@ public class ElectionResults extends javax.swing.JFrame {
                         .addGroup(pniCTopLayout.createSequentialGroup()
                                 .addGap(86, 86, 86)
                                 .addComponent(jButton9)
-                                .addGap(81, 81, 81)
+                                .addGap(105, 105, 105)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2747, Short.MAX_VALUE)
                                 .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -727,13 +727,15 @@ public class ElectionResults extends javax.swing.JFrame {
                                         .addGroup(pniCTopLayout.createSequentialGroup()
                                                 .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(jButton8))
+
+                                                )
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(72, 72, 72))
                                         .addGroup(pniCTopLayout.createSequentialGroup()
                                                 .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel2)
+                                                        .addComponent(jButton8)
                                                         .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -746,7 +748,7 @@ public class ElectionResults extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
         jLabel8.setText("Admins");
 
-        jButton17.setBackground(new java.awt.Color(255, 102, 102));
+        jButton17.setBackground(new java.awt.Color(232, 10, 10));
         jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
         jButton17.setText("Logout");
         jButton17.setPreferredSize(new java.awt.Dimension(200, 40));
@@ -763,8 +765,8 @@ public class ElectionResults extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 0));
         jLabel11.setText("No of Canditates Partcipating");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(51, 255, 0));
+        //jLabel12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14)); // NOI18N
+        //jLabel12.setForeground(new java.awt.Color(28, 42, 80));
 
         jLabel13.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 0));
@@ -789,28 +791,28 @@ public class ElectionResults extends javax.swing.JFrame {
         lb05.setText("05");
 
         jLabel14.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 255, 204));
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(102, 255, 102));
+        jLabel15.setForeground(new java.awt.Color(248, 255, 0));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(102, 255, 102));
+        jLabel19.setForeground(new java.awt.Color(248, 255, 0));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(102, 255, 102));
 
-        jLabel21.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(102, 255, 102));
+        //jLabel21.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
+        //jLabel21.setForeground(new java.awt.Color(255, 30, 0));
 
         jLabel22.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(102, 255, 102));
+        jLabel22.setForeground(new java.awt.Color(102, 133, 255));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 255, 204));
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 255, 204));
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel18.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 30)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 0));
@@ -903,7 +905,7 @@ public class ElectionResults extends javax.swing.JFrame {
 
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addGap (400)
+                                                        .addGap (245)
                                                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -919,18 +921,25 @@ public class ElectionResults extends javax.swing.JFrame {
 
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(20, 20, 20)
+
+//                                                .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+//                                                .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel21, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+//                                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        ))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                     //   .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE).addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false))
+                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,false)
+                                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, -1, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, -1, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addContainerGap(182, Short.MAX_VALUE))
         );
 
@@ -1061,9 +1070,9 @@ public class ElectionResults extends javax.swing.JFrame {
                 rs = pst.executeQuery();
 
                 if (rs.next()) {
-                        jLabel14.setText("The Winner Of The Election are");
-                        jLabel16.setText("BY");
-                        jLabel17.setText("Votes");
+                        jLabel14.setText("The Winner of the Election are");
+                        jLabel16.setText("by");
+                        jLabel17.setText("votes");
 
                         jLabel15.setText(rs.getString("Full_name"));
                         jLabel18.setText(Integer.toString(rs.getInt("count")));

@@ -43,7 +43,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         upDateDB();
         JButton [] btns = {jButton1, jButton2, jButton3, jButton4, jButton5, jButton7, jButton13, jButton15/*, jButton16*/, jButton18};
         for (JButton btn : btns) {
-            btn.setBackground(new Color(21,25,28));
+            btn.setBackground(new Color(30, 40, 44));
             btn.setUI(new BasicButtonUI());
             btn.addMouseListener(new MouseListener() {
                 @Override
@@ -254,7 +254,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
         pnSide.add(jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(34, 40, 44));
+        jPanel6.setBackground(new java.awt.Color(30, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
@@ -382,16 +382,22 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         jButton18.addActionListener(this::jButton18ActionPerformed);
 
         jLabel9.setText("Candidate_ID");
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setText("Candidate_No");
+        jLabel10    .setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel14.setText("Candidate_Name");
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel15.setText("Gender");
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel16.setText("Age");
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel18.setText("Email");
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
 
