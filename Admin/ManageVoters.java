@@ -83,7 +83,7 @@ public class ManageVoters extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -260,7 +260,7 @@ public class ManageVoters extends javax.swing.JFrame {
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
-        jButton13.setIcon(new javax.swing.ImageIcon("C:\\IMAGE HUB\\newvoters.png")); // NOI18N
+        jButton13.setIcon(new javax.swing.ImageIcon("Image and Icon/IU Logo.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -312,8 +312,8 @@ public class ManageVoters extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6 - PDM");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -323,13 +323,14 @@ public class ManageVoters extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnCBottomLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGap(80, 80, 120)
                                 .addComponent(jLabel1)
-                                .addGap(105, 105, 105)
+                                .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3126, Short.MAX_VALUE)
+                                .addGap(105, 105, 150)
+                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2819, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addGap(176, 176, 176))
+                                .addGap(80, 80, 100))
         );
         pnCBottomLayout.setVerticalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,9 +534,10 @@ public class ManageVoters extends javax.swing.JFrame {
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addGap(98, 98, 98)
+                                                                        .addGap(120, 120, 120)
                                                                         .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+//                                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                                        .addGap(120, 120, 120)
                                                                         .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                         .addGap(105, 105, 105)
                                                                 /*.addComponent(jButton19, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)*/)
@@ -675,7 +677,7 @@ public class ManageVoters extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         // TODO add your handling code here:
@@ -734,7 +736,7 @@ public class ManageVoters extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";

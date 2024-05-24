@@ -179,8 +179,8 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -190,13 +190,14 @@ public class AdminPage extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnCBottomLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGap(80, 80 , 120)
                                 .addComponent(jLabel1)
-                                .addGap(105, 105, 105)
+                                .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
+                                .addGap(105, 105, 150)
+                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addGap(176, 176, 176))
+                                .addGap(80, 80, 100))
         );
         pnCBottomLayout.setVerticalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +294,7 @@ public class AdminPage extends javax.swing.JFrame {
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon\\4.png")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon/Admin.jpg")); // NOI18N
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
@@ -304,6 +305,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
+
         jLabel8.setText("Admins");
 
         jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
@@ -341,7 +343,7 @@ public class AdminPage extends javax.swing.JFrame {
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jButton8)
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(18, 18, 18)

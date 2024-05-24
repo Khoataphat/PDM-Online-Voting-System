@@ -191,8 +191,8 @@ public class AdminLogin extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -202,13 +202,14 @@ public class AdminLogin extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnCBottomLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGap(80, 80, 120)
                                 .addComponent(jLabel1)
-                                .addGap(105, 105, 105)
+                                .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
+                                .addGap(105, 105, 150)
+                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addGap(176, 176, 176))
+                                .addGap(80, 80, 100))
         );
         pnCBottomLayout.setVerticalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +306,7 @@ public class AdminLogin extends javax.swing.JFrame {
         pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
 
         jButton8.setForeground(new java.awt.Color(240, 240, 240));
-        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon\\5.png")); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon("Image and Icon/5.png")); // NOI18N
         jButton8.addActionListener(this::jButton8ActionPerformed);
 
         jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18)); // NOI18N
@@ -335,10 +336,11 @@ public class AdminLogin extends javax.swing.JFrame {
                                 .addGap(116, 116, 116)
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addGap(120, 120, 180)
                                                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
                                                 .addComponent(jPasswordField1))
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addContainerGap(1927, Short.MAX_VALUE))
         );
@@ -352,13 +354,14 @@ public class AdminLogin extends javax.swing.JFrame {
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+//                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
+                                                .addGap(30, 30, 30)
                                                 .addComponent(jLabel9)
-                                                .addGap(35, 35, 35)
+                                                .addGap(30, 30, 30)
                                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(28, 28, 28)
+                                                .addGap(30, 30, 30)
                                                 .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(29, 29, 29)
+                                                .addGap(30, 30, 30)
                                                 .addComponent(jButton12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addGap(144, 144, 144))))
         );
@@ -413,7 +416,7 @@ public class AdminLogin extends javax.swing.JFrame {
         if(username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Username / Password should not be empty.");
         } else {
-            String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+            String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 

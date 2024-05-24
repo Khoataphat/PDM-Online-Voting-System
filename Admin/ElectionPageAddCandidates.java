@@ -86,7 +86,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -173,6 +173,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         JLabel jLabel16 = new JLabel();
         jTextField4 = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
         JLabel jLabel20 = new JLabel();
         JPanel pnCBottom = new JPanel();
         JLabel jLabel8 = new JLabel();
@@ -388,6 +389,8 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
         jLabel15.setText("Gender");
 
+        jLabel16.setText("Age");
+
         jLabel18.setText("Email");
 
         jTextField1.addActionListener(this::jTextField1ActionPerformed);
@@ -428,9 +431,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
-        jLabel16.setText("Age");
-
-        jLabel20.setText("");
+//        jLabel20.setText("");
 
         pnCBottom.setBackground(new java.awt.Color(30, 44, 40));
         pnCBottom.setPreferredSize(new java.awt.Dimension(734, 100));
@@ -461,8 +462,8 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6 - PDM");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         javax.swing.GroupLayout pniCCenterLayout = new javax.swing.GroupLayout(pniCCenter);
         pniCCenter.setLayout(pniCCenterLayout);
@@ -473,7 +474,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                .addGap(35, 35, 35)
+                                                                .addGap(50, 50, 50)
                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                                         .addComponent(jLabel15)
                                                                         .addComponent(jLabel10)
@@ -502,10 +503,20 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                                                                         .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pniCCenterLayout.createSequentialGroup()
                                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                                        // jLabel18
                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                .addGap(68, 68, 68)
+                                                                .addGap(90, 100, 110)
+                                                                .addComponent(jLabel18)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addGap(20, 20, 20)
+                                                                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                ))
+
+                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+                                                                .addGap(100, 100, 100)
                                                                 .addComponent(jLabel1)))
-                                                .addGap(23, 23, 23)
+                                                .addGap(30, 30, 30)
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                                 //.addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -521,15 +532,19 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                                                                                         .addGap(2, 2, 2)
                                                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                                                         .addGap(79, 79, 79)))
-                                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                                                .addGap(54, 54, 54)))
+
+//                                                                        .addGap(200, 200, 200)
+//                                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+//                                                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+////                                                                                .addGap(200, 200, 200)
+//                                                                                        .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+//                                                                                .addGap(54, 54, 54))
+                                                                                )
                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                                .addComponent(jLabel18)
-                                                                                .addGap(18, 18, 18)
-                                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
+//                                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+//                                                                                .addComponent(jLabel18)
+//                                                                                .addGap(18, 18, 18)
+//                                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                                                 .addGap(70, 70, 70)
@@ -537,12 +552,14 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                                .addGap(220, 220, 220)
+                                                                                .addGap(100, 100, 100)
+                                                                                .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addGap(100, 100, 100)
                                                                                 .addComponent(jButton18, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                                .addGap(46, 46, 46)
+                                                                                .addGap(80,80,160)
                                                                                 .addComponent(jLabel4)))
-                                                                .addGap(18, 18, 18)
+                                                                .addGap(30, 30, 30)
                                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                                         .addComponent(jLabel3))))
                                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -583,6 +600,13 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel16)
                                                         .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                // jLabel18
+                                                .addGap(18, 18, 18)
+                                                .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel18)
+                                                        .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        ))
                                                 .addGap(150, 150, 150)
                                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -597,12 +621,13 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                                                         .addGroup(pniCCenterLayout.createSequentialGroup()
                                                                 .addGap(106, 106, 106)
                                                                 .addComponent(jLabel24))
-                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                .addGap(52, 52, 52)
-                                                                .addComponent(jLabel18))
-                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
-                                                                .addGap(52, 52, 52)
-                                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+//                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+//                                                                .addGap(90, 100, 100)
+//                                                                .addComponent(jLabel18))
+//                                                        .addGroup(pniCCenterLayout.createSequentialGroup()
+//                                                                .addGap(52, 52, 52)
+//                                                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        )))
                                 .addGap(60, 60, 60)
                                 .addGroup(pniCCenterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
@@ -667,7 +692,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private boolean isBeforeElectionPeriod(String Election_ID) {
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -690,7 +715,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -740,7 +765,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                                     pst.setString(3, jTextField3.getText());
                                     pst.setString(4, Objects.requireNonNull(jComboBox1.getSelectedItem()).toString());
                                     pst.setString(5, jTextField4.getText());
-                                    pst.setString(6, jTextArea1.getText());
+                                    pst.setString(6, jTextField5.getText());
                                     pst.executeUpdate();
 
                                     pst = con.prepareStatement("insert into votes values(?,null,?)");
@@ -792,7 +817,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "LAPTOP-O6MDECFV\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -821,7 +846,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
                 jTextField4.setText("");
                 jTextField2.setText("");
                 jTextField3.setText("");
-                jTextArea1.setText("");
+                jTextField5.setText("");
             }
         } catch (Exception e) {
 
@@ -852,7 +877,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         jTextField4.setText(RecordTable.getValueAt(SelectedRows, 4).toString());
         jTextField2.setText(RecordTable.getValueAt(SelectedRows, 1).toString());
         jTextField3.setText(RecordTable.getValueAt(SelectedRows, 2).toString());
-        jTextArea1.setText(RecordTable.getValueAt(SelectedRows, 5).toString());
+        jTextField5.setText(RecordTable.getValueAt(SelectedRows, 5).toString());
 
     }//GEN-LAST:event_jTable2MouseClicked
 
@@ -940,5 +965,6 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     // End of variables declaration//GEN-END:variables
 }
