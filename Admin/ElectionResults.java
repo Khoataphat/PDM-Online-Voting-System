@@ -680,6 +680,9 @@ public class ElectionResults extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14));
         jLabel10.setForeground(new java.awt.Color(0, 255, 0));
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 14));
+        jLabel12.setForeground(new java.awt.Color(0, 255, 0));
+
         jLabel11.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 14));
         jLabel11.setForeground(new java.awt.Color(255, 255, 0));
         jLabel11.setText("No of Canditates Partcipating");
