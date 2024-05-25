@@ -90,7 +90,7 @@ public class VotersPage extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -606,7 +606,7 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     //
     private boolean isWithinElectionPeriod(String Election_ID) {
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -634,7 +634,7 @@ public class VotersPage extends javax.swing.JFrame {
         int SelectedRows = jTable2.getSelectedRow();
         String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -691,38 +691,18 @@ public class VotersPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
-        String username = "sa";
-        String password = "123456789";
-        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+        if (SelectedRows != -1) {
+            String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        try {
-            String electionId = RecordTable.getValueAt(SelectedRows, 0).toString();
+            int confirmation = JOptionPane.showConfirmDialog(this, "Go to Election page with ID: " + Election_ID + "?", "Confirm", JOptionPane.YES_NO_OPTION);
 
-            int option = JOptionPane.showConfirmDialog(null, "Confirm if you want to view election results",
-                    "Warning", JOptionPane.YES_NO_OPTION);
-
-            if (option == JOptionPane.YES_OPTION) {
-                con = DriverManager.getConnection(url, username, password);
-                pst = con.prepareStatement("SELECT Election_ID, Election_name, Start_date, End_date FROM Election WHERE Election_ID = ?");
-                pst.setString(1, electionId);
-                ResultSet rs = pst.executeQuery();
-
-                if (rs.next()) {
-                    String electionName = rs.getString("Election_ID");
-                    String candidateName = rs.getString("Election_name");
-                    String startDate = rs.getString("Start_date");
-                    String endDate = rs.getString("End_date");
-
-                    //ElectionResults e = new ElectionResults(null);
-                    //e.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Election not found");
-                }
+            if (confirmation == JOptionPane.YES_OPTION) {
+                ElectionResultsForVoters e = new ElectionResultsForVoters(Election_ID,Voter_ID);
+                e.show();
+                dispose();
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton18ActionPerformed
 

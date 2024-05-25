@@ -36,7 +36,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -567,7 +567,7 @@ public class ElectionPage extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+            String serverName = "MSI\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -688,7 +688,7 @@ public class ElectionPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
