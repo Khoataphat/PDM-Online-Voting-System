@@ -36,7 +36,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -247,8 +247,8 @@ public class ElectionPage extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(0, 204, 204));
         jLabel1.setText("INTERNATIONAL UNIVERSITY");
 
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Group 6 - PDM");
+        jLabel3.setForeground(new java.awt.Color(0, 204, 204));
+        jLabel3.setText("Group 5");
 
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
         jLabel4.setText("Copyright © 2021 PSG");
@@ -258,13 +258,14 @@ public class ElectionPage extends javax.swing.JFrame {
         pnCBottomLayout.setHorizontalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(pnCBottomLayout.createSequentialGroup()
-                                .addGap(44, 44, 44)
+                                .addGap(80, 80, 120)
                                 .addComponent(jLabel1)
-                                .addGap(105, 105, 105)
+                                .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2094, Short.MAX_VALUE)
+                                .addGap(105, 105, 150)
+                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2819, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
-                                .addGap(176, 176, 176))
+                                .addGap(80, 80, 100))
         );
         pnCBottomLayout.setVerticalGroup(
                 pnCBottomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -567,7 +568,7 @@ public class ElectionPage extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "MSI\\SQLEXPRESS";
+            String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -688,7 +689,7 @@ public class ElectionPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";

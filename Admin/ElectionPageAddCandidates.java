@@ -86,7 +86,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -254,7 +254,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
         pnSide.add(jPanel5);
 
-        jPanel6.setBackground(new java.awt.Color(30, 40, 44));
+        jPanel6.setBackground(new java.awt.Color(34, 40, 44));
         jPanel6.setMinimumSize(new java.awt.Dimension(200, 280));
         jPanel6.setPreferredSize(new java.awt.Dimension(200, 280));
 
@@ -361,7 +361,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
         pnCenter.add(pniCTop, java.awt.BorderLayout.NORTH);
 
-        pniCCenter.setBackground(new java.awt.Color(30, 40, 44));
+        pniCCenter.setBackground(new java.awt.Color(34, 40, 44));
 
         jButton15.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton15.setForeground(new java.awt.Color(0, 255, 204));
@@ -437,7 +437,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Others" }));
         jComboBox1.addActionListener(this::jComboBox1ActionPerformed);
 
-        pnCBottom.setBackground(new java.awt.Color(30, 44, 40));
+        pnCBottom.setBackground(new java.awt.Color(34, 40, 44));
         pnCBottom.setPreferredSize(new java.awt.Dimension(734, 100));
 
         javax.swing.GroupLayout pnCBottomLayout = new javax.swing.GroupLayout(pnCBottom);
@@ -674,7 +674,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private boolean isBeforeElectionPeriod(String Election_ID) {
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -697,7 +697,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -799,7 +799,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {

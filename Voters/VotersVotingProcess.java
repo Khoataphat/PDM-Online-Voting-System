@@ -361,10 +361,10 @@ public class VotersVotingProcess extends javax.swing.JFrame {
         jButton9.setIcon(new javax.swing.ImageIcon("Image and Icon\\num2.png"));
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
-        jButton10.setIcon(new javax.swing.ImageIcon("Image and Icon\\num3.png"));
+        jButton10.setIcon(new javax.swing.ImageIcon("Image and Icon\\num4.png"));
         jButton10.addActionListener(this::jButton10ActionPerformed);
 
-        jButton11.setIcon(new javax.swing.ImageIcon("Image and Icon\\num4.png"));
+        jButton11.setIcon(new javax.swing.ImageIcon("Image and Icon\\num3.png"));
         jButton11.addActionListener(this::jButton11ActionPerformed);
 
         jButton12.setIcon(new javax.swing.ImageIcon("Image and Icon\\num5.png"));
@@ -506,7 +506,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -548,7 +548,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -584,7 +584,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -620,7 +620,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -656,7 +656,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -692,7 +692,7 @@ public class VotersVotingProcess extends javax.swing.JFrame {
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
+        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
