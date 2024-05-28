@@ -105,7 +105,6 @@ public class ElectionResults extends javax.swing.JFrame {
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, username, password);
             pst = con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v WHERE v.Election_ID = ? AND v.Voter_ID IS NOT NULL ");
             pst.setString(1, Election_ID);
@@ -665,7 +664,7 @@ public class ElectionResults extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
-        jLabel8.setText("Admins");
+        jLabel8.setText("Admin");
 
         jButton17.setBackground(new java.awt.Color(232, 10, 10));
         jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));

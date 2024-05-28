@@ -149,7 +149,6 @@ public class ElectionPage extends javax.swing.JFrame {
         JLabel jLabel10 = new JLabel();
         jTextField1 = new javax.swing.JTextField();
 
-        //loi add
         jTextField3 = new javax.swing.JTextField();
         JLabel jLabel11 = new JLabel();
         jTable1 = new javax.swing.JTable();

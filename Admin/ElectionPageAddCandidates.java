@@ -109,8 +109,6 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
             while (rs.next()){
                 Vector columnData = new Vector();
-                //Thục Minh: Scope to appear the candidates table_The table in the right-hand corner
-
                 for(i = 1;i <= q; i++){
                     columnData.add(rs.getString("Candidate_ID"));
                     columnData.add(rs.getString("Candidate_No"));

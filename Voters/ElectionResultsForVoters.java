@@ -7,7 +7,6 @@ package Voters;
 import Admin.VotersPage;
 import General.*;
 import Admin.*;
-import Voters.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -106,7 +105,6 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
         try{
-            //Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection(url, username, password);
             pst = con.prepareStatement("SELECT COUNT(v.Voter_ID) AS Voter_Count FROM votes v WHERE v.Election_ID = ? AND v.Voter_ID IS NOT NULL ");
             pst.setString(1, Election_ID);
@@ -590,7 +588,6 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
                                 .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
                                 .addGap(105, 105, 150)
-                                //.addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2819, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(80, 80, 100))
         );
@@ -657,10 +654,6 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
         jButton9.setText("Back");
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
-    /*    jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png"));
-        jButton8.setText("Click");
-        jButton8.addActionListener(this::jButton8ActionPerformed);*/
-
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
         pniCTop.setLayout(pniCTopLayout);
         pniCTopLayout.setHorizontalGroup(
@@ -706,7 +699,7 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
-        jLabel8.setText("Admins");
+        jLabel8.setText("Voter");
 
         jButton17.setBackground(new java.awt.Color(232, 10, 10));
         jButton17.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
@@ -965,67 +958,6 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
 
         dispose();
     }//GEN-LAST:event_jButton9ActionPerformed
-
-    private void jPanel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel7MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPanel7MouseClicked
-
-
- /*   private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
-        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-
-        if(isAfterElectionPeriod(Election_ID)) {
-            try {
-                con = DriverManager.getConnection(url, "sa", "123456789");
-                pst = con.prepareStatement("with counter_votes as (\n" +
-                        "select Candidate_ID, Election_ID,  Count(Voter_ID) 'count'\n" +
-                        "from votes\n" +
-                        "where Candidate_ID is not null and \n" +
-                        "Election_ID is not null and Voter_ID is not null\n" +
-                        "group by votes.Candidate_ID, Election_ID), \n" +
-                        "max_votes as (\n" +
-                        "select max(count) 'Max'\n" +
-                        "from counter_votes\n" +
-                        "group by Election_ID)\n" +
-                        "\n" +
-                        "select counter_votes.*, Candidate.Full_name\n" +
-                        "from max_votes, counter_votes, Candidate\n" +
-                        "where max_votes.[Max] = counter_votes.[count]\n" +
-                        "and counter_votes.Candidate_ID = Candidate.Candidate_ID\n" +
-                        "and Election_ID = ?");
-                pst.setString(1, Election_ID);
-                rs = pst.executeQuery();
-
-                if (rs.next()) {
-                    jLabel14.setText("The Winner of the Election are");
-                    jLabel16.setText("by");
-                    jLabel17.setText("votes");
-
-                    jLabel15.setText(rs.getString("Full_name"));
-                    jLabel18.setText(Integer.toString(rs.getInt("count")));
-                    if (rs.next()) {
-                        jLabel19.setText(", " +rs.getString("Full_name"));
-                        if (rs.next()) {
-                            jLabel20.setText(", " +rs.getString("Full_name"));
-                            if (rs.next()) {
-                                jLabel21.setText(", " +rs.getString("Full_name"));
-                                if (rs.next()) {
-                                    jLabel22.setText(", " +rs.getString("Full_name"));
-                                }
-                            }
-                        }
-                    }
-                }
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "During the election period.");
-        }
-    }//GEN-LAST:event_jButton8ActionPerformed*/
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:

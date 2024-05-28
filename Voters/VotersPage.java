@@ -275,8 +275,6 @@ public class VotersPage extends javax.swing.JFrame {
                                 .addGap(105, 105, 150)
                                 .addComponent(jLabel4)
                                 .addGap(105, 105, 150)
-
-//                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3126, Short.MAX_VALUE)
                                 .addComponent(jLabel3)
                                 .addGap(80, 80, 100))
         );
