@@ -229,7 +229,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Adobe Caslon Pro", Font.BOLD, 48));
         jLabel2.setForeground(new java.awt.Color(0, 204, 204));
-        jLabel2.setText("Admins Login Page");
+        jLabel2.setText("Admin Login Page");
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -317,7 +317,7 @@ public class AdminLogin extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
-        jLabel8.setText("Admins");
+        jLabel8.setText("Admin");
 
         jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24));
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
