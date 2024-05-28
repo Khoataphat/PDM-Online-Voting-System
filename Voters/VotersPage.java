@@ -629,6 +629,27 @@ public class VotersPage extends javax.swing.JFrame {
         return false;
     }
 
+    private boolean isAfterElectionPeriod(String Election_ID) {
+        String serverName = "MSI\\SQLEXPRESS";
+        String databaseName = "Online-Voting";
+        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
+        try {
+            PreparedStatement pst = con.prepareStatement("SELECT End_date FROM Election WHERE Election_ID =?");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                LocalDateTime endDate = rs.getTimestamp("End_date").toLocalDateTime();
+                LocalDateTime currentDate = LocalDateTime.now();
+
+                return (currentDate.isAfter(endDate) || (currentDate.isEqual(endDate) ));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
@@ -696,10 +717,12 @@ public class VotersPage extends javax.swing.JFrame {
 
             int confirmation = JOptionPane.showConfirmDialog(this, "Go to Election page with ID: " + Election_ID + "?", "Confirm", JOptionPane.YES_NO_OPTION);
 
-            if (confirmation == JOptionPane.YES_OPTION) {
+            if ((confirmation == JOptionPane.YES_OPTION) && (isAfterElectionPeriod(Election_ID))) {
                 ElectionResultsForVoters e = new ElectionResultsForVoters(Election_ID,Voter_ID);
                 e.show();
                 dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "The election is not over.");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Please select a row in the table.", "Error", JOptionPane.ERROR_MESSAGE);

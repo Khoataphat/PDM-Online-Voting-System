@@ -376,7 +376,50 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
         catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex);
         }
+        try {
+            con = DriverManager.getConnection(url, "sa", "123456789");
+            pst = con.prepareStatement("with counter_votes as (\n" +
+                    "select Candidate_ID, Election_ID,  Count(Voter_ID) 'count'\n" +
+                    "from votes\n" +
+                    "where Candidate_ID is not null and \n" +
+                    "Election_ID is not null and Voter_ID is not null\n" +
+                    "group by votes.Candidate_ID, Election_ID), \n" +
+                    "max_votes as (\n" +
+                    "select max(count) 'Max'\n" +
+                    "from counter_votes\n" +
+                    "group by Election_ID)\n" +
+                    "\n" +
+                    "select counter_votes.*, Candidate.Full_name\n" +
+                    "from max_votes, counter_votes, Candidate\n" +
+                    "where max_votes.[Max] = counter_votes.[count]\n" +
+                    "and counter_votes.Candidate_ID = Candidate.Candidate_ID\n" +
+                    "and Election_ID = ?");
+            pst.setString(1, Election_ID);
+            rs = pst.executeQuery();
 
+            if (rs.next()) {
+                jLabel14.setText("The Winner of the Election are");
+                jLabel16.setText("by");
+                jLabel17.setText("votes");
+
+                jLabel15.setText(rs.getString("Full_name"));
+                jLabel18.setText(Integer.toString(rs.getInt("count")));
+                if (rs.next()) {
+                    jLabel19.setText(", " +rs.getString("Full_name"));
+                    if (rs.next()) {
+                        jLabel20.setText(", " +rs.getString("Full_name"));
+                        if (rs.next()) {
+                            jLabel21.setText(", " +rs.getString("Full_name"));
+                            if (rs.next()) {
+                                jLabel22.setText(", " +rs.getString("Full_name"));
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
         noCand();
         novoters();
 
@@ -415,7 +458,6 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
         JPanel jPanel3 = new JPanel();
         JPanel jPanel4 = new JPanel();
         JButton jButton9 = new JButton();
-        JButton jButton8 = new JButton();
         JPanel pniCCenter = new JPanel();
         JLabel jLabel8 = new JLabel();
         JButton jButton17 = new JButton();
@@ -615,9 +657,9 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
         jButton9.setText("Back");
         jButton9.addActionListener(this::jButton9ActionPerformed);
 
-        jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png"));
+    /*    jButton8.setIcon(new javax.swing.ImageIcon("C:\\icons hub\\icons8-refresh-32.png"));
         jButton8.setText("Click");
-        jButton8.addActionListener(this::jButton8ActionPerformed);
+        jButton8.addActionListener(this::jButton8ActionPerformed);*/
 
         javax.swing.GroupLayout pniCTopLayout = new javax.swing.GroupLayout(pniCTop);
         pniCTop.setLayout(pniCTopLayout);
@@ -632,7 +674,6 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
                                 .addGap(105, 105, 105)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 2747, Short.MAX_VALUE)
                                 .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -655,7 +696,6 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
                                         .addGroup(pniCTopLayout.createSequentialGroup()
                                                 .addGroup(pniCTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                         .addComponent(jLabel2)
-                                                        .addComponent(jButton8)
                                                         .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -930,28 +970,8 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPanel7MouseClicked
 
-    private boolean isAfterElectionPeriod(String Election_ID) {
-        String serverName = "MSI\\SQLEXPRESS";
-        String databaseName = "Online-Voting";
-        String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
-        try {
-            PreparedStatement pst = con.prepareStatement("SELECT End_date FROM Election WHERE Election_ID =?");
-            pst.setString(1, Election_ID);
-            rs = pst.executeQuery();
 
-            if (rs.next()) {
-                LocalDateTime endDate = rs.getTimestamp("End_date").toLocalDateTime();
-                LocalDateTime currentDate = LocalDateTime.now();
-
-                return (currentDate.isAfter(endDate) || (currentDate.isEqual(endDate) ));
-            }
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return false;
-    }
-
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+ /*   private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
@@ -1005,7 +1025,7 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "During the election period.");
         }
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_jButton8ActionPerformed*/
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
