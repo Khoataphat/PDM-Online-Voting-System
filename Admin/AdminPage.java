@@ -298,14 +298,14 @@ public class AdminPage extends javax.swing.JFrame {
 
         jButton12.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton12.setForeground(new java.awt.Color(0, 255, 204));
-        jButton12.setText("Create Election");
+        jButton12.setText("Manage Election");
         jButton12.setPreferredSize(new java.awt.Dimension(200, 40));
         jButton12.addActionListener(this::jButton12ActionPerformed);
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
 
-        jLabel8.setText("Admins");
+        jLabel8.setText("Admin");
 
         jButton16.setFont(new java.awt.Font("Tahoma", Font.PLAIN, 18));
         jButton16.setForeground(new java.awt.Color(0, 255, 204));

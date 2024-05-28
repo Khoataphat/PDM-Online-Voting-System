@@ -36,7 +36,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -420,7 +420,7 @@ public class ElectionPage extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Adobe Caslon Pro Bold", Font.BOLD | Font.ITALIC, 36));
         jLabel8.setForeground(new java.awt.Color(0, 255, 102));
-        jLabel8.setText("Admins");
+        jLabel8.setText("Admin");
 
         jLabel9.setFont(new java.awt.Font("Adobe Caslon Pro", Font.ITALIC, 24));
         jLabel9.setForeground(new java.awt.Color(0, 102, 102));
@@ -568,7 +568,7 @@ public class ElectionPage extends javax.swing.JFrame {
             String Date_St = jTextField1.getText();
             String Date_Ed = jTextField3.getText();
             String Num_id = jTextField4.getText();
-            String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+            String serverName = "MSI\\SQLEXPRESS";
             String databaseName = "Online-Voting";
             String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -580,10 +580,10 @@ public class ElectionPage extends javax.swing.JFrame {
                 pst = con.prepareStatement("insert into Election values(?,?,?,?,?)");
 
                 pst.setString(1, jTextField4.getText()); // ID
-                pst.setString(2, jTextField2.getText()); // Name
-                pst.setString(3, jTextField1.getText()); // Start time
-                pst.setString(4, jTextField3.getText()); // End time
-                pst.setString(5, Admin_ID);
+                pst.setString(3, jTextField2.getText()); // Name
+                pst.setString(4, jTextField1.getText()); // Start time
+                pst.setString(5, jTextField3.getText()); // End time
+                pst.setString(2, Admin_ID);
 
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(this, "New Election Added");
@@ -689,7 +689,7 @@ public class ElectionPage extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable1.getModel();
         int SelectedRows = jTable1.getSelectedRow();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";

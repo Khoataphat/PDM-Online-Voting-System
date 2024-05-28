@@ -70,7 +70,7 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
 
 
     public int noCand(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -99,7 +99,7 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
 
 
     public int novoters(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";
@@ -130,7 +130,7 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
     }
 
     public void upDateDB(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -931,7 +931,7 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel7MouseClicked
 
     private boolean isAfterElectionPeriod(String Election_ID) {
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -953,7 +953,7 @@ public class ElectionResultsForVoters extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 

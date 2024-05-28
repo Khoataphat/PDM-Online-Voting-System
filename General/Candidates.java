@@ -70,7 +70,7 @@ public class Candidates extends javax.swing.JFrame {
     }
 
     public void upDateDB(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{

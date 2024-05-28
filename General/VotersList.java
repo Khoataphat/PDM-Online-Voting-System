@@ -389,7 +389,7 @@ public class VotersList extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String username = "sa";
         String password = "123456789";

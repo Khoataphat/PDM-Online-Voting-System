@@ -86,7 +86,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
 
 
     public void upDateDB(){
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try{
@@ -674,7 +674,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private boolean isBeforeElectionPeriod(String Election_ID) {
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -697,7 +697,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -799,7 +799,7 @@ public class ElectionPageAddCandidates extends javax.swing.JFrame {
         DefaultTableModel RecordTable = (DefaultTableModel)jTable2.getModel();
         int SelectedRows = jTable2.getSelectedRow();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {

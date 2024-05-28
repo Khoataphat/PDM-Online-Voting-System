@@ -90,7 +90,7 @@ public class VotersPage extends javax.swing.JFrame {
 
     public void upDateDB(){
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
 
@@ -606,7 +606,7 @@ public class VotersPage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
     //
     private boolean isWithinElectionPeriod(String Election_ID) {
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
@@ -634,7 +634,7 @@ public class VotersPage extends javax.swing.JFrame {
         int SelectedRows = jTable2.getSelectedRow();
         String Election_ID = RecordTable.getValueAt(SelectedRows, 0).toString();
 
-        String serverName = "TRAN-TRIEU-NHU\\SQLEXPRESS";
+        String serverName = "MSI\\SQLEXPRESS";
         String databaseName = "Online-Voting";
         String url = "jdbc:sqlserver://" + serverName + ":1433;databaseName=" + databaseName + ";encrypt=true;trustServerCertificate=true;";
         try {
