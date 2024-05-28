@@ -4,7 +4,7 @@
  */
 package Voters;
 
-import Admin.VotersPage;
+import Admin.*;
 import General.*;
 import Admin.*;
 import java.awt.*;

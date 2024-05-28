@@ -4,7 +4,6 @@
  */
 package Voters;
 
-import Admin.VotersPage;
 import General.*;
 import Admin.*;
 
